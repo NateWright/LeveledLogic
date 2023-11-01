@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b38bi27gq8pa7"]
+
+[ext_resource type="PackedScene" uid="uid://croxwgs246s7e" path="res://scenes/elements/player.tscn" id="1_ved8g"]
+[ext_resource type="PackedScene" uid="uid://d0ouscwiidwv5" path="res://scenes/elements/wall.tscn" id="2_8stwk"]
+
+[node name="level_test" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_ved8g")]
+position = Vector2(167, 201)
+
+[node name="Wall" parent="." instance=ExtResource("2_8stwk")]
+position = Vector2(378, 223)
