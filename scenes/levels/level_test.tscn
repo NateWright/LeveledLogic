@@ -1,12 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://b38bi27gq8pa7"]
+[gd_scene load_steps=6 format=3 uid="uid://b38bi27gq8pa7"]
 
 [ext_resource type="PackedScene" uid="uid://croxwgs246s7e" path="res://scenes/elements/player.tscn" id="1_ved8g"]
 [ext_resource type="PackedScene" uid="uid://d0ouscwiidwv5" path="res://scenes/elements/wall.tscn" id="2_8stwk"]
+[ext_resource type="Texture2D" uid="uid://25dfcmmdywa3" path="res://assets/programmer_art/wall.png" id="3_fwtm0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ai2sx"]
+texture = ExtResource("3_fwtm0")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:0/0/physics_layer_0/polygon_0/one_way_margin = 0.0
+
+[sub_resource type="TileSet" id="TileSet_4v3ap"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_ai2sx")
 
 [node name="level_test" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_ved8g")]
-position = Vector2(167, 201)
+position = Vector2(486, 91)
 
 [node name="Wall" parent="." instance=ExtResource("2_8stwk")]
-position = Vector2(378, 223)
+position = Vector2(272, 383)
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(630, 171)
+tile_set = SubResource("TileSet_4v3ap")
+format = 2
+layer_0/name = "wall"
+layer_0/tile_data = PackedInt32Array(-1, 1, 0, 65535, 1, 0, 131071, 1, 0, -65537, 1, 0, -131071, 1, 0, -65535, 1, 0, 1, 1, 0, 65537, 1, 0, -65542, 1, 0, -6, 1, 0, 65530, 1, 0, 131066, 1, 0)
