@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlmp85gilw6oo"]
+
+[ext_resource type="Texture2D" uid="uid://b6wovmly5rfpu" path="res://assets/programmer_art/crate_pink.png" id="1_a8ol6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrbyx"]
+size = Vector2(32, 32)
+
+[node name="TestCube" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_a8ol6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mrbyx")

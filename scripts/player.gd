@@ -12,15 +12,15 @@ enum Direction {
 	RIGHT
 }
 
+const MOVE_TIMER = 32
+
+
 var state: PlayerState = PlayerState.STANDING
 var direction: Direction = Direction.DOWN
 
 var moving_timer = 0
 
-const MOVE_TIMER = 32
-
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+var picked_up: PhysicsBody2D = null
 
 func _direction_vector(d: Direction):
 	match d:
@@ -35,7 +35,7 @@ func _direction_vector(d: Direction):
 
 
 func _process(_delta):
-	var move_vector = Vector2.ZERO
+	# Check if player should start moving
 	if state == PlayerState.STANDING:
 		if Input.is_action_pressed("move_up"):
 			_try_start_move(Direction.UP)
@@ -46,18 +46,34 @@ func _process(_delta):
 		elif Input.is_action_pressed("move_right"):
 			_try_start_move(Direction.RIGHT)
 	
+	# Handle player movement
 	if state == PlayerState.MOVING:
-		move_vector += _direction_vector(direction)
+		var move_vector = _direction_vector(direction)
 		moving_timer -= 1
 		if moving_timer == 0:
 			state = PlayerState.STANDING
-	
-	if move_vector.length() > 0:
 		position = position.round()
 		move_vector = move_vector.normalized()
 		var mac = move_and_collide(move_vector, false, -0.0001)
 		if mac != null:
 			push_warning("player's intermediate move triggered a collider")
+	
+	# Placing and Picking Up Objects
+	if state == PlayerState.STANDING:
+		if Input.is_action_just_pressed("pick_up"):
+			var colliding: Array[Node2D] = $Area2D.get_overlapping_bodies()
+			if (colliding.size() > 1):
+				push_warning("Overlapping tiles")
+			if picked_up == null and colliding.size() > 0:
+				var colliding_object = colliding[0]
+				picked_up = colliding_object
+				get_parent().remove_child(colliding_object)
+		elif Input.is_action_just_pressed("place", true):
+			var colliding: Array[Node2D] = $Area2D.get_overlapping_bodies()
+			if picked_up != null and colliding.is_empty():
+				get_parent().add_child(picked_up)
+				picked_up.position = position
+				picked_up = null
 
 func _try_start_move(dir: Direction):
 	var dir_vec = _direction_vector(dir)
@@ -67,5 +83,3 @@ func _try_start_move(dir: Direction):
 		direction = dir
 		state = PlayerState.MOVING
 		moving_timer = MOVE_TIMER
-	else:
-		print("preventing movement")
