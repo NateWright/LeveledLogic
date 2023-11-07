@@ -48,13 +48,14 @@ jobs:
       options: --privileged
     name: package
     steps:
+      - name: checkout
+        uses: actions/checkout@v3.3.0
       - uses: actions/download-artifact@master
         with:
           name: LL.x86_64
+          path: .
       - name: list-dir
         run: ls -la
-      - name: checkout
-        uses: actions/checkout@v3.3.0
       - name: Build
         uses: andyholmes/flatter@main
         with:
