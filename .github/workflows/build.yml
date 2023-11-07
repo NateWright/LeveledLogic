@@ -56,11 +56,18 @@ jobs:
           path: .
       - name: list-dir
         run: ls -la
+      - name: Setup GPG
+        id: gpg
+        uses: crazy-max/ghaction-import-gpg@v5
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.GPG_PASSPHRASE }}
       - name: Build
         uses: andyholmes/flatter@main
         with:
           files: |
             com.github.NateWright.LeveledLogic.json
+          gpg-sign: ${{ steps.gpg.outputs.fingerprint }}
           upload-pages-artifact: true
           upload-pages-includes: |
             default.css
