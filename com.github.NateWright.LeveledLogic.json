@@ -9,12 +9,17 @@
             "name": "LeveledLogic",
             "buildsystem": "simple",
             "build-commands": [
-                "install -D LL.x86_64 /app/bin/LL.x86_64"
+                "install -D LL.x86_64 /app/bin/LL.x86_64",
+                "install -D LL.pck /app/bin/LL.pck"
             ],
             "sources": [
                 {
                     "type": "file",
                     "path": "LL.x86_64"
+                },
+                {
+                    "type": "file",
+                    "path": "LL.pck"
                 }
             ]
         }
