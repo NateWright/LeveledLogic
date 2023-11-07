@@ -34,7 +34,7 @@ jobs:
         relative_project_path: ./
         archive_output: true
     - name: Build
-      uses: andyholmes/actions/flatter@main
+      uses: andyholmes/flatter@main
       with:
         files: |
           com.github.NateWright.LeveledLogic.json
