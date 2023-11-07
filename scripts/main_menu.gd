@@ -11,7 +11,7 @@ func _process(_delta):
 
 
 func _on_play_button_pressed():
-	get_tree().change_scene_to_packed(preload("res://scenes/levels/level_test.tscn"))
+	get_tree().change_scene_to_packed(preload("res://scenes/levels/level_select.tscn"))
 
 func _on_options_button_pressed():
 	pass # Replace with function body.
