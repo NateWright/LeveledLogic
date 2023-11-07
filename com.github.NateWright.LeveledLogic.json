@@ -2,21 +2,19 @@
     "app-id": "com.github.NateWright.LeveledLogic",
     "runtime": "org.freedesktop.Platform",
     "runtime-version": "23.08",
-    "base": "org.godotengine.Godot",
-    "base-version": "stable",
     "sdk": "org.freedesktop.Sdk",
-    "command": "godot-runner.pck",
+    "command": "LL.x86_64",
     "modules": [
         {
             "name": "LeveledLogic",
             "buildsystem": "simple",
             "build-commands": [
-                "godot --quiet --headless --export-pack 'Linux/X11' /app/bin/godot-runner.pck ./project.godot"
+                "install -D LL.x86_64 /app/bin/LL.x86_64"
             ],
             "sources": [
                 {
-                    "type": "dir",
-                    "path": "."
+                    "type": "file",
+                    "path": "LL.x86_64"
                 }
             ]
         }
