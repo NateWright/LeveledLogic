@@ -5,23 +5,18 @@
     "base": "org.godotengine.Godot",
     "base-version": "stable",
     "sdk": "org.freedesktop.Sdk",
-    "command": "LL.x86_64",
+    "command": "godot-runner.pck",
     "modules": [
         {
             "name": "LeveledLogic",
             "buildsystem": "simple",
             "build-commands": [
-                "install -D 'Leveled Logic.pck' /app/bin/LL.pck",
-                "install -D 'Leveled Logic.x86_64' /app/bin/LL.x86_64"
+                "godot --quiet --headless --export-pack 'Linux/X11' /app/bin/godot-runner.pck ./project.godot"
             ],
             "sources": [
                 {
-                    "type": "file",
-                    "path": "build/Leveled Logic.pck"
-                },
-                {
-                    "type": "file",
-                    "path": "build/Leveled Logic.x86_64"
+                    "type": "dir",
+                    "path": "."
                 }
             ]
         }
