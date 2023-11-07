@@ -35,6 +35,10 @@ jobs:
           platforms: arm64
       - name: download
         run: flatpak install -y org.freedesktop.Sdk/x86_64/23.08
+      - name: download2
+        run: flatpak install -y org.freedesktop.Platform/x86_64/23.08
+      - name: download3
+        run: flatpak install -y org.godotengine.Godot/x86_64/stable
       - name: Build
         uses: andyholmes/flatter@main
         with:
