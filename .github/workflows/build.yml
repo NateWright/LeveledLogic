@@ -32,6 +32,7 @@ jobs:
         archive_output: true
   package:
     runs-on: ubuntu-latest
+    needs: export_game
     container: 
       image: ghcr.io/andyholmes/flatter/freedesktop:23.08
       options: --privileged
@@ -49,7 +50,7 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    needs: export_game
+    needs: package
     permissions:
       pages: write
       id-token: write
