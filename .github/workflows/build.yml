@@ -29,11 +29,7 @@ jobs:
         godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.0/Godot_v4.0-stable_linux.x86_64.zip
         godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.0/Godot_v4.0-stable_export_templates.tpz
         relative_project_path: ./
-        archive_output: true
-    - uses: actions/upload-artifact@master
-      with:
-        name: LL.x86_64
-        path: ./LL.x86_64
+        archive_output: false
   package:
     runs-on: ubuntu-latest
     needs: export_game
@@ -44,8 +40,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@master
         with:
-          name: LL.x86_64
-          path: ./LL.x86_64
+          name: ${{ steps.export.outputs.build_directory }}/LL.x86_64
       - name: checkout
         uses: actions/checkout@v3.3.0
       - name: Build
