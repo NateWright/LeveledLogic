@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://dixnkx1bn80is"]
+
+[ext_resource type="Texture2D" uid="uid://b6n6252jyop5l" path="res://assets/programmer_art/wire_straight.png" id="1_jfuyv"]
+[ext_resource type="Script" path="res://scripts/logic/wire_straight.gd" id="1_ospa1"]
+[ext_resource type="Script" path="res://scripts/signal/receiver.gd" id="2_t3yrh"]
+[ext_resource type="Script" path="res://scripts/signal/sender.gd" id="3_r406v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21vef"]
+size = Vector2(2, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m2q3t"]
+size = Vector2(2, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hwy3g"]
+size = Vector2(32, 32)
+
+[node name="WireStraight" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_ospa1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("1_jfuyv")
+
+[node name="LogicReceiver" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("2_t3yrh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LogicReceiver"]
+position = Vector2(-16, 0)
+shape = SubResource("RectangleShape2D_21vef")
+
+[node name="LogicSender" type="Area2D" parent="."]
+z_index = -1
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("3_r406v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LogicSender"]
+position = Vector2(16, 0)
+shape = SubResource("RectangleShape2D_m2q3t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hwy3g")
+
+[connection signal="logic_changed" from="LogicReceiver" to="." method="_on_logic_receiver_logic_changed"]
+[connection signal="logic_error" from="LogicReceiver" to="." method="_on_logic_receiver_logic_error"]
