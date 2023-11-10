@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://itm6p4mhg1y3"]
+
+[ext_resource type="Texture2D" uid="uid://bk0rtb1nrx78o" path="res://assets/programmer_art/not_gate.png" id="1_sf8m6"]
+[ext_resource type="Script" path="res://scripts/logic/not_gate.gd" id="1_ygtwg"]
+[ext_resource type="Script" path="res://scripts/signal/receiver.gd" id="2_jbj63"]
+[ext_resource type="Script" path="res://scripts/signal/sender.gd" id="3_bvuuf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wyil"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_edpgq"]
+size = Vector2(2, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wcmte"]
+size = Vector2(2, 2)
+
+[node name="NotGate" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_ygtwg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("1_sf8m6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6wyil")
+
+[node name="LogicReceiver" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("2_jbj63")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LogicReceiver"]
+position = Vector2(-16, 0)
+shape = SubResource("RectangleShape2D_edpgq")
+
+[node name="LogicSender" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("3_bvuuf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LogicSender"]
+position = Vector2(16, 0)
+shape = SubResource("RectangleShape2D_wcmte")
+
+[connection signal="logic_changed" from="LogicReceiver" to="." method="_on_logic_receiver_logic_changed"]
+[connection signal="logic_error" from="LogicReceiver" to="." method="_on_logic_receiver_logic_error"]
