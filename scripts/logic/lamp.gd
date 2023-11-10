@@ -9,6 +9,5 @@ func _on_logic_changed(state: bool, _id: int):
 	else:
 		$Sprite2D.texture = LAMP_OFF
 
-
 func _on_logic_error():
 	pass # Replace with function body.

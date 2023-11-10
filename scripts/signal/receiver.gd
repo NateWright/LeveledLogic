@@ -12,8 +12,11 @@ var last_id = 0
 var activated = false
 
 func logic_update(state: bool, signal_id: int):
-	if (signal_id == last_id):
-		logic_error.emit()
-	else:
-		last_id = signal_id
-		logic_changed.emit(state, signal_id)
+	if (state != activated):
+		if (signal_id == last_id):
+			logic_error.emit()
+		else:
+			activated = state
+			last_id = signal_id
+			logic_changed.emit(state, signal_id)
+	

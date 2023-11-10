@@ -67,3 +67,34 @@ position = Vector2(518, 347)
 
 [node name="Lamp2" parent="." instance=ExtResource("7_dokph")]
 position = Vector2(550, 347)
+
+[node name="Lever3" parent="." instance=ExtResource("5_fikur")]
+position = Vector2(422, 411)
+
+[node name="WireStraight4" parent="." instance=ExtResource("6_1jk5l")]
+position = Vector2(454, 411)
+
+[node name="NotGate2" parent="." instance=ExtResource("8_it4mp")]
+position = Vector2(486, 411)
+
+[node name="WireStraight5" parent="." instance=ExtResource("6_1jk5l")]
+position = Vector2(518, 411)
+
+[node name="WireStraight7" parent="." instance=ExtResource("6_1jk5l")]
+position = Vector2(518, 443)
+rotation = 3.14159
+
+[node name="WireStraight8" parent="." instance=ExtResource("6_1jk5l")]
+position = Vector2(486, 443)
+rotation = 3.14159
+
+[node name="WireStraight6" parent="." instance=ExtResource("6_1jk5l")]
+position = Vector2(534, 427)
+rotation = 1.5708
+
+[node name="WireStraight9" parent="." instance=ExtResource("6_1jk5l")]
+position = Vector2(470, 427)
+rotation = 4.71239
+
+[node name="Lamp3" parent="." instance=ExtResource("7_dokph")]
+position = Vector2(550, 411)
