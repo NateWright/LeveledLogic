@@ -42,7 +42,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           generateReleaseNotes: true
-          tag: ${{ github.sha }}
+          tag: ${{ github.run_id }}
           artifacts: ${{ steps.export.outputs.archive_directory }}/*
       - uses: actions/upload-artifact@v3
         with:
