@@ -1,7 +1,7 @@
 extends Control
 
 const LEVELS = [
-	preload("res://scenes/levels/level_test.tscn")
+	"res://scenes/levels/level_test.tscn"
 ]
 
 
@@ -16,4 +16,4 @@ func _process(_delta):
 
 
 func _on_level_select(level):
-	get_tree().change_scene_to_packed(LEVELS[level])
+	get_tree().change_scene_to_packed(load(LEVELS[level]))

@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://b38bi27gq8pa7"]
+[gd_scene load_steps=13 format=3 uid="uid://b38bi27gq8pa7"]
 
 [ext_resource type="Script" path="res://scripts/level_base.gd" id="1_umysh"]
 [ext_resource type="PackedScene" uid="uid://croxwgs246s7e" path="res://scenes/elements/player.tscn" id="1_ved8g"]
+[ext_resource type="PackedScene" uid="uid://bulfibx6tn714" path="res://scenes/levels/level_select.tscn" id="2_6hfqu"]
 [ext_resource type="PackedScene" uid="uid://d0ouscwiidwv5" path="res://scenes/elements/wall.tscn" id="2_8stwk"]
 [ext_resource type="Texture2D" uid="uid://25dfcmmdywa3" path="res://assets/programmer_art/wall.png" id="3_fwtm0"]
 [ext_resource type="PackedScene" uid="uid://dlmp85gilw6oo" path="res://scenes/elements/test_cube.tscn" id="4_meoci"]
@@ -26,6 +27,7 @@ sources/1 = SubResource("TileSetAtlasSource_ai2sx")
 
 [node name="level_test" type="Node2D"]
 script = ExtResource("1_umysh")
+next_level = ExtResource("2_6hfqu")
 
 [node name="Player" parent="." instance=ExtResource("1_ved8g")]
 position = Vector2(486, 91)
@@ -100,3 +102,5 @@ rotation = 4.71239
 
 [node name="Lamp3" parent="." instance=ExtResource("7_dokph")]
 position = Vector2(550, 411)
+
+[connection signal="logic_changed" from="Lamp" to="." method="_on_lamp_logic_changed"]
