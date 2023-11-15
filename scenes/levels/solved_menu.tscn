@@ -51,6 +51,10 @@ label_settings = SubResource("LabelSettings_1auuw")
 layout_mode = 2
 text = "Next Level"
 
+[node name="ButtonRestart" type="Button" parent="MarginContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart Level"
+
 [node name="ButtonLevelSelect" type="Button" parent="MarginContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Level Select"
@@ -60,5 +64,6 @@ layout_mode = 2
 text = "Main Menu"
 
 [connection signal="pressed" from="MarginContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonNextLevel" to="." method="_on_button_next_level_pressed" flags=3]
+[connection signal="pressed" from="MarginContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonRestart" to="." method="_on_button_restart_pressed" flags=3]
 [connection signal="pressed" from="MarginContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonLevelSelect" to="." method="_on_button_level_select_pressed" flags=3]
 [connection signal="pressed" from="MarginContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonMainMenu" to="." method="_on_button_main_menu_pressed"]
