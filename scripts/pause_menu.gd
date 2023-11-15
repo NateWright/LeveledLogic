@@ -17,3 +17,7 @@ func _on_button_resume_pressed():
 
 func _on_button_main_menu_pressed():
 	get_tree().change_scene_to_packed(load("res://scenes/levels/main_menu.tscn"))
+
+
+func _on_button_restart_pressed():
+	get_tree().change_scene_to_packed(load("res://scenes/levels/level_test.tscn"))
