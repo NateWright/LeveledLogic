@@ -18,7 +18,7 @@ func _on_options_button_pressed():
 
 
 func _on_credits_button_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene_to_packed(preload("res://scenes/levels/credits.tscn"))
 
 
 func _on_exit_button_pressed():
