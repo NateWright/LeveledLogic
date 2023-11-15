@@ -42,4 +42,10 @@ label_settings = SubResource("LabelSettings_i38el")
 layout_mode = 2
 text = "Test Level"
 
+[node name="ButtonMainMenu" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back to Main Menu
+"
+
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/ButtonTestLevel" to="." method="_on_level_select" binds= [0]]
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/ButtonMainMenu" to="." method="_on_button_main_menu_pressed" flags=3]
