@@ -9,12 +9,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if Input.is_action_just_pressed("pause"):
-		var child = preload("res://scenes/levels/pause_menu.tscn").instantiate()
-		child.position = self.get_window().size / 2
-		self.add_child(child)
+	if !GlobalState.paused:
+		if Input.is_action_just_pressed("pause"):
+			GlobalState.paused = true
+			var child = preload("res://scenes/levels/pause_menu.tscn").instantiate()
+			child.position = self.get_window().size / 2
+			self.add_child(child)
 
 func _on_level_solved():
+	GlobalState.paused = true
 	var child = preload("res://scenes/levels/solved_menu.tscn").instantiate()
 	child.position = self.get_window().size / 2
 	child.next_level = next_level

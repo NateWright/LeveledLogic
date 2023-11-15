@@ -35,6 +35,8 @@ func _direction_vector(d: Direction):
 
 
 func _process(_delta):
+	if GlobalState.paused:
+		return
 	# Check if player should start moving
 	if state == PlayerState.STANDING:
 		if Input.is_action_pressed("move_up"):
