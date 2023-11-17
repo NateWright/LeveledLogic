@@ -13,13 +13,13 @@ func _process(_delta):
 		if Input.is_action_just_pressed("pause"):
 			GlobalState.paused = true
 			var child = preload("res://scenes/levels/pause_menu.tscn").instantiate()
-			child.position = self.get_window().size / 2
+			child.position = self.get_window().content_scale_size / 2
 			self.add_child(child)
 
 func _on_level_solved():
 	GlobalState.paused = true
 	var child = preload("res://scenes/levels/solved_menu.tscn").instantiate()
-	child.position = self.get_window().size / 2
+	child.position = self.get_window().content_scale_size / 2
 	child.next_level = next_level
 	self.add_child(child)
 

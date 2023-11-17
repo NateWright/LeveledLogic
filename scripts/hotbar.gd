@@ -9,6 +9,9 @@ func _ready():
 	var container = $CenterContainer/PanelContainer/HBoxContainer
 	var new_panel = container.get_children()[selected]
 	new_panel.set("theme_override_styles/panel", selected_style)
+	var scale_size = get_window().content_scale_size
+	position.x = scale_size.x / 2
+	position.y = scale_size.y
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
