@@ -27,8 +27,8 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "Dummy Controls:
-Your Dad"
+text = "How to Play Menu
+To do:"
 horizontal_alignment = 1
 
 [node name="ButtonMainMenu" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
