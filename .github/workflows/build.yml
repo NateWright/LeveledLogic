@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - 'main'
+      - 'v*'
 
 jobs:
   # job id, can be anything
@@ -37,18 +37,21 @@ jobs:
           archive_output: true
           cache: true
           wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
-      # - name: ls-build
-      #   run: ls -la ${{ steps.export.outputs.build_directory }}
-      # - name: ls-build2
-      #   run: ls -la ${{ steps.export.outputs.archive_directory }}
-      # - name: ls
-      #   run: ls -la
       - name: create release
         uses: ncipollo/release-action@v1.12.0
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           generateReleaseNotes: true
           tag: ${{ github.run_id }}
+          artifacts: ${{ steps.export.outputs.archive_directory }}/*
+      - name: create release
+        uses: ncipollo/release-action@v1.12.0
+        if: ${{ github.ref != 'refs/heads/main' }}
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          generateReleaseNotes: true
+          tag: ${{ github.ref_name }}
           artifacts: ${{ steps.export.outputs.archive_directory }}/*
       - uses: actions/upload-artifact@v3
         with:
