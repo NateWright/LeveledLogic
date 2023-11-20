@@ -14,9 +14,9 @@ size = Vector2(2, 2)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcmte"]
 size = Vector2(2, 2)
 
-[node name="NotGate" type="Area2D"]
-collision_layer = 0
-collision_mask = 0
+[node name="NotGate" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_ygtwg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

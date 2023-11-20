@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b38bi27gq8pa7"]
+[gd_scene load_steps=13 format=3 uid="uid://b38bi27gq8pa7"]
 
+[ext_resource type="Script" path="res://scripts/level_base.gd" id="1_umysh"]
 [ext_resource type="PackedScene" uid="uid://croxwgs246s7e" path="res://scenes/elements/player.tscn" id="1_ved8g"]
-[ext_resource type="PackedScene" uid="uid://d0ouscwiidwv5" path="res://scenes/elements/wall.tscn" id="2_8stwk"]
+[ext_resource type="PackedScene" uid="uid://bulfibx6tn714" path="res://scenes/levels/level_select.tscn" id="2_6hfqu"]
 [ext_resource type="Texture2D" uid="uid://25dfcmmdywa3" path="res://assets/programmer_art/wall.png" id="3_fwtm0"]
+[ext_resource type="PackedScene" uid="uid://bya2yh0xvc1g4" path="res://scenes/hotbar.tscn" id="4_hxhxe"]
 [ext_resource type="PackedScene" uid="uid://dlmp85gilw6oo" path="res://scenes/elements/test_cube.tscn" id="4_meoci"]
 [ext_resource type="PackedScene" uid="uid://hjp8pfn3qji8" path="res://scenes/elements/logic/lever.tscn" id="5_fikur"]
 [ext_resource type="PackedScene" uid="uid://dixnkx1bn80is" path="res://scenes/elements/logic/wire_straight.tscn" id="6_1jk5l"]
@@ -24,77 +26,85 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_ai2sx")
 
 [node name="level_test" type="Node2D"]
+script = ExtResource("1_umysh")
+next_level = ExtResource("2_6hfqu")
 
 [node name="Player" parent="." instance=ExtResource("1_ved8g")]
-position = Vector2(486, 91)
+position = Vector2(464, 80)
 
-[node name="Wall" parent="." instance=ExtResource("2_8stwk")]
-position = Vector2(272, 383)
+[node name="Hotbar" parent="." instance=ExtResource("4_hxhxe")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2(630, 171)
+position = Vector2(608, 160)
 tile_set = SubResource("TileSet_4v3ap")
 format = 2
 layer_0/name = "wall"
-layer_0/tile_data = PackedInt32Array(-1, 1, 0, 65535, 1, 0, 131071, 1, 0, -65537, 1, 0, -131071, 1, 0, -65535, 1, 0, 1, 1, 0, 65537, 1, 0, -65542, 1, 0, -6, 1, 0, 65530, 1, 0, 131066, 1, 0)
+layer_0/tile_data = PackedInt32Array(-1, 1, 0, 65535, 1, 0, 131071, 1, 0, -65537, 1, 0, -131071, 1, 0, -65535, 1, 0, 1, 1, 0, 65537, 1, 0, -65542, 1, 0, -6, 1, 0, 65530, 1, 0, 131066, 1, 0, -327683, 1, 0, -327682, 1, 0, -327681, 1, 0, -393216, 1, 0, -393215, 1, 0, -393214, 1, 0, -393213, 1, 0, -393212, 1, 0, -393211, 1, 0, -393210, 1, 0, -393209, 1, 0, -393208, 1, 0, -393207, 1, 0, -393206, 1, 0, -393205, 1, 0, -393204, 1, 0, -393203, 1, 0, -393202, 1, 0, -393201, 1, 0, -393200, 1, 0, -393199, 1, 0, -327684, 1, 0, -327685, 1, 0, -327686, 1, 0, -327687, 1, 0, -327688, 1, 0, -327689, 1, 0, -327690, 1, 0, -327691, 1, 0, -327692, 1, 0, -327693, 1, 0, -327694, 1, 0, -327695, 1, 0, -327696, 1, 0, -327697, 1, 0, -327698, 1, 0, -327699, 1, 0, -327700, 1, 0, -262164, 1, 0, -196628, 1, 0, -131092, 1, 0, -327663, 1, 0, -262127, 1, 0, -196591, 1, 0, -131055, 1, 0, -65519, 1, 0, 17, 1, 0, 65553, 1, 0, 131089, 1, 0, 196625, 1, 0, 262161, 1, 0, 327697, 1, 0, 393233, 1, 0, 458769, 1, 0, 524305, 1, 0, 589841, 1, 0, 655377, 1, 0, 720913, 1, 0, 786449, 1, 0, 851985, 1, 0, 917521, 1, 0, 983057, 1, 0, 1048593, 1, 0, 1048592, 1, 0, 1048591, 1, 0, 1048590, 1, 0, 1048589, 1, 0, 1048588, 1, 0, 1048587, 1, 0, 1048586, 1, 0, 1048585, 1, 0, 1048584, 1, 0, 1048583, 1, 0, 1048582, 1, 0, 1048581, 1, 0, 1048580, 1, 0, 1048579, 1, 0, 1048578, 1, 0, 1048577, 1, 0, 1048576, 1, 0, 1114111, 1, 0, 1114110, 1, 0, 1114109, 1, 0, 1114108, 1, 0, 1114107, 1, 0, 1114106, 1, 0, 1114105, 1, 0, 1114104, 1, 0, 1114103, 1, 0, 1114102, 1, 0, 1114101, 1, 0, 1114100, 1, 0, 1114099, 1, 0, 1114098, 1, 0, 1114097, 1, 0, 1114096, 1, 0, 1114095, 1, 0, 1114094, 1, 0, 1114093, 1, 0, 1114092, 1, 0, 1048556, 1, 0, 983020, 1, 0, 917484, 1, 0, 851948, 1, 0, 786412, 1, 0, 720876, 1, 0, 655340, 1, 0, 589804, 1, 0, 524268, 1, 0, 458732, 1, 0, 393196, 1, 0, 327660, 1, 0, 262124, 1, 0, 196588, 1, 0, 131052, 1, 0, 65516, 1, 0, -20, 1, 0, -65556, 1, 0)
 
 [node name="TestCube" parent="." instance=ExtResource("4_meoci")]
-position = Vector2(486, 219)
+position = Vector2(464, 208)
 
 [node name="TestCube2" parent="." instance=ExtResource("4_meoci")]
-position = Vector2(582, 219)
+position = Vector2(560, 208)
 
 [node name="Lever" parent="." instance=ExtResource("5_fikur")]
-position = Vector2(422, 283)
+position = Vector2(400, 272)
 
 [node name="WireStraight" parent="." instance=ExtResource("6_1jk5l")]
-position = Vector2(454, 283)
+position = Vector2(432, 272)
 
 [node name="Lamp" parent="." instance=ExtResource("7_dokph")]
-position = Vector2(486, 283)
+position = Vector2(464, 272)
 
 [node name="Lever2" parent="." instance=ExtResource("5_fikur")]
-position = Vector2(422, 347)
+position = Vector2(400, 336)
 
 [node name="WireStraight2" parent="." instance=ExtResource("6_1jk5l")]
-position = Vector2(454, 347)
+position = Vector2(432, 336)
 
 [node name="NotGate" parent="." instance=ExtResource("8_it4mp")]
-position = Vector2(486, 347)
+position = Vector2(464, 336)
 
 [node name="WireStraight3" parent="." instance=ExtResource("6_1jk5l")]
-position = Vector2(518, 347)
+position = Vector2(496, 336)
 
 [node name="Lamp2" parent="." instance=ExtResource("7_dokph")]
-position = Vector2(550, 347)
+position = Vector2(528, 336)
 
 [node name="Lever3" parent="." instance=ExtResource("5_fikur")]
-position = Vector2(422, 411)
+position = Vector2(400, 400)
 
 [node name="WireStraight4" parent="." instance=ExtResource("6_1jk5l")]
-position = Vector2(454, 411)
+position = Vector2(432, 400)
 
 [node name="NotGate2" parent="." instance=ExtResource("8_it4mp")]
-position = Vector2(486, 411)
+position = Vector2(464, 400)
 
 [node name="WireStraight5" parent="." instance=ExtResource("6_1jk5l")]
-position = Vector2(518, 411)
+position = Vector2(496, 400)
 
 [node name="WireStraight7" parent="." instance=ExtResource("6_1jk5l")]
-position = Vector2(518, 443)
+position = Vector2(496, 432)
 rotation = 3.14159
 
 [node name="WireStraight8" parent="." instance=ExtResource("6_1jk5l")]
-position = Vector2(486, 443)
+position = Vector2(464, 432)
 rotation = 3.14159
 
 [node name="WireStraight6" parent="." instance=ExtResource("6_1jk5l")]
-position = Vector2(534, 427)
+position = Vector2(512, 416)
 rotation = 1.5708
 
 [node name="WireStraight9" parent="." instance=ExtResource("6_1jk5l")]
-position = Vector2(470, 427)
+position = Vector2(448, 416)
 rotation = 4.71239
 
 [node name="Lamp3" parent="." instance=ExtResource("7_dokph")]
-position = Vector2(550, 411)
+position = Vector2(528, 400)
+
+[connection signal="logic_changed" from="Lamp" to="." method="_on_lamp_logic_changed"]

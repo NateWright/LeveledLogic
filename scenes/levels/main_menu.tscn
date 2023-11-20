@@ -41,9 +41,13 @@ label_settings = SubResource("LabelSettings_2d1t6")
 layout_mode = 2
 text = "Play"
 
+[node name="LevelSelectButton" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level Select"
+
 [node name="OptionsButton" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "Options"
+text = "How to Play"
 
 [node name="CreditsButton" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -53,7 +57,8 @@ text = "Credits"
 layout_mode = 2
 text = "Exit"
 
-[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed" flags=3]
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed" flags=3]
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed" flags=3]
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed" flags=3]
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed" flags=3]
