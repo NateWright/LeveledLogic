@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://cke25ko7c8v7e"]
+
+[ext_resource type="PackedScene" uid="uid://b38bi27gq8pa7" path="res://scenes/levels/base_level.tscn" id="1_3f625"]
+[ext_resource type="PackedScene" uid="uid://hjp8pfn3qji8" path="res://scenes/elements/logic/lever.tscn" id="2_f05pd"]
+[ext_resource type="PackedScene" uid="uid://dixnkx1bn80is" path="res://scenes/elements/logic/wire_straight.tscn" id="3_gprjc"]
+[ext_resource type="PackedScene" uid="uid://cq37e7sicitra" path="res://scenes/elements/logic/lamp.tscn" id="4_pkswv"]
+[ext_resource type="PackedScene" uid="uid://itm6p4mhg1y3" path="res://scenes/elements/logic/not_gate.tscn" id="5_2gxhr"]
+
+[node name="base_level" instance=ExtResource("1_3f625")]
+next_level = ExtResource("1_3f625")
+
+[node name="Node2D" type="Node2D" parent="." index="3"]
+
+[node name="Lever" parent="." index="4" instance=ExtResource("2_f05pd")]
+position = Vector2(400, 272)
+
+[node name="WireStraight" parent="." index="5" instance=ExtResource("3_gprjc")]
+position = Vector2(432, 272)
+
+[node name="Lamp" parent="." index="6" instance=ExtResource("4_pkswv")]
+position = Vector2(464, 272)
+
+[node name="Lever2" parent="." index="7" instance=ExtResource("2_f05pd")]
+position = Vector2(400, 336)
+
+[node name="WireStraight2" parent="." index="8" instance=ExtResource("3_gprjc")]
+position = Vector2(432, 336)
+
+[node name="NotGate" parent="." index="9" instance=ExtResource("5_2gxhr")]
+position = Vector2(464, 336)
+
+[node name="WireStraight3" parent="." index="10" instance=ExtResource("3_gprjc")]
+position = Vector2(496, 336)
+
+[node name="Lamp2" parent="." index="11" instance=ExtResource("4_pkswv")]
+position = Vector2(528, 336)
+
+[node name="Lever3" parent="." index="12" instance=ExtResource("2_f05pd")]
+position = Vector2(400, 400)
+
+[node name="WireStraight4" parent="." index="13" instance=ExtResource("3_gprjc")]
+position = Vector2(432, 400)
+
+[node name="NotGate2" parent="." index="14" instance=ExtResource("5_2gxhr")]
+position = Vector2(464, 400)
+
+[node name="WireStraight5" parent="." index="15" instance=ExtResource("3_gprjc")]
+position = Vector2(496, 400)
+
+[node name="WireStraight7" parent="." index="16" instance=ExtResource("3_gprjc")]
+position = Vector2(496, 432)
+rotation = 3.14159
+
+[node name="WireStraight8" parent="." index="17" instance=ExtResource("3_gprjc")]
+position = Vector2(464, 432)
+rotation = 3.14159
+
+[node name="WireStraight6" parent="." index="18" instance=ExtResource("3_gprjc")]
+position = Vector2(512, 416)
+rotation = 1.5708
+
+[node name="WireStraight9" parent="." index="19" instance=ExtResource("3_gprjc")]
+position = Vector2(448, 416)
+rotation = 4.71239
+
+[node name="Lamp3" parent="." index="20" instance=ExtResource("4_pkswv")]
+position = Vector2(528, 400)
+
+[connection signal="logic_changed" from="Lamp" to="." method="_on_lamp_logic_changed"]
