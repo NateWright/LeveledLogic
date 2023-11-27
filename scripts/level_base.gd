@@ -113,6 +113,9 @@ func _selectInput():
 		print("Gate Input Blocked")
 		return
 	
+	var r = gate.connectInput(int($Player.position.y)%32)
+	if r[0].id == -1:
+		return
 	var path = _aStar.get_point_path(_outputGateIndex.y * _mapSize.x + _outputGateIndex.x + 1, vec.y * _mapSize.x + vec.x - 1)
 	var line = Line2D.new()
 	line.add_point(_outputGateLoc)
@@ -120,7 +123,6 @@ func _selectInput():
 		line.add_point(p*32)
 		_lineOccupation[p.y][p.x] += 1
 	
-	var r = gate.connectInput(int($Player.position.y)%32)
 	_output.connectOutput(r[0])
 	
 	var inputLoc = vec * 32
@@ -142,9 +144,10 @@ func _placeGate(type: Gate.GATE):
 	var gate: Gate = _gates[vec.y][vec.x]
 	if gate.gateSet() or _lineOccupation[vec.y][vec.x] != 0:
 		return
-	print("Created a gate")
 	
 	_aStar.set_point_disabled((vec.y * _mapSize.x) + vec.x)
+	
+	_gates[vec.y][vec.x]
 	var gateBody = gate.setGate(type)
 	gateBody.position = placement
 	self.add_child(gateBody)
