@@ -66,6 +66,8 @@ func _process(_delta):
 		_placeGate(Gate.GATE.LAMP)
 	elif Input.is_action_just_pressed("place_not"):
 		_placeGate(Gate.GATE.NOT)
+	elif Input.is_action_just_pressed("place_and"):
+		_placeGate(Gate.GATE.AND)
 	elif Input.is_action_just_pressed("select_output"):
 		_selectOutput()
 	elif Input.is_action_just_pressed("select_input"):
@@ -126,6 +128,7 @@ func _selectInput():
 	inputLoc.y += (r[1] - 16)
 	
 	line.add_point(inputLoc)
+	line.width = 5
 	_linePaths.append(line)
 	self.add_child(line)
 

@@ -27,7 +27,7 @@ func setGate(gate: GATE) -> StaticBody2D:
 			_gateBody.update(_output)
 		GATE.AND, GATE.OR:
 			_inputs = [false, false]
-			_gateBody = preload("res://assets/programmer_art/not_gate.png").instantiate()
+			_gateBody = preload("res://scenes/elements/logic/and_gate.tscn").instantiate()
 		GATE.LAMP:
 			_inputs = [false]
 			_gateBody = preload("res://scenes/elements/logic/lamp.tscn").instantiate()
