@@ -4,6 +4,13 @@ extends Control
 
 @export var selected = 0
 
+@export var keybinds: Array[String] = [
+	"place_lever",
+	"place_lamp",
+	"place_not",
+	"place_and"
+];
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var container = $CenterContainer/PanelContainer/HBoxContainer
@@ -16,7 +23,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	for i in keybinds.size():
+		if Input.is_action_just_pressed(keybinds[i]):
+			_on_item_selected(i)
+			return
 
 
 func _on_item_selected(index: int):
