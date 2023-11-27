@@ -59,15 +59,14 @@ func _process(_delta):
 
 		$Placement.position.y = snapped(round($Player.position.y), 32)
 	
-		
-	if Input.is_action_just_pressed("place_lever"):
-		_placeGate(Gate.GATE.LEVER)
-	elif Input.is_action_just_pressed("place_lamp"):
-		_placeGate(Gate.GATE.LAMP)
-	elif Input.is_action_just_pressed("place_not"):
-		_placeGate(Gate.GATE.NOT)
-	elif Input.is_action_just_pressed("place_and"):
-		_placeGate(Gate.GATE.AND)
+	if Input.is_action_just_pressed("place"):
+		var gates = [
+			Gate.GATE.LEVER,
+			Gate.GATE.LAMP,
+			Gate.GATE.NOT,
+			Gate.GATE.AND
+		]
+		_placeGate(gates[$Hotbar.selected])
 	elif Input.is_action_just_pressed("select_output"):
 		_selectOutput()
 	elif Input.is_action_just_pressed("select_input"):
