@@ -32,3 +32,6 @@ layout_mode = 2
 
 [node name="Gates" type="HBoxContainer" parent="CenterContainer/PanelContainer"]
 layout_mode = 2
+
+[node name="WireTool" type="HBoxContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2

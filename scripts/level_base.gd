@@ -90,6 +90,13 @@ func _process(_delta):
 			Gate.GATE.AND
 		]
 		_placeGate(gates[$Hotbar.selectedGate], _gridSelection)
+	elif Input.is_action_just_pressed("switch_tool"):
+		if $Player.placing():
+			$Hotbar.showWireHotbar()
+		else:
+			$Hotbar.showGateHotbar()
+		$Player.toggleTool()
+			
 #	elif Input.is_action_just_pressed("select_output"):
 #		_selectOutput()
 #	elif Input.is_action_just_pressed("select_input"):
