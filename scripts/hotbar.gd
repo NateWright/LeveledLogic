@@ -5,10 +5,10 @@ extends Control
 @export var selected = 0
 
 @export var keybinds: Array[String] = [
-	"place_lever",
-	"place_lamp",
-	"place_not",
-	"place_and"
+	"hotbar1",
+	"hotbar2",
+	"hotbar3",
+	"hotbar4"
 ];
 
 @export_subgroup("Enabled")

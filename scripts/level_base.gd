@@ -85,11 +85,11 @@ func _process(_delta):
 			Gate.GATE.AND
 		]
 		_placeGate(gates[$Hotbar.selected], _gridSelection)
-	elif Input.is_action_just_pressed("select_output"):
-		_selectOutput()
-	elif Input.is_action_just_pressed("select_input"):
-		if _output != null:
-			_selectInput()
+#	elif Input.is_action_just_pressed("select_output"):
+#		_selectOutput()
+#	elif Input.is_action_just_pressed("select_input"):
+#		if _output != null:
+#			_selectInput()
 	elif Input.is_action_just_pressed("activate"):
 		_activateGate()
 
