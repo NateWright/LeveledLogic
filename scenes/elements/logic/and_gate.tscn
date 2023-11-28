@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://d3n0imybipxup" path="res://assets/gates/and.png" id="1_11387"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wyil"]
-size = Vector2(32, 32)
+size = Vector2(64, 64)
 
 [node name="AndGate" type="StaticBody2D"]
 collision_layer = 2
@@ -11,8 +11,7 @@ collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(4.61936e-07, 0)
-scale = Vector2(0.128, 0.128)
+position = Vector2(4.76837e-07, 0)
 texture = ExtResource("1_11387")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,4 +1,4 @@
-class_name Gate extends Node
+class_name And extends Node
 enum GATE {NONE, LEVER, LAMP, NOT, OR, AND, XOR, NAND, NOR, XNOR}
 var _gate = GATE.NONE
 var _gateBody: StaticBody2D
@@ -18,46 +18,10 @@ func _process(delta):
 func gateSet():
 	return _gate != GATE.NONE
 
-func setGate(gate: GATE) -> StaticBody2D:
-	_gate = gate
-	match _gate:
-		GATE.LEVER:
-			_gateBody = preload("res://scenes/elements/logic/lever.tscn").instantiate()
-			_gateBody.update(_output)
-		GATE.LAMP:
-			_inputs = [false]
-			_gateBody = preload("res://scenes/elements/logic/lamp.tscn").instantiate()
-			_gateBody.update(_output)
-		GATE.NOT:
-			_inputs = [false]
-			_gateBody = preload("res://scenes/elements/logic/not_gate.tscn").instantiate()
-		GATE.OR:
-			_inputs = [false, false]
-			_gateBody = preload("res://scenes/elements/logic/or_gate.tscn").instantiate()
-		GATE.AND:
-			_inputs = [false, false]
-			_gateBody = preload("res://scenes/elements/logic/and_gate.tscn").instantiate()
-		GATE.XOR:
-			_inputs = [false, false]
-			_gateBody = preload("res://scenes/elements/logic/xor_gate.tscn").instantiate()
-		GATE.NAND:
-			_inputs = [false, false]
-			_gateBody = preload("res://scenes/elements/logic/nand_gate.tscn").instantiate()
-		GATE.NOR:
-			_inputs = [false, false]
-			_gateBody = preload("res://scenes/elements/logic/nor_gate.tscn").instantiate()
-		GATE.XNOR:
-			_inputs = [false, false]
-			_gateBody = preload("res://scenes/elements/logic/xnor_gate.tscn").instantiate()
-	return _gateBody
+func _initGate():
+	_inputs = [false, false]
+	_gateBody = preload("res://scenes/elements/logic/and_gate.tscn").instantiate()
 			
-func getGateBody():
-	return _gateBody
-
-func connectOutput(out: OutputSignal):
-	_outputList.append(out)
-	out.output.emit(out.id, _output)
-
 func connectInput(posY: int):
 	var out = OutputSignal.new()
 	var offset = 0

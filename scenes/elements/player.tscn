@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://croxwgs246s7e"]
+[gd_scene load_steps=6 format=3 uid="uid://croxwgs246s7e"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_jpman"]
 [ext_resource type="Texture2D" uid="uid://c3y4mlv4d7qdx" path="res://assets/programmer_art/stick_person.png" id="1_xr8yv"]
+[ext_resource type="Texture2D" uid="uid://b6wovmly5rfpu" path="res://assets/programmer_art/crate_pink.png" id="3_rwh6t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2dtb7"]
 size = Vector2(31.98, 31.98)
@@ -27,3 +28,10 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_mod8h")
+
+[node name="GatePlacement" type="Sprite2D" parent="."]
+texture = ExtResource("3_rwh6t")
+
+[node name="WirePlacement" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_rwh6t")
