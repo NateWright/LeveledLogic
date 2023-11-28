@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://07lef7cgjh7y"]
 
-[ext_resource type="Texture2D" uid="uid://6voh0qdciuy8" path="res://assets/and.png" id="1_lu2rv"]
+[ext_resource type="Texture2D" uid="uid://b6pten3gat660" path="res://assets/gates/nor.png" id="1_1eqga"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wyil"]
-size = Vector2(32, 32)
+size = Vector2(64, 64)
 
 [node name="BaseGate" type="StaticBody2D"]
 collision_layer = 2
@@ -12,8 +12,7 @@ collision_mask = 2
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(4.61936e-07, 0)
-scale = Vector2(0.128, 0.128)
-texture = ExtResource("1_lu2rv")
+texture = ExtResource("1_1eqga")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6wyil")

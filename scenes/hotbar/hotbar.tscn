@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://bya2yh0xvc1g4"]
 
 [ext_resource type="Script" path="res://scripts/hotbar.gd" id="1_djwoq"]
-[ext_resource type="Texture2D" uid="uid://bk0rtb1nrx78o" path="res://assets/programmer_art/not_gate.png" id="1_ps8nk"]
 [ext_resource type="Texture2D" uid="uid://dmtynav3qmfx8" path="res://assets/programmer_art/lever_on.png" id="2_3a1vq"]
 [ext_resource type="Texture2D" uid="uid://bf1bvwexakm4t" path="res://assets/programmer_art/lamp_on.png" id="3_6xe47"]
-[ext_resource type="Texture2D" uid="uid://6voh0qdciuy8" path="res://assets/and.png" id="5_btdgc"]
+[ext_resource type="Texture2D" uid="uid://cqgq6tjxg3t6c" path="res://assets/gates/not.png" id="4_1u8d6"]
+[ext_resource type="Texture2D" uid="uid://d3n0imybipxup" path="res://assets/gates/and.png" id="5_btdgc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvj3r"]
 corner_radius_top_left = 3
@@ -82,7 +82,7 @@ theme_override_constants/margin_bottom = 8
 [node name="TextureRect" type="TextureButton" parent="CenterContainer/PanelContainer/HBoxContainer/PanelContainer3/MarginContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = ExtResource("1_ps8nk")
+texture_normal = ExtResource("4_1u8d6")
 stretch_mode = 0
 
 [node name="PanelContainer4" type="PanelContainer" parent="CenterContainer/PanelContainer/HBoxContainer"]

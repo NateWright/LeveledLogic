@@ -34,23 +34,28 @@ func _ready():
 		_gates.append(row)
 		_lineOccupation.append(rowLine)
 	
-	# Initialize current selection
-	_gridSelection.x = $Player.position.x / GlobalState.gridSize
-	_gridSelection.y = $Player.position.y / GlobalState.gridSize
-	_placementVec.x = _gridSelection.x * GlobalState.gridSize + 1 * GlobalState.gridSize + GlobalState.gridSize/2 - $Player.position.x
-	_placementVec.y = _gridSelection.y * GlobalState.gridSize + GlobalState.gridSize/2 - $Player.position.y
-	$Player.setLookingAt(_placementVec, _gates[_gridSelection.y][_gridSelection.y])
-	#TODO: Add other tiles
+	var count = 0
+	for i in range(17):
+		if i % 2:
+			_placeGate(Gate.GATE.LEVER, Vector2i(0, i))
+			count+= 1
+#	#TODO: Add other tiles
 	var tileMap: TileMap = $Level
-	
+
 	var cells = tileMap.get_used_cells(0)
 	for cell in cells:
 		var pos = cell*GlobalState.gridSize
 		pos.x += GlobalState.gridSize/2
 		pos.y += GlobalState.gridSize/2
 		var vec = tileMap.get_cell_atlas_coords(0, cell)
-		print(vec)
 		_placeGate(Gate.GATE.AND, cell)
+	
+	# Initialize current selection
+	_gridSelection.x = $Player.position.x / GlobalState.gridSize
+	_gridSelection.y = $Player.position.y / GlobalState.gridSize
+	_placementVec.x = _gridSelection.x * GlobalState.gridSize + 1 * GlobalState.gridSize + GlobalState.gridSize/2 - $Player.position.x
+	_placementVec.y = _gridSelection.y * GlobalState.gridSize + GlobalState.gridSize/2 - $Player.position.y
+	$Player.setLookingAt(_placementVec, _gates[_gridSelection.y][_gridSelection.y])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -161,8 +166,8 @@ func _placeGate(type: Gate.GATE, placement: Vector2i):
 	
 	_gates[vec.y][vec.x]
 	var gateBody = gate.setGate(type)
-	gateBody.position.x = _gridSelection.x * GlobalState.gridSize + GlobalState.gridSize/2
-	gateBody.position.y = _gridSelection.y * GlobalState.gridSize + GlobalState.gridSize/2
+	gateBody.position.x = placement.x * GlobalState.gridSize + GlobalState.gridSize/2
+	gateBody.position.y = placement.y * GlobalState.gridSize + GlobalState.gridSize/2
 	self.add_child(gateBody)
 
 func _activateGate():

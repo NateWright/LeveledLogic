@@ -1,48 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://itm6p4mhg1y3"]
+[gd_scene load_steps=3 format=3 uid="uid://itm6p4mhg1y3"]
 
-[ext_resource type="Texture2D" uid="uid://bk0rtb1nrx78o" path="res://assets/programmer_art/not_gate.png" id="1_sf8m6"]
-[ext_resource type="Script" path="res://scripts/logic/not_gate.gd" id="1_ygtwg"]
-[ext_resource type="Script" path="res://scripts/signal/receiver.gd" id="2_jbj63"]
-[ext_resource type="Script" path="res://scripts/signal/sender.gd" id="3_bvuuf"]
+[ext_resource type="Texture2D" uid="uid://cqgq6tjxg3t6c" path="res://assets/gates/not.png" id="2_g8efv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wyil"]
-size = Vector2(32, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_edpgq"]
-size = Vector2(2, 2)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wcmte"]
-size = Vector2(2, 2)
+size = Vector2(64, 64)
 
 [node name="NotGate" type="StaticBody2D"]
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("1_ygtwg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
-texture = ExtResource("1_sf8m6")
+texture = ExtResource("2_g8efv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6wyil")
-
-[node name="LogicReceiver" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 4
-script = ExtResource("2_jbj63")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LogicReceiver"]
-position = Vector2(-16, 0)
-shape = SubResource("RectangleShape2D_edpgq")
-
-[node name="LogicSender" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 4
-script = ExtResource("3_bvuuf")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LogicSender"]
-position = Vector2(16, 0)
-shape = SubResource("RectangleShape2D_wcmte")
-
-[connection signal="logic_changed" from="LogicReceiver" to="." method="_on_logic_receiver_logic_changed"]
-[connection signal="logic_error" from="LogicReceiver" to="." method="_on_logic_receiver_logic_error"]
