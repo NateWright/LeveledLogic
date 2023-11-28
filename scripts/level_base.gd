@@ -89,7 +89,7 @@ func _process(_delta):
 			Gate.GATE.NOT,
 			Gate.GATE.AND
 		]
-		_placeGate(gates[$Hotbar.selected], _gridSelection)
+		_placeGate(gates[$Hotbar.selectedGate], _gridSelection)
 #	elif Input.is_action_just_pressed("select_output"):
 #		_selectOutput()
 #	elif Input.is_action_just_pressed("select_input"):

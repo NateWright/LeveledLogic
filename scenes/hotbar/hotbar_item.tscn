@@ -1,25 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://kdtcha1lrs8x"]
+[gd_scene load_steps=3 format=3 uid="uid://kdtcha1lrs8x"]
 
+[ext_resource type="Script" path="res://scripts/hotbar_item.gd" id="1_3yw22"]
 [ext_resource type="Texture2D" uid="uid://cqgq6tjxg3t6c" path="res://assets/gates/not.png" id="1_8wqc6"]
 
-[node name="hotbar_item" type="Control"]
-layout_mode = 3
+[node name="hotbar_item" type="PanelContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_3yw22")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="TextureRect" type="TextureButton" parent="PanelContainer/MarginContainer"]
+[node name="TextureRect" type="TextureButton" parent="MarginContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture_normal = ExtResource("1_8wqc6")
