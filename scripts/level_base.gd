@@ -76,26 +76,20 @@ func _process(_delta):
 		_gridSelection.y = $Player.position.y / GlobalState.gridSize
 		_placementVec.y = _gridSelection.y * GlobalState.gridSize + GlobalState.gridSize/2 - $Player.position.y
 		$Player.setLookingAt(_placementVec, _gates[_gridSelection.y][_gridSelection.y])
-		
-	if Input.is_action_just_pressed("hotbar1"):
-		if $Player.placing():
-			_placeGate(Gate.GATE.LEVER, _gridSelection)
-		else:
-			_selectOutput()
-	elif Input.is_action_just_pressed("hotbar2"):
-		if $Player.placing():
-			_placeGate(Gate.GATE.LAMP, _gridSelection)
-		else:
-			if _output != null:
-				_selectInput()
-	elif Input.is_action_just_pressed("hotbar3"):
-		if $Player.placing():
-			_placeGate(Gate.GATE.NOT, _gridSelection)
-	elif Input.is_action_just_pressed("hotbar4"):
-		if $Player.placing():
-			_placeGate(Gate.GATE.AND, _gridSelection)
-	elif Input.is_action_just_pressed("switch_tool"):
-		$Player.toggleTool()
+	
+	if Input.is_action_just_pressed("place"):
+		var gates = [
+			Gate.GATE.LEVER,
+			Gate.GATE.LAMP,
+			Gate.GATE.NOT,
+			Gate.GATE.AND
+		]
+		_placeGate(gates[$Hotbar.selected], _gridSelection)
+	elif Input.is_action_just_pressed("select_output"):
+		_selectOutput()
+	elif Input.is_action_just_pressed("select_input"):
+		if _output != null:
+			_selectInput()
 	elif Input.is_action_just_pressed("activate"):
 		_activateGate()
 
