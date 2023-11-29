@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bulfibx6tn714"]
 
-[ext_resource type="Script" path="res://scripts/level_select.gd" id="1_2rc8c"]
+[ext_resource type="Script" path="res://scripts/level_select.gd" id="1_52afu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i38el"]
 font_size = 42
@@ -12,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_2rc8c")
+script = ExtResource("1_52afu")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -37,15 +37,3 @@ layout_mode = 2
 layout_mode = 2
 text = "Level Select"
 label_settings = SubResource("LabelSettings_i38el")
-
-[node name="ButtonTestLevel" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Test Level"
-
-[node name="ButtonMainMenu" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Back to Main Menu
-"
-
-[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/ButtonTestLevel" to="." method="_on_level_select" binds= [0]]
-[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/ButtonMainMenu" to="." method="_on_button_main_menu_pressed" flags=3]

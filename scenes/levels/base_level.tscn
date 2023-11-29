@@ -46,7 +46,6 @@ layer_0/tile_data = PackedInt32Array(-1, 2, 0, 65535, 2, 0, 131071, 2, 0, 196607
 [node name="Level" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_coeev")
 format = 2
-layer_0/tile_data = PackedInt32Array(524298, 0, 5, 524301, 0, 3)
 
 [node name="Hotbar" parent="." instance=ExtResource("4_hxhxe")]
 anchors_preset = 0

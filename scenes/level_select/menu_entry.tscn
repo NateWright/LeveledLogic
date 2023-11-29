@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://belxhubiajd7n"]
+
+[node name="ButtonTestLevel" type="Button"]
+text = "Test Level"
