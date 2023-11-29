@@ -7,6 +7,9 @@ var _output: bool = false
 
 var _outputList: Array[OutputSignal] = []
 
+var _last_signal: int = 0
+var _last_output: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -56,7 +59,7 @@ func getGateBody():
 
 func connectOutput(out: OutputSignal):
 	_outputList.append(out)
-	out.output.emit(out.id, _output)
+	out.output.emit(out.id, _output, randi())
 
 func connectInput(posY: int):
 	var out = OutputSignal.new()
@@ -78,7 +81,7 @@ func connectInput(posY: int):
 			offset = GlobalState.gridSize / 2
 	return [out, offset]
 
-func _setInput(id: int, value: bool):
+func _setInput(id: int, value: bool, signal_id: bool):
 	_inputs[id] = value
 	match _gate:
 		GATE.LAMP:
@@ -98,18 +101,23 @@ func _setInput(id: int, value: bool):
 			_output = not (_inputs[0] or _inputs[1])
 		GATE.XNOR:
 			_output = _inputs[0] == _inputs[1]
-	_notify()
+	_notify(signal_id)
 
 func interact():
 	if _gate == GATE.LEVER:
 		_output = !_output
 		_gateBody.update(_output)
-		_notify()
+		_notify(randi())
 	return
 
-func _notify():
+func _notify(signal_id: int):
+	if signal_id == _last_signal and _output != _last_output:
+		push_warning("Signaling loop detected; skipping signal")
+		return
+	_last_signal = signal_id
+	_last_output = _output
 	for out in _outputList:
-		out.output.emit(out.id, _output)
+		out.output.emit(out.id, _output, signal_id)
 
 func _getOutput():
 	return _output
