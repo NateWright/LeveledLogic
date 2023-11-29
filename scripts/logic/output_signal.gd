@@ -1,7 +1,7 @@
 class_name OutputSignal extends Node
 
 var id
-signal output(id: int, value: bool)
+signal output(id: int, value: bool, signal_id: int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
