@@ -1,9 +1,12 @@
 extends Control
 
+const GATES = 4
+const WIRE_TOOLS = 2
+
 @export var selected_style: StyleBox
 
-@export var selectedGate = 0
-@export var selectedWireTool = 0
+@export_range(0, GATES - 1) var selectedGate = 0
+@export_range(0, WIRE_TOOLS - 1) var selectedWireTool = 0
 @export var keybinds: Array[String] = [
 	"hotbar1",
 	"hotbar2",
@@ -13,7 +16,7 @@ extends Control
 
 var _hotbarItem = preload("res://scenes/hotbar/hotbar_item.tscn")
 
-@export_subgroup("Enabled")
+@export_subgroup("Enabled Gates")
 @export var _lever = true;
 @export var _lamp = true;
 @export var _not = true;
@@ -36,14 +39,14 @@ func _process(_delta):
 			return
 
 func _on_item_selected(index: int):
-	if $CenterContainer/PanelContainer/Gates.visible == true and selectedGate != index:
+	if $CenterContainer/PanelContainer/Gates.visible == true and selectedGate != index and index < GATES:
 		var container = $CenterContainer/PanelContainer/Gates
 		var selected_panel: PanelContainer = container.get_children()[selectedGate]
 		selected_panel.set("theme_override_styles/panel", null)
 		var new_panel = container.get_children()[index]
 		new_panel.set("theme_override_styles/panel", selected_style)
 		selectedGate = index
-	elif $CenterContainer/PanelContainer/WireTool.visible == true and selectedWireTool != index:
+	elif $CenterContainer/PanelContainer/WireTool.visible == true and selectedWireTool != index and index < WIRE_TOOLS:
 		var container = $CenterContainer/PanelContainer/WireTool
 		var selected_panel: PanelContainer = container.get_children()[selectedWireTool]
 		selected_panel.set("theme_override_styles/panel", null)
@@ -86,7 +89,7 @@ func _initGateHotbar():
 	
 	for i in enabled_array.size():
 		var button: TextureButton = $CenterContainer/PanelContainer/Gates.get_child(i).get_child(0).get_child(0)
-		button.disabled = true
+		button.disabled = !enabled_array[i]
 
 func _initWireToolHotbar():
 	var container = $CenterContainer/PanelContainer/WireTool
@@ -104,14 +107,3 @@ func _initWireToolHotbar():
 	var scale_size = get_window().content_scale_size
 	position.x = scale_size.x / 2
 	position.y = scale_size.y
-	
-	enabled_array = [
-		_lever,
-		_lamp,
-		_not,
-		_and
-	]
-	
-	for i in enabled_array.size():
-		var button: TextureButton = $CenterContainer/PanelContainer/Gates.get_child(i).get_child(0).get_child(0)
-		button.disabled = true
