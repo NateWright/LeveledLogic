@@ -6,7 +6,9 @@ const WIRE_TOOLS = 2
 @export var selected_style: StyleBox
 
 @export_range(0, GATES - 1) var selectedGate = 0
+signal selected_gate_changed(selectedGate)
 @export_range(0, WIRE_TOOLS - 1) var selectedWireTool = 0
+signal selected_wire_tool_changed(selectedGate)
 @export var keybinds: Array[String] = [
 	"hotbar1",
 	"hotbar2",
@@ -46,6 +48,7 @@ func _on_item_selected(index: int):
 		var new_panel = container.get_children()[index]
 		new_panel.set("theme_override_styles/panel", selected_style)
 		selectedGate = index
+		selected_gate_changed.emit(index)
 	elif $CenterContainer/PanelContainer/WireTool.visible == true and selectedWireTool != index and index < WIRE_TOOLS:
 		var container = $CenterContainer/PanelContainer/WireTool
 		var selected_panel: PanelContainer = container.get_children()[selectedWireTool]
@@ -53,6 +56,7 @@ func _on_item_selected(index: int):
 		var new_panel = container.get_children()[index]
 		new_panel.set("theme_override_styles/panel", selected_style)
 		selectedWireTool = index
+		selected_wire_tool_changed.emit(index)
 
 func showGateHotbar():
 	$CenterContainer/PanelContainer/WireTool.visible = false

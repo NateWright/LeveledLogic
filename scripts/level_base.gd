@@ -55,7 +55,9 @@ func _ready():
 	_gridSelection.y = $Player.position.y / GlobalState.gridSize
 	_placementVec.x = _gridSelection.x * GlobalState.gridSize + 1 * GlobalState.gridSize + GlobalState.gridSize/2 - $Player.position.x
 	_placementVec.y = _gridSelection.y * GlobalState.gridSize + GlobalState.gridSize/2 - $Player.position.y
-	$Player.setLookingAt(_placementVec, _gates[_gridSelection.y][_gridSelection.y])
+	$Player.setLookingAt(_placementVec, _gates[_gridSelection.y][_gridSelection.x])
+	$Hotbar.selected_gate_changed.connect($Player.setSelectedGate)
+	$Hotbar.selected_wire_tool_changed.connect($Player.setSelectedWireTool)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -80,7 +82,7 @@ func _process(_delta):
 			_placementVec.x = _gridSelection.x * GlobalState.gridSize + GlobalState.gridSize/2 - $Player.position.x
 		_gridSelection.y = $Player.position.y / GlobalState.gridSize
 		_placementVec.y = _gridSelection.y * GlobalState.gridSize + GlobalState.gridSize/2 - $Player.position.y
-		$Player.setLookingAt(_placementVec, _gates[_gridSelection.y][_gridSelection.y])
+		$Player.setLookingAt(_placementVec, _gates[_gridSelection.y][_gridSelection.x])
 	
 	if Input.is_action_just_pressed("interact"):
 		if $Player.placing():
@@ -148,6 +150,8 @@ func _selectInput():
 	if r[0].id == -1:
 		return
 	var path = _aStar.get_point_path(_outputGateIndex.y * _mapSize.x + _outputGateIndex.x + 1, vec.y * _mapSize.x + vec.x - 1)
+	if path.size() == 0:
+		return
 	var line = Line2D.new()
 	line.add_point(_outputGateLoc)
 	for p in path:
@@ -209,9 +213,13 @@ func _removeGate(location: Vector2i):
 		for val in _linePaths[location]:
 			var line:Line2D = _linePaths[location][val]
 			for i in range(1, line.get_point_count() - 1):
-				var l: Vector2i = line.get_point_position(i) / 32
+				var l: Vector2i = line.get_point_position(i) / GlobalState.gridSize
 				_lineOccupation[l.y][l.x] -= 1
+			if val != location:
+				_linePaths[val].erase(location)
+			_linePaths[location].erase(val)
 			self.remove_child(line)
+	_gates[vec.y][vec.x].disconnectOutputs()
 	_gates[vec.y][vec.x] = Gate.new()
 	
 func _activateGate():
