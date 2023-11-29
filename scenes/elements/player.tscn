@@ -30,8 +30,10 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_mod8h")
 
 [node name="GatePlacement" type="Sprite2D" parent="."]
+z_index = 5
 texture = ExtResource("3_rwh6t")
 
 [node name="WirePlacement" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+z_index = 5
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_rwh6t")

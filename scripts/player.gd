@@ -74,7 +74,7 @@ func _setLookingAtWire():
 	if _selectedWireTool == 1:
 		var offset = _gate.getInputLocationScreen(int(position.y)%GlobalState.gridSize)
 		$WirePlacement.position.y += offset - GlobalState.gridSize/2
-		$WirePlacement.position.x = _position.x + _lastXMotion * GlobalState.gridSize/2
+		$WirePlacement.position.x = _position.x - GlobalState.gridSize/2
 	else:
 		$WirePlacement.position.y = $GatePlacement.position.y
 		$WirePlacement.position.x = _position.x + GlobalState.gridSize/2
