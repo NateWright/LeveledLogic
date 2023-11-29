@@ -70,9 +70,10 @@ func _initGateHotbar():
 		preload("res://assets/gates/or.png"),
 		preload("res://assets/gates/and.png"),
 	]
-	for val in icons:
+	for i in icons.size():
 		var gate = _hotbarItem.instantiate()
-		gate.setIcon(val)
+		gate.setIcon(icons[i])
+		gate.connect_button(_on_item_selected.bind(i))
 		container.add_child(gate)
 		
 	var new_panel = container.get_children()[selectedGate]
@@ -98,9 +99,10 @@ func _initWireToolHotbar():
 		preload("res://assets/programmer_art/lever_on.png"),
 		preload("res://assets/programmer_art/lever_off.png"),
 	]
-	for val in icons:
+	for i in icons.size():
 		var gate = _hotbarItem.instantiate()
-		gate.setIcon(val)
+		gate.setIcon(icons[i])
+		gate.connect_button(_on_item_selected.bind(i))
 		container.add_child(gate)
 		
 	var new_panel = container.get_children()[selectedWireTool]

@@ -10,5 +10,8 @@ func _ready():
 func _process(_delta):
 	pass
 
-func setIcon(text):
+func setIcon(text: Texture2D):
 	$MarginContainer/TextureRect.texture_normal = text
+
+func connect_button(onclick: Callable):
+	$MarginContainer/TextureRect.connect("pressed", onclick)
