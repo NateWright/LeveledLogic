@@ -7,11 +7,11 @@ var _gridSelection = Vector2i(0, 0) # position in _gates array
 var _placementVec = Vector2() # Position of placement guide releative to player
 
 var _output: Gate = null
-var _outputGateIndex: Vector2i
-var _outputGateLoc: Vector2i
+var _outputGateIndex: Vector2i # index in gate array
+var _outputGateLoc: Vector2i # position of ouput on map
 
-var _linePaths = []
-var _lineOccupation = []
+var _linePaths = {}
+var _lineOccupation = [] # index y, x
 
 var _aStar = AStar2D.new()
 
@@ -82,14 +82,21 @@ func _process(_delta):
 		_placementVec.y = _gridSelection.y * GlobalState.gridSize + GlobalState.gridSize/2 - $Player.position.y
 		$Player.setLookingAt(_placementVec, _gates[_gridSelection.y][_gridSelection.y])
 	
-	if Input.is_action_just_pressed("place"):
-		var gates = [
-			Gate.GATE.LEVER,
-			Gate.GATE.LAMP,
-			Gate.GATE.NOT,
-			Gate.GATE.AND
-		]
-		_placeGate(gates[$Hotbar.selectedGate], _gridSelection)
+	if Input.is_action_just_pressed("interact"):
+		if $Player.placing():
+			var gates = [
+				Gate.GATE.NONE,
+				Gate.GATE.LEVER,
+				Gate.GATE.LAMP,
+				Gate.GATE.NOT,
+				Gate.GATE.AND
+			]
+			_placeGate(gates[$Hotbar.selectedGate], _gridSelection)
+		else:
+			if $Hotbar.selectedWireTool == 0:
+				_selectOutput()
+			elif _output != null:
+				_selectInput()
 	elif Input.is_action_just_pressed("switch_tool"):
 		if $Player.placing():
 			$Hotbar.showWireHotbar()
@@ -158,11 +165,19 @@ func _selectInput():
 	
 	line.add_point(inputLoc)
 	line.width = 5
-	_linePaths.append(line)
+	if _outputGateIndex not in _linePaths:
+		_linePaths[_outputGateIndex] = {}
+	if vec not in _linePaths:
+		_linePaths[vec] = {}
+	_linePaths[_outputGateIndex][vec] = line
+	_linePaths[vec][_outputGateIndex] = line
 	self.add_child(line)
 
 
 func _placeGate(type: Gate.GATE, placement: Vector2i):
+	if type == Gate.GATE.NONE:
+		_removeGate(placement)
+		return
 	var vec = placement
 	var gate: Gate = _gates[vec.y][vec.x]
 
@@ -171,12 +186,34 @@ func _placeGate(type: Gate.GATE, placement: Vector2i):
 	
 	_aStar.set_point_disabled((vec.y * _mapSize.x) + vec.x)
 	
-	_gates[vec.y][vec.x]
 	var gateBody = gate.setGate(type)
 	gateBody.position.x = placement.x * GlobalState.gridSize + GlobalState.gridSize/2
 	gateBody.position.y = placement.y * GlobalState.gridSize + GlobalState.gridSize/2
 	self.add_child(gateBody)
 
+func _removeGate(location: Vector2i):
+	var vec = location
+	var gate: Gate = _gates[vec.y][vec.x]
+
+	if !gate.gateSet():
+		return
+	print("removing gate")
+	
+	_aStar.set_point_disabled((vec.y * _mapSize.x) + vec.x, false)
+	self.remove_child(gate.getGateBody())
+	var outLocation = location
+	outLocation.x += 1
+	var inLocation = location
+	inLocation.x -= 1
+	if location in _linePaths:
+		for val in _linePaths[location]:
+			var line:Line2D = _linePaths[location][val]
+			for i in range(1, line.get_point_count() - 1):
+				var l: Vector2i = line.get_point_position(i) / 32
+				_lineOccupation[l.y][l.x] -= 1
+			self.remove_child(line)
+	_gates[vec.y][vec.x] = Gate.new()
+	
 func _activateGate():
 	var vec = _gridSelection
 	var gate: Gate = _gates[vec.y][vec.x]

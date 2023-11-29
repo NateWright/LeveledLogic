@@ -61,6 +61,7 @@ func showWireHotbar():
 func _initGateHotbar():
 	var container = $CenterContainer/PanelContainer/Gates
 	var icons = [
+		preload("res://assets/programmer_art/delete.png"),
 		preload("res://assets/programmer_art/lever_on.png"),
 		preload("res://assets/programmer_art/lamp_on.png"),
 		preload("res://assets/gates/or.png"),

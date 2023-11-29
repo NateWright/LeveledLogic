@@ -21,6 +21,10 @@ func gateSet():
 func setGate(gate: GATE) -> StaticBody2D:
 	_gate = gate
 	match _gate:
+		GATE.NONE:
+			_outputList = []
+			_inputs = []
+			_gateBody = null
 		GATE.LEVER:
 			_gateBody = preload("res://scenes/elements/logic/lever.tscn").instantiate()
 			_gateBody.update(_output)
@@ -113,3 +117,4 @@ func _notify():
 
 func _getOutput():
 	return _output
+

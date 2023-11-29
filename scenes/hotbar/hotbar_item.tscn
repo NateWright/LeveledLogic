@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://kdtcha1lrs8x"]
 
 [ext_resource type="Script" path="res://scripts/hotbar_item.gd" id="1_3yw22"]
-[ext_resource type="Texture2D" uid="uid://cqgq6tjxg3t6c" path="res://assets/gates/not.png" id="1_8wqc6"]
+[ext_resource type="Texture2D" uid="uid://voyqwsnm6amh" path="res://assets/programmer_art/delete.png" id="2_yb64n"]
 
 [node name="hotbar_item" type="PanelContainer"]
 anchors_preset = 15
@@ -21,5 +21,5 @@ theme_override_constants/margin_bottom = 8
 [node name="TextureRect" type="TextureButton" parent="MarginContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = ExtResource("1_8wqc6")
+texture_normal = ExtResource("2_yb64n")
 stretch_mode = 0
