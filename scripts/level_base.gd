@@ -34,11 +34,11 @@ func _ready():
 		_gates.append(row)
 		_lineOccupation.append(rowLine)
 	
-	var count = 0
+	
 	for i in range(17):
 		if i % 2:
 			_placeGate(Gate.GATE.LEVER, Vector2i(0, i))
-			count+= 1
+			_gates[i][0].removable = false
 	
 #	#TODO: Add other tiles
 	$Level.visible = false
@@ -120,12 +120,6 @@ func _process(_delta):
 		else:
 			$Hotbar.showGateHotbar()
 		$Player.toggleTool()
-			
-#	elif Input.is_action_just_pressed("select_output"):
-#		_selectOutput()
-#	elif Input.is_action_just_pressed("select_input"):
-#		if _output != null:
-#			_selectInput()
 	elif Input.is_action_just_pressed("activate"):
 		_activateGate()
 
@@ -214,7 +208,7 @@ func _removeGate(location: Vector2i):
 	var vec = location
 	var gate: Gate = _gates[vec.y][vec.x]
 
-	if !gate.gateSet():
+	if !gate.gateSet() or !gate.removable:
 		return
 	print("removing gate")
 	
