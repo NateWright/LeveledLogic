@@ -39,16 +39,26 @@ func _ready():
 		if i % 2:
 			_placeGate(Gate.GATE.LEVER, Vector2i(0, i))
 			count+= 1
+	
 #	#TODO: Add other tiles
-	var tileMap: TileMap = $Level
 	$Level.visible = false
+	var tileMap: TileMap = $Level
 	var cells = tileMap.get_used_cells(0)
+	var tiles = [
+		Gate.GATE.NAND,
+		Gate.GATE.NOR,
+		Gate.GATE.XNOR,
+		Gate.GATE.NOT,
+		Gate.GATE.AND,
+		Gate.GATE.OR,
+		Gate.GATE.XOR
+	]
 	for cell in cells:
 		var pos = cell*GlobalState.gridSize
 		pos.x += GlobalState.gridSize/2
 		pos.y += GlobalState.gridSize/2
 		var vec = tileMap.get_cell_atlas_coords(0, cell)
-		_placeGate(Gate.GATE.AND, cell)
+		_placeGate(tiles[vec.y], cell)
 	
 	# Initialize current selection
 	_gridSelection.x = $Player.position.x / GlobalState.gridSize
