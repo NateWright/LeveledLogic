@@ -115,8 +115,9 @@ func interact():
 	return
 
 func _notify(signal_id: int):
-	if signal_id == _last_signal and _output != _last_output:
-		push_warning("Signaling loop detected; skipping signal")
+	if signal_id == _last_signal:
+		if _output != _last_output:
+			push_warning("Signaling loop detected; skipping signal")
 		return
 	_last_signal = signal_id
 	_last_output = _output
