@@ -41,7 +41,7 @@ func _ready():
 			count+= 1
 #	#TODO: Add other tiles
 	var tileMap: TileMap = $Level
-
+	$Level.visible = false
 	var cells = tileMap.get_used_cells(0)
 	for cell in cells:
 		var pos = cell*GlobalState.gridSize
