@@ -12,6 +12,9 @@ func _process(_delta):
 
 func setIcon(text: Texture2D):
 	$MarginContainer/TextureRect.texture_normal = text
+	
+func setDisabledIcon(text: Texture2D):
+	$MarginContainer/TextureRect.texture_disabled = text
 
 func connect_button(onclick: Callable):
 	$MarginContainer/TextureRect.connect("pressed", onclick)

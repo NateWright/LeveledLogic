@@ -1,31 +1,42 @@
 extends Control
 
-const GATES = 4
+const GATES = 10
 const WIRE_TOOLS = 2
 
 @export var selected_style: StyleBox
 
-@export_range(0, GATES - 1) var selectedGate = 0
+@export_range(0, GATES - 1) var selectedGate: int = 0
 signal selected_gate_changed(selectedGate)
-@export_range(0, WIRE_TOOLS - 1) var selectedWireTool = 0
+@export_range(0, WIRE_TOOLS - 1) var selectedWireTool: int = 0
 signal selected_wire_tool_changed(selectedGate)
 @export var keybinds: Array[String] = [
 	"hotbar1",
 	"hotbar2",
 	"hotbar3",
-	"hotbar4"
+	"hotbar4",
+	"hotbar5",
+	"hotbar6",
+	"hotbar7",
+	"hotbar8",
+	"hotbar9",
+	"hotbar10"
 ];
 
 var _hotbarItem = preload("res://scenes/hotbar/hotbar_item.tscn")
 
 @export_subgroup("Enabled Gates")
+@export var _remove = true;
 @export var _lever = true;
 @export var _lamp = true;
 @export var _not = true;
+@export var _or = true;
 @export var _and = true;
+@export var _nor = true;
+@export var _nand = true;
+@export var _xor = true;
+@export var _xnor = true;
 
-var enabled_array
-
+var enabled_array: Array[bool]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -71,12 +82,30 @@ func _initGateHotbar():
 		preload("res://assets/programmer_art/delete.png"),
 		preload("res://assets/programmer_art/lever_on.png"),
 		preload("res://assets/programmer_art/lamp_on.png"),
+		preload("res://assets/gates/not.png"),
 		preload("res://assets/gates/or.png"),
 		preload("res://assets/gates/and.png"),
+		preload("res://assets/gates/nor.png"),
+		preload("res://assets/gates/nand.png"),
+		preload("res://assets/gates/xor.png"),
+		preload("res://assets/gates/xnor.png"),
+	]
+	var icons_disabled = [
+		preload("res://assets/programmer_art/delete.png"),
+		preload("res://assets/programmer_art/lever_on.png"),
+		preload("res://assets/programmer_art/lamp_on.png"),
+		preload("res://assets/gates/disabled/not.png"),
+		preload("res://assets/gates/disabled/or.png"),
+		preload("res://assets/gates/disabled/and.png"),
+		preload("res://assets/gates/disabled/nor.png"),
+		preload("res://assets/gates/disabled/nand.png"),
+		preload("res://assets/gates/disabled/xor.png"),
+		preload("res://assets/gates/disabled/xnor.png"),
 	]
 	for i in icons.size():
 		var gate = _hotbarItem.instantiate()
 		gate.setIcon(icons[i])
+		gate.setDisabledIcon(icons_disabled[i])
 		gate.connect_button(_on_item_selected.bind(i))
 		container.add_child(gate)
 		
@@ -87,10 +116,16 @@ func _initGateHotbar():
 	position.y = scale_size.y
 	
 	enabled_array = [
+		_remove,
 		_lever,
 		_lamp,
 		_not,
-		_and
+		_or,
+		_and,
+		_nor,
+		_nand,
+		_xor,
+		_xnor
 	]
 	
 	for i in enabled_array.size():
