@@ -18,3 +18,9 @@ func setDisabledIcon(text: Texture2D):
 
 func connect_button(onclick: Callable):
 	$MarginContainer/TextureRect.connect("pressed", onclick)
+
+func setVisible(v: bool):
+	self.visible = v
+
+func setEnabled(enabled: bool):
+	$MarginContainer/TextureRect.disabled = !enabled
