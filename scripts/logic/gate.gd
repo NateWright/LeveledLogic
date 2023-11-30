@@ -187,6 +187,6 @@ func _notify(signal_id: int):
 	for out in _outputList:
 		out.output.emit(out.id, _output, signal_id)
 
-func _getOutput():
+func getOutput():
 	return _output
 

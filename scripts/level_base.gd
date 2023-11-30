@@ -13,6 +13,12 @@ var _outputGateLoc: Vector2i # position of ouput on map
 var _linePaths = {}
 var _lineOccupation = [] # index y, x
 
+@export_range(0,9) var sources: int = 0
+@export_range(0,9) var sinks: int = 0
+
+var _sources: Array[Gate]
+var _sinks: Array[Gate]
+
 var _aStar = AStar2D.new()
 
 # Called when the node enters the scene tree for the first time.
@@ -39,6 +45,22 @@ func _ready():
 		if i % 2:
 			_placeGate(Gate.GATE.LEVER, Vector2i(0, i))
 			_gates[i][0].removable = false
+	
+	_sources = []
+	for i in range(9-sources, 8+sources):
+		if i % 2 != sources % 2:
+			_placeGate(Gate.GATE.SOURCE, Vector2i(1,i))
+			var gate = _gates[i][1]
+			gate.removable = false
+			_sources.append(gate)
+	
+	_sinks = []
+	for i in range(9-sinks, 8+sinks):
+		if i % 2 != sinks % 2:
+			_placeGate(Gate.GATE.SINK, Vector2i(26,i))
+			var gate = _gates[i][1]
+			gate.removable = false
+			_sinks.append(gate)
 	
 #	#TODO: Add other tiles
 	$Level.visible = false
