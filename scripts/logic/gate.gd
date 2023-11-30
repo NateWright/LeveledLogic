@@ -1,5 +1,5 @@
 class_name Gate extends Node
-enum GATE {NONE, LEVER, LAMP, NOT, OR, AND, XOR, NAND, NOR, XNOR}
+enum GATE {NONE, LEVER, LAMP, NOT, OR, AND, XOR, NAND, NOR, XNOR, SOURCE, SINK}
 var _gate = GATE.NONE
 var _gateBody: StaticBody2D
 var _inputs = []
@@ -67,6 +67,15 @@ func setGate(gate: GATE) -> StaticBody2D:
 			_inputs = [false, false]
 			_inputListArray = [null, null]
 			_gateBody = preload("res://scenes/elements/logic/xnor_gate.tscn").instantiate()
+		GATE.SOURCE:
+			_inputs = []
+			_inputListArray = []
+			_gateBody = preload("res://scenes/elements/logic/lever.tscn").instantiate()
+		GATE.SINK:
+			_inputs = [false]
+			_inputListArray = [null]
+			_gateBody = preload("res://scenes/elements/logic/lamp.tscn").instantiate()
+			_gateBody.update(_output)
 	return _gateBody
 			
 func getGateBody():
@@ -100,6 +109,12 @@ func connectInput(posY: int):
 			out.output.connect(_setInput)
 			out.id = 0
 			offset = GlobalState.gridSize / 2
+		GATE.SOURCE:
+			out.id = -1
+		GATE.SINK:
+			out.output.connect(_setInput)
+			out.id = 0
+			offset = GlobalState.gridSize / 2
 	if _inputListArray[out.id] and _inputListArray[out.id].output.get_connections().size() > 0:
 		out.id = -1
 	else:
@@ -118,6 +133,10 @@ func getInputLocationScreen(posY: int):
 			else:
 				offset = GlobalState.gridSize * 3 / 4
 		GATE.NOT, GATE.LAMP:
+			offset = GlobalState.gridSize / 2
+		GATE.SOURCE:
+			offset = -1
+		GATE.SINK:
 			offset = GlobalState.gridSize / 2
 	return offset
 
@@ -141,6 +160,13 @@ func _setInput(id: int, value: bool, signal_id: int):
 			_output = not (_inputs[0] or _inputs[1])
 		GATE.XNOR:
 			_output = _inputs[0] == _inputs[1]
+		GATE.SOURCE:
+			_output = value
+			_gateBody.update(_output)
+		GATE.SINK:
+			_output = value
+			_gateBody.update(_output)
+			pass
 	_notify(signal_id)
 
 func interact():
