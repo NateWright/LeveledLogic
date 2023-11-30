@@ -1,4 +1,4 @@
-extends Node2D
+class_name BaseLevel extends Node2D
 
 @export var next_level: PackedScene
 var _mapSize = Vector2i(30, 17) # count of 64 length units
@@ -268,3 +268,9 @@ func _on_level_solved():
 func _on_lamp_logic_changed(state: bool, _id: int):
 	if state:
 		_on_level_solved.call_deferred()
+
+func getSource(index: int):
+	return _sources[index]
+
+func getSink(index: int):
+	return _sinks[index]
