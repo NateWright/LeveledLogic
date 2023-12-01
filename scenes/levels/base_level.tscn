@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://daa5b4myde3tl" path="res://assets/gates/gates.png" id="3_27pqs"]
 [ext_resource type="PackedScene" uid="uid://bya2yh0xvc1g4" path="res://scenes/hotbar/hotbar.tscn" id="4_hxhxe"]
 [ext_resource type="Texture2D" uid="uid://63y5vm0w6ox8" path="res://assets/programmer_art/wall-64x64.png" id="5_8ukma"]
-[ext_resource type="Texture2D" uid="uid://dw30tlits08iv" path="res://assets/backgrounds/wall1.png" id="6_hntem"]
+[ext_resource type="Texture2D" uid="uid://di4pi8bcodwv7" path="res://assets/backgrounds/grid_background.png" id="6_glfad"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dn5yx"]
 texture = ExtResource("5_8ukma")
@@ -60,6 +60,8 @@ position = Vector2(464, 80)
 
 [node name="Wall1" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(960, 544)
-scale = Vector2(0.45665, 0.45665)
-texture = ExtResource("6_hntem")
+position = Vector2(991.5, 540)
+scale = Vector2(1.03281, 1)
+texture = ExtResource("6_glfad")
+region_enabled = true
+region_rect = Rect2(0, 0, 1920, 1080)

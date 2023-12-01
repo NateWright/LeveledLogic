@@ -11,7 +11,8 @@ func _process(_delta):
 
 
 func _on_play_button_pressed():
-	get_tree().change_scene_to_packed(load("res://scenes/levels/level1.tscn"))
+	GlobalState.curLevel = 0
+	get_tree().change_scene_to_packed(load(GlobalState.LEVELS[GlobalState.curLevel][0]))
 
 func _on_level_select_button_pressed():
 	get_tree().change_scene_to_packed(preload("res://scenes/level_select/level_select.tscn"))
