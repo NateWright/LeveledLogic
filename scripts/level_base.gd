@@ -99,6 +99,7 @@ func _process(_delta):
 		GlobalState.paused = true
 		var child = preload("res://scenes/levels/pause_menu.tscn").instantiate()
 		child.position = self.get_window().content_scale_size / 2
+		child.level = get_tree().current_scene.scene_file_path
 		self.add_child(child)
 		return
 	
