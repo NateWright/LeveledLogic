@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di4pi8bcodwv7"
-path="res://.godot/imported/grid_background.png-c504ebd276324b39001884b05aca0cbe.ctex"
+uid="uid://gxrn0upmhrvx"
+path="res://.godot/imported/level_background.png-bfdbeb94527a201298d58439f9589958.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/backgrounds/grid_background.png"
-dest_files=["res://.godot/imported/grid_background.png-c504ebd276324b39001884b05aca0cbe.ctex"]
+source_file="res://assets/backgrounds/level_background.png"
+dest_files=["res://.godot/imported/level_background.png-bfdbeb94527a201298d58439f9589958.ctex"]
 
 [params]
 
