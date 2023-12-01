@@ -83,9 +83,9 @@ func _ready():
 		_placeGate(tiles[vec.y], cell)
 	
 	# Initialize current selection
-	_gridSelection.x = $Player.position.x / GlobalState.gridSize
+	_gridSelection.x = $Player.position.x / GlobalState.gridSize + 1
 	_gridSelection.y = $Player.position.y / GlobalState.gridSize
-	_placementVec.x = _gridSelection.x * GlobalState.gridSize + 1 * GlobalState.gridSize + GlobalState.gridSize/2 - $Player.position.x
+	_placementVec.x = _gridSelection.x * GlobalState.gridSize + GlobalState.gridSize/2 - $Player.position.x
 	_placementVec.y = _gridSelection.y * GlobalState.gridSize + GlobalState.gridSize/2 - $Player.position.y
 	$Player.setLookingAt(_placementVec, _gates[_gridSelection.y][_gridSelection.x])
 	$Hotbar.selected_gate_changed.connect($Player.setSelectedGate)
