@@ -81,8 +81,8 @@ func setGate(gate: GATE) -> StaticBody2D:
 func getGateBody():
 	return _gateBody
 	
-func hasOuput():
-	match _gateBody:
+func hasOutput():
+	match _gate:
 		GATE.SINK:
 			return false
 	return true

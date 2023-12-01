@@ -149,8 +149,7 @@ func _process(_delta):
 func _selectOutput():
 	var vec = _gridSelection
 	var gate: Gate = _gates[vec.y][vec.x]
-
-	if !gate.gateSet() and gate.hasOutput():
+	if !gate.gateSet() or !gate.hasOutput():
 		_output = null
 		return
 	
