@@ -175,6 +175,11 @@ func _setInput(id: int, value: bool, signal_id: int):
 			pass
 	_notify(signal_id)
 
+func _setOutput(value: bool, signal_id: int):
+	_output = value
+	_gateBody.update(value)
+	_notify(signal_id)
+
 func interact():
 	if _gate == GATE.LEVER:
 		_output = !_output
