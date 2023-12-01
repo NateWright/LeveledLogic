@@ -73,7 +73,7 @@ func setGate(gate: GATE) -> StaticBody2D:
 		GATE.SOURCE:
 			_inputs = []
 			_inputsConnected = []
-			_gateBody = preload("res://scenes/elements/logic/lever.tscn").instantiate()
+			_gateBody = preload("res://scenes/elements/logic/source.tscn").instantiate()
 		GATE.SINK:
 			_inputs = [false]
 			_inputsConnected = [false]
