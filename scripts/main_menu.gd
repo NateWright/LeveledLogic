@@ -16,12 +16,12 @@ func _on_play_button_pressed():
 func _on_level_select_button_pressed():
 	get_tree().change_scene_to_packed(preload("res://scenes/level_select/level_select.tscn"))
 
-func _on_options_button_pressed():
-	get_tree().change_scene_to_packed(preload("res://scenes/levels/controls_menu.tscn"))
+func _on_controls_button_pressed():
+	get_tree().change_scene_to_packed(preload("res://scenes/controls/controls_menu.tscn"))
 
 
 func _on_credits_button_pressed():
-	get_tree().change_scene_to_packed(preload("res://scenes/levels/credits.tscn"))
+	get_tree().change_scene_to_packed(preload("res://scenes/credits/credits.tscn"))
 
 func _on_exit_button_pressed():
 	get_tree().quit()

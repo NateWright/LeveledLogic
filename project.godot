@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Leveled Logic"
-run/main_scene="res://scenes/levels/main_menu.tscn"
+run/main_scene="res://scenes/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.1")
 config/icon="res://com.github.NateWright.LeveledLogic.png"
 
@@ -31,6 +31,8 @@ window/stretch/mode="viewport"
 
 [gui]
 
+theme/custom="res://assets/default_theme.tres"
+theme/custom_font="res://assets/NovaSquare-Regular.ttf"
 common/drop_mouse_on_gui_input_disabled=true
 
 [input]
