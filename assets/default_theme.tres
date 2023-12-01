@@ -48,6 +48,7 @@ texture = ExtResource("1_b5pls")
 texture = ExtResource("3_3nvwu")
 
 [resource]
+default_font = ExtResource("1_gy22k")
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(0, 0, 0, 1)
