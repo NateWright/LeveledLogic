@@ -225,6 +225,7 @@ func _placeGate(type: Gate.GATE, placement: Vector2i):
 	gateBody.position.x = placement.x * GlobalState.gridSize + GlobalState.gridSize/2
 	gateBody.position.y = placement.y * GlobalState.gridSize + GlobalState.gridSize/2
 	self.add_child(gateBody)
+	
 
 func _removeGate(location: Vector2i):
 	var vec = location
