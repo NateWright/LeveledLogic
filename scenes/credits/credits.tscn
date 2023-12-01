@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckaupv8s760jl"]
+[gd_scene load_steps=4 format=3 uid="uid://ckaupv8s760jl"]
 
 [ext_resource type="Script" path="res://scripts/credits_menu.gd" id="1_vyq6v"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_k5p8r"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_kneoq"]
+font_size = 30
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -18,6 +21,7 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -794.0
 theme_override_constants/margin_left = 120
 theme_override_constants/margin_top = 80
 theme_override_constants/margin_right = 120
@@ -27,16 +31,118 @@ theme_override_constants/margin_bottom = 80
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
+custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
+[node name="ButtonWebsite" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
+text = "Leveled Logic Website"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+texture = SubResource("ViewportTexture_k5p8r")
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/TextureRect"]
+layout_mode = 2
+offset_top = -87.0
+offset_right = 450.0
+offset_bottom = -56.0
 text = "Credits"
 label_settings = SubResource("LabelSettings_kneoq")
 horizontal_alignment = 1
 
-[node name="ButtonMainMenu" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_top = 727.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer2"]
+layout_mode = 2
+
+[node name="ButtonMainMenu" type="Button" parent="MarginContainer2/CenterContainer"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 text = "Back to Main Menu"
 
-[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/ButtonMainMenu" to="." method="_on_button_main_menu_pressed" flags=3]
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_top = 206.0
+offset_right = 1920.0
+offset_bottom = 321.0
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer3"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer3/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer3/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Developers" type="Label" parent="MarginContainer3/CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Jonathan Kang"
+label_settings = SubResource("LabelSettings_kneoq")
+horizontal_alignment = 1
+
+[node name="Developers2" type="Label" parent="MarginContainer3/CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Connor Klein"
+label_settings = SubResource("LabelSettings_kneoq")
+horizontal_alignment = 1
+
+[node name="Developers3" type="Label" parent="MarginContainer3/CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Gabriel Shahrouzi"
+label_settings = SubResource("LabelSettings_kneoq")
+horizontal_alignment = 1
+
+[node name="Developers4" type="Label" parent="MarginContainer3/CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Eric Ta"
+label_settings = SubResource("LabelSettings_kneoq")
+horizontal_alignment = 1
+
+[node name="Developers5" type="Label" parent="MarginContainer3/CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Nathan Wright"
+label_settings = SubResource("LabelSettings_kneoq")
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer3/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="DeveloperTasks" type="Label" parent="MarginContainer3/CenterContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Project Lead"
+label_settings = SubResource("LabelSettings_kneoq")
+horizontal_alignment = 1
+
+[node name="DeveloperTasks2" type="Label" parent="MarginContainer3/CenterContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Art / Game Designer"
+label_settings = SubResource("LabelSettings_kneoq")
+horizontal_alignment = 1
+
+[node name="DeveloperTasks3" type="Label" parent="MarginContainer3/CenterContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Game Designer"
+label_settings = SubResource("LabelSettings_kneoq")
+horizontal_alignment = 1
+
+[node name="DeveloperTasks4" type="Label" parent="MarginContainer3/CenterContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Game Developer"
+label_settings = SubResource("LabelSettings_kneoq")
+horizontal_alignment = 1
+
+[node name="DeveloperTasks5" type="Label" parent="MarginContainer3/CenterContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Game Designer"
+label_settings = SubResource("LabelSettings_kneoq")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/ButtonWebsite" to="." method="_on_button_website_pressed"]
+[connection signal="pressed" from="MarginContainer2/CenterContainer/ButtonMainMenu" to="." method="_on_button_main_menu_pressed" flags=3]
