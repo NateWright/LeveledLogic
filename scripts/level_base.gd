@@ -149,7 +149,7 @@ func _selectOutput():
 	var vec = _gridSelection
 	var gate: Gate = _gates[vec.y][vec.x]
 
-	if !gate.gateSet():
+	if !gate.gateSet() and gate.hasOutput():
 		_output = null
 		return
 	

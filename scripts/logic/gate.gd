@@ -80,6 +80,12 @@ func setGate(gate: GATE) -> StaticBody2D:
 			
 func getGateBody():
 	return _gateBody
+	
+func hasOuput():
+	match _gateBody:
+		GATE.SINK:
+			return false
+	return true
 
 func connectOutput(out: OutputSignal):
 	_outputList.append(out)
