@@ -58,7 +58,7 @@ func _ready():
 	for i in range(9-sinks, 8+sinks):
 		if i % 2 != sinks % 2:
 			_placeGate(Gate.GATE.SINK, Vector2i(26,i))
-			var gate = _gates[i][1]
+			var gate = _gates[i][26]
 			gate.removable = false
 			_sinks.append(gate)
 	
