@@ -2,7 +2,7 @@ extends Control
 
 const _LEVELS = [
 	["res://scenes/levels/level1.tscn", "Level 1"],
-	["res://scenes/levels/main_menu.tscn", "Back to Main Menu"]
+	["res://scenes/main_menu/main_menu.tscn", "Back to Main Menu"]
 ]
 
 var _button = preload("res://scenes/level_select/menu_entry.tscn")
