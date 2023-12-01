@@ -85,7 +85,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	for i in keybinds.size():
-		if enabled_array[i] and unlocked_array[i] and Input.is_action_just_pressed(keybinds[i]):
+		if ($CenterContainer/PanelContainer/WireTool.visible or (enabled_array[i] and unlocked_array[i])) and Input.is_action_just_pressed(keybinds[i]):
 			_on_item_selected(i)
 			return
 
