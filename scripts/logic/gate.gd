@@ -81,8 +81,8 @@ func setGate(gate: GATE) -> StaticBody2D:
 func getGateBody():
 	return _gateBody
 	
-func hasOuput():
-	match _gateBody:
+func hasOutput():
+	match _gate:
 		GATE.SINK:
 			return false
 	return true
@@ -173,6 +173,11 @@ func _setInput(id: int, value: bool, signal_id: int):
 			_output = value
 			_gateBody.update(_output)
 			pass
+	_notify(signal_id)
+
+func _setOutput(value: bool, signal_id: int):
+	_output = value
+	_gateBody.update(value)
 	_notify(signal_id)
 
 func interact():
