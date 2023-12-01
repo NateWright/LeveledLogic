@@ -41,9 +41,9 @@ text = "PLAY"
 layout_mode = 2
 text = "LEVEL SELECT"
 
-[node name="HowToPlayButton" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
+[node name="ControlsButton" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "HOW TO PLAY"
+text = "CONTROLS"
 
 [node name="CreditsButton" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -60,6 +60,6 @@ texture = ExtResource("3_qxi3j")
 
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
-[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/HowToPlayButton" to="." method="_on_controls_button_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

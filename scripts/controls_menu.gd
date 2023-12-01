@@ -1,10 +1,26 @@
 extends Control
 
+var _item = preload("res://scenes/controls/controls_item.tscn")
+const binds = [
+	["move up", "w | up arrow"],
+	["move down", "s | down arrow"],
+	["move left", "a | left arrow"],
+	["move right", "d | right arrow"],
+	["Switch tool", "tab"],
+	["Pick hotbar", "1 - 9"],
+	["Place / Select", "E"]
+]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	for b in binds:
+		var action = _item.instantiate()
+		action.text = b[0]
+		$HBoxContainer/Action.add_child(action)
+		var control = _item.instantiate()
+		control.text = b[1]
+		$HBoxContainer/Control.add_child(control)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
