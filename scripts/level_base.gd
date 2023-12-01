@@ -177,8 +177,9 @@ func _selectInput():
 		print("Gate Input Blocked")
 		return
 	
-	var r = gate.connectInput(int($Player.position.y)%GlobalState.gridSize)
-	if r[0].id == -1:
+	# r[id, offset]
+	var r = gate.connectInput(int($Player.position.y)%GlobalState.gridSize, _output.output, _output.disconnectOutput)
+	if r[0] == -1:
 		return
 	var path = _aStar.get_point_path(_outputGateIndex.y * _mapSize.x + _outputGateIndex.x + 1, vec.y * _mapSize.x + vec.x - 1)
 	if path.size() == 0:
@@ -192,7 +193,7 @@ func _selectInput():
 		line.add_point(pos)
 		_lineOccupation[p.y][p.x] += 1
 	
-	_output.connectOutput(r[0])
+	_output.connectOutput()
 	
 	var inputLoc = vec * GlobalState.gridSize
 #	inputLoc.x -= GlobalState.gridSize
