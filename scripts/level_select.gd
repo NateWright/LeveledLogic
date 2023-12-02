@@ -9,8 +9,8 @@ func _ready():
 		var button = _button.instantiate()
 		button.text = level[1]
 		button.pressed.connect(_on_level_select.bind(i))
-		$MarginContainer/CenterContainer/VBoxContainer.add_child(button)
-		
+		$ScrollContainer/CenterContainer/VBoxContainer.add_child(button)
+		print(level[1])
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
