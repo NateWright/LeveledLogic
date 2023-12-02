@@ -15,39 +15,24 @@ grow_vertical = 2
 texture = ExtResource("1_g0bth")
 script = ExtResource("1_vyq6v")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -794.0
-theme_override_constants/margin_left = 120
-theme_override_constants/margin_top = 80
-theme_override_constants/margin_right = 120
-theme_override_constants/margin_bottom = 80
-
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
-custom_minimum_size = Vector2(450, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Credits"
-label_settings = SubResource("LabelSettings_kneoq")
+[node name="Label" type="Label" parent="."]
+offset_right = 1920.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 50
+text = "CONTROLS"
 horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [node name="MarginContainer3" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_top = 206.0
+offset_top = 64.0
 offset_right = 1920.0
-offset_bottom = 321.0
+offset_bottom = 878.0
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer3"]
 layout_mode = 2
+size_flags_vertical = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer3/CenterContainer"]
 layout_mode = 2
@@ -116,10 +101,10 @@ label_settings = SubResource("LabelSettings_kneoq")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 735.0
+offset_left = 704.0
 offset_top = 878.0
-offset_right = 1235.0
-offset_bottom = 1075.0
+offset_right = 1216.0
+offset_bottom = 1048.0
 alignment = 1
 
 [node name="ButtonWebsite" type="Button" parent="VBoxContainer"]
