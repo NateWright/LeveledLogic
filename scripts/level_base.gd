@@ -1,6 +1,5 @@
 class_name BaseLevel extends Node2D
 
-@export var next_level: PackedScene
 var _mapSize = Vector2i(30, 17) # count of 64 length units
 var _gates = [] # index y, x
 var _gridSelection = Vector2i(0, 0) # position in _gates array
@@ -18,6 +17,8 @@ var _lineOccupation = [] # index y, x
 
 var _sources: Array[Gate]
 var _sinks: Array[Gate]
+var providedInput = []
+var expectedOutput = []
 
 var _aStar = AStar2D.new()
 
@@ -144,7 +145,8 @@ func _process(_delta):
 			$Hotbar.showGateHotbar()
 		$Player.toggleTool()
 	elif Input.is_action_just_pressed("activate"):
-		_activateGate()
+		simulate(providedInput, expectedOutput)
+#		_activateGate()
 
 func _selectOutput():
 	var vec = _gridSelection
@@ -264,7 +266,6 @@ func _on_level_solved():
 	GlobalState.paused = true
 	var child = preload("res://scenes/levels/solved_menu.tscn").instantiate()
 	child.position = self.get_window().content_scale_size / 2
-	child.next_level = next_level
 	self.add_child(child)
 
 func _on_lamp_logic_changed(state: bool, _id: int):
@@ -276,3 +277,17 @@ func getSource(index: int):
 
 func getSink(index: int):
 	return _sinks[index]
+
+func simulate(inputArr, outputArr) -> bool:
+	if inputArr.size() != outputArr.size():
+		print("Provided input size is not the same as expected output size")
+		return false
+	var size = inputArr.size()
+	for i in range(size):
+		for j in inputArr[i].size():
+			_sources[j]._setOutput(inputArr[i][j], randi())
+		for j in outputArr[i].size():
+			if _sinks[j].getOutput() != outputArr[i][j]:
+				return false
+	_on_level_solved.call_deferred()
+	return true
