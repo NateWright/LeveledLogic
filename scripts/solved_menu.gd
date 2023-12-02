@@ -2,8 +2,8 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if GlobalState.curLevel == GlobalState.LEVELS.size() - 1:
-		$Menubackground/MarginContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonNextLevel.visible = false
+	if GlobalState.curLevel >= GlobalState.LEVELS.size() - 1:
+		$Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/ButtonNextLevel.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
