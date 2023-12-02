@@ -13,6 +13,7 @@ texture = ExtResource("1_opguw")
 script = ExtResource("1_52afu")
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 64.0
 theme_override_font_sizes/font_size = 50
@@ -40,6 +41,7 @@ size_flags_vertical = 3
 alignment = 1
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 0
 offset_top = 960.0
 offset_right = 1920.0
 offset_bottom = 1030.0

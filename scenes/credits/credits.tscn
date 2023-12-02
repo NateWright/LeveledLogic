@@ -16,6 +16,7 @@ texture = ExtResource("1_g0bth")
 script = ExtResource("1_vyq6v")
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 64.0
 theme_override_font_sizes/font_size = 50
