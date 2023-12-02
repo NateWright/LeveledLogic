@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/level_base.gd" id="1_umysh"]
 [ext_resource type="PackedScene" uid="uid://croxwgs246s7e" path="res://scenes/elements/player.tscn" id="1_ved8g"]
-[ext_resource type="Texture2D" uid="uid://gxrn0upmhrvx" path="res://assets/backgrounds/level_background.png" id="2_r08l7"]
+[ext_resource type="Texture2D" uid="uid://b5l5l8x5f3xbs" path="res://assets/backgrounds/level_background_tile.png" id="2_y8jol"]
 [ext_resource type="Texture2D" uid="uid://daa5b4myde3tl" path="res://assets/gates/gates.png" id="3_27pqs"]
 [ext_resource type="PackedScene" uid="uid://bya2yh0xvc1g4" path="res://scenes/hotbar/hotbar.tscn" id="4_hxhxe"]
 [ext_resource type="Texture2D" uid="uid://63y5vm0w6ox8" path="res://assets/programmer_art/wall-64x64.png" id="5_8ukma"]
@@ -38,12 +38,12 @@ sources/0 = SubResource("TileSetAtlasSource_gf15q")
 [node name="base_level" type="Node2D"]
 script = ExtResource("1_umysh")
 
-[node name="Background" type="Sprite2D" parent="."]
-visible = false
-z_index = -1
-position = Vector2(960, 540)
-texture = ExtResource("2_r08l7")
-region_rect = Rect2(1, 1, 1920, 1080)
+[node name="Background" type="TextureRect" parent="."]
+z_index = -100
+offset_right = 1928.0
+offset_bottom = 1104.0
+texture = ExtResource("2_y8jol")
+stretch_mode = 1
 
 [node name="Wall" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_4v3ap")
