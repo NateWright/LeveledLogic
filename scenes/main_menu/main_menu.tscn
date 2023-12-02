@@ -58,7 +58,7 @@ layout_mode = 2
 text = "EXIT"
 
 [node name="GameLogo" type="Sprite2D" parent="."]
-position = Vector2(960, 336)
+position = Vector2(968, 272)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("3_qxi3j")
 
