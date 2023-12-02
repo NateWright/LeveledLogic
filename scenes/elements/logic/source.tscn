@@ -13,32 +13,84 @@
 [ext_resource type="Texture2D" uid="uid://swcvmk7fl3ju" path="res://assets/gates/source/input8.png" id="11_om6fj"]
 [ext_resource type="Texture2D" uid="uid://co2uue6wefru3" path="res://assets/gates/source/input9.png" id="12_onsxw"]
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_trw2v"]
-frames = 11
-one_shot = true
-speed_scale = -1.0
-frame_0/texture = ExtResource("2_453wu")
-frame_0/duration = 0.05
-frame_1/texture = ExtResource("3_aujhh")
-frame_1/duration = 0.05
-frame_2/texture = ExtResource("5_wcx0j")
-frame_2/duration = 0.05
-frame_3/texture = ExtResource("6_xk63j")
-frame_3/duration = 0.05
-frame_4/texture = ExtResource("7_th5rl")
-frame_4/duration = 0.05
-frame_5/texture = ExtResource("8_ma35n")
-frame_5/duration = 0.05
-frame_6/texture = ExtResource("9_kxbo2")
-frame_6/duration = 0.05
-frame_7/texture = ExtResource("10_qqhqn")
-frame_7/duration = 0.05
-frame_8/texture = ExtResource("11_om6fj")
-frame_8/duration = 0.05
-frame_9/texture = ExtResource("12_onsxw")
-frame_9/duration = 0.05
-frame_10/texture = ExtResource("4_h1ksd")
-frame_10/duration = 0.05
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ywyr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_h1ksd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_onsxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_om6fj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_qqhqn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_kxbo2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ma35n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_th5rl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xk63j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wcx0j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_aujhh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_453wu")
+}],
+"loop": false,
+"name": &"turn_off",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_453wu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_aujhh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wcx0j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xk63j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_th5rl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ma35n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_kxbo2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_qqhqn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_om6fj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_onsxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_h1ksd")
+}],
+"loop": false,
+"name": &"turn_on",
+"speed": 30.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nbfbm"]
 size = Vector2(64, 64)
@@ -48,9 +100,11 @@ collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_c43w2")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = -1
-texture = SubResource("AnimatedTexture_trw2v")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7ywyr")
+animation = &"turn_off"
+frame = 10
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_nbfbm")

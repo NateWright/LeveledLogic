@@ -1,12 +1,12 @@
 extends StaticBody2D
 
+@export var state = false
 
-func update(b: bool):
-	if b:
-		$Sprite2D.texture.set_speed_scale(1)
-	else:
-		$Sprite2D.texture.set_speed_scale(-1)
+var _sprite: AnimatedSprite2D
 
+func _ready():
+	_sprite = $AnimatedSprite2D
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
@@ -22,3 +22,14 @@ func _process(_delta):
 #					$Sprite2D.texture = TEX_ON
 #				var signal_id = rng.randi()
 #				send_logic_update(lever_state, signal_id)
+
+func update(b: bool):
+	if b == state:
+		return
+	if b:
+#		$Sprite2D.texture.set_speed_scale(100)
+		_sprite.play("turn_on")
+	else:
+		_sprite.play("turn_off")
+#		$Sprite2D.texture.set_speed_scale(-100)
+	state = b
