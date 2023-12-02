@@ -39,12 +39,24 @@ expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t1onq"]
+content_margin_left = 28.0
+content_margin_top = 8.0
+content_margin_right = 28.0
+content_margin_bottom = 8.0
 texture = ExtResource("1_igd82")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v6x2v"]
+content_margin_left = 28.0
+content_margin_top = 8.0
+content_margin_right = 28.0
+content_margin_bottom = 8.0
 texture = ExtResource("1_b5pls")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kpa23"]
+content_margin_left = 28.0
+content_margin_top = 8.0
+content_margin_right = 28.0
+content_margin_bottom = 8.0
 texture = ExtResource("3_3nvwu")
 
 [resource]
