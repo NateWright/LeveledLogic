@@ -145,8 +145,10 @@ func _process(_delta):
 			$Hotbar.showGateHotbar()
 		$Player.toggleTool()
 	elif Input.is_action_just_pressed("activate"):
-		simulate(providedInput, expectedOutput)
-#		_activateGate()
+		if providedInput.size() == 0:
+			_activateGate()
+		else:
+			simulate(providedInput, expectedOutput)
 
 func _selectOutput():
 	var vec = _gridSelection
@@ -179,12 +181,12 @@ func _selectInput():
 		print("Gate Input Blocked")
 		return
 	
+	var path = _aStar.get_point_path(_outputGateIndex.y * _mapSize.x + _outputGateIndex.x + 1, vec.y * _mapSize.x + vec.x - 1)
+	if path.size() == 0:
+		return
 	# r[id, offset]
 	var r = gate.connectInput(int($Player.position.y)%GlobalState.gridSize, _output.output, _output.disconnectOutput)
 	if r[0] == -1:
-		return
-	var path = _aStar.get_point_path(_outputGateIndex.y * _mapSize.x + _outputGateIndex.x + 1, vec.y * _mapSize.x + vec.x - 1)
-	if path.size() == 0:
 		return
 	var line = Line2D.new()
 	line.add_point(_outputGateLoc)
