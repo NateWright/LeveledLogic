@@ -41,12 +41,6 @@ func _ready():
 		_gates.append(row)
 		_lineOccupation.append(rowLine)
 	
-	
-	for i in range(17):
-		if i % 2:
-			_placeGate(Gate.GATE.LEVER, Vector2i(0, i))
-			_gates[i][0].removable = false
-	
 	_sources = []
 	for i in range(9-sources, 8+sources):
 		if i % 2 != sources % 2:
