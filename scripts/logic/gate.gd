@@ -21,7 +21,7 @@ func _ready():
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func gateSet():
@@ -31,7 +31,6 @@ func setGate(gate: GATE) -> StaticBody2D:
 	_gate = gate
 	match _gate:
 		GATE.NONE:
-#			_outputList = []
 			_inputs = []
 			_gateBody = null
 		GATE.LEVER:
@@ -84,7 +83,7 @@ func setGate(gate: GATE) -> StaticBody2D:
 			
 func getGateBody():
 	return _gateBody
-	
+
 func hasOutput() -> bool:
 	match _gate:
 		GATE.SINK:
@@ -170,10 +169,9 @@ func _updateOutput(value):
 		GATE.XNOR:
 			_output = _inputs[0] == _inputs[1]
 		GATE.SOURCE:
-			_output = value
 			_gateBody.update(_output)
 		GATE.SINK:
-			_output = value
+			_output = _inputs[0]
 			_gateBody.update(_output)
 	
 

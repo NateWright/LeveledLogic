@@ -17,6 +17,9 @@ var _lineOccupation = [] # index y, x
 
 var _sources: Array[Gate]
 var _sinks: Array[Gate]
+
+var _simTime = 0
+var _simIndex = 0
 var providedInput = []
 var expectedOutput = []
 
@@ -41,6 +44,7 @@ func _ready():
 		_gates.append(row)
 		_lineOccupation.append(rowLine)
 	
+	# Add sources to scene
 	_sources = []
 	for i in range(9-sources, 8+sources):
 		if i % 2 != sources % 2:
@@ -49,6 +53,7 @@ func _ready():
 			gate.removable = false
 			_sources.append(gate)
 	
+	# Add sinks to scene
 	_sinks = []
 	for i in range(9-sinks, 8+sinks):
 		if i % 2 != sinks % 2:
@@ -57,7 +62,7 @@ func _ready():
 			gate.removable = false
 			_sinks.append(gate)
 	
-#	#TODO: Add other tiles
+#	# Add other tiles
 	$Level.visible = false
 	var tileMap: TileMap = $Level
 	var cells = tileMap.get_used_cells(0)
@@ -87,7 +92,7 @@ func _ready():
 	$Hotbar.selected_wire_tool_changed.connect($Player.setSelectedWireTool)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(delta):
 	if GlobalState.paused:
 		return
 	if Input.is_action_just_pressed("pause"):
@@ -145,6 +150,17 @@ func _process(_delta):
 			_activateGate()
 		else:
 			simulate(providedInput, expectedOutput)
+	
+	# Loop input so user can see
+	if _sources.size():
+		_simTime += delta
+		if _simTime > 1 :
+			_simTime -= 1
+			var size = _sources.size()
+			for i in range(size):
+				_sources[i].setOutput(providedInput[_simIndex][i], randi())
+			_simIndex += 1
+			_simIndex = _simIndex % providedInput.size()
 
 func _selectOutput():
 	var vec = _gridSelection

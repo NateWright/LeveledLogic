@@ -1,4 +1,4 @@
-extends "res://scripts/level_base.gd"
+extends BaseLevel
 
 var time = 0
 
@@ -19,8 +19,8 @@ func _process(delta):
 	
 	if time > 1:
 		time -= 1
-		getSource(0)._setOutput(providedInput[index][0], randi())
-		getSource(1)._setOutput(providedInput[index][1], randi())
+		getSource(0).setOutput(providedInput[index][0], randi())
+		getSource(1).setOutput(providedInput[index][1], randi())
 		index += 1
 		index = index % providedInput.size()
 		
