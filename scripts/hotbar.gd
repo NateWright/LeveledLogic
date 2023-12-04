@@ -52,7 +52,7 @@ var _hotbarItem = preload("res://scenes/hotbar/hotbar_item.tscn")
 var unlocked_array: Array[bool]
 var enabled_array: Array[bool]
 var gate_icons = [
-	preload("res://assets/programmer_art/delete.png"),
+	preload("res://assets/ui/hotbar/remove_gate.png"),
 	preload("res://assets/programmer_art/lever_on.png"),
 	preload("res://assets/programmer_art/lamp_on.png"),
 	preload("res://assets/gates/not.png"),
@@ -64,7 +64,7 @@ var gate_icons = [
 	preload("res://assets/gates/xnor.png"),
 ]
 var gate_icons_disabled = [
-	preload("res://assets/programmer_art/delete.png"),
+	preload("res://assets/ui/hotbar/remove_gate.png"),
 	preload("res://assets/programmer_art/lever_on.png"),
 	preload("res://assets/programmer_art/lamp_on.png"),
 	preload("res://assets/gates/disabled/not.png"),
@@ -159,9 +159,9 @@ func _initGateHotbar():
 func _initWireToolHotbar():
 	var container = $CenterContainer/PanelContainer/WireTool
 	var icons = [
-		preload("res://assets/programmer_art/lever_on.png"),
-		preload("res://assets/programmer_art/lever_off.png"),
-		preload("res://assets/programmer_art/lever_off.png"),
+		preload("res://assets/ui/hotbar/add_wire_flipped.png"),
+		preload("res://assets/ui/hotbar/add_wire.png"),
+		preload("res://assets/ui/hotbar/remove_wire.png"),
 	]
 	for i in icons.size():
 		var gate = _hotbarItem.instantiate()
