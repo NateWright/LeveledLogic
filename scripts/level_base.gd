@@ -121,15 +121,15 @@ func _process(delta):
 		if $Player.placing():
 			var gates = [
 				Gate.GATE.NONE,
+				Gate.GATE.AND,
+				Gate.GATE.OR,
+				Gate.GATE.NOT,
+				Gate.GATE.XOR,
+				Gate.GATE.NAND,
+				Gate.GATE.NOR,
+				Gate.GATE.XNOR,
 				Gate.GATE.LEVER,
 				Gate.GATE.LAMP,
-				Gate.GATE.NOT,
-				Gate.GATE.OR,
-				Gate.GATE.AND,
-				Gate.GATE.NOR,
-				Gate.GATE.NAND,
-				Gate.GATE.XOR,
-				Gate.GATE.XNOR,
 			]
 			_placeGate(gates[$Hotbar.selectedGate], _gridSelection)
 		else:

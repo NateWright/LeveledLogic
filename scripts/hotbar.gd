@@ -27,53 +27,53 @@ var _hotbarItem = preload("res://scenes/hotbar/hotbar_item.tscn")
 
 @export_subgroup("Unlocked Gates")
 @export var _remove_unlocked = true;
+@export var _and_unlocked = true;
+@export var _or_unlocked = true;
+@export var _not_unlocked = true;
+@export var _xor_unlocked = true;
+@export var _nand_unlocked = true;
+@export var _nor_unlocked = true;
+@export var _xnor_unlocked = true;
 @export var _lever_unlocked = true;
 @export var _lamp_unlocked = true;
-@export var _not_unlocked = true;
-@export var _or_unlocked = true;
-@export var _and_unlocked = true;
-@export var _nor_unlocked = true;
-@export var _nand_unlocked = true;
-@export var _xor_unlocked = true;
-@export var _xnor_unlocked = true;
 
 @export_subgroup("Enabled Gates")
 @export var _remove_enabled = true;
+@export var _and_enabled = true;
+@export var _or_enabled = true;
+@export var _not_enabled = true;
+@export var _xor_enabled = true;
+@export var _nand_enabled = true;
+@export var _nor_enabled = true;
+@export var _xnor_enabled = true;
 @export var _lever_enabled = true;
 @export var _lamp_enabled = true;
-@export var _not_enabled = true;
-@export var _or_enabled = true;
-@export var _and_enabled = true;
-@export var _nor_enabled = true;
-@export var _nand_enabled = true;
-@export var _xor_enabled = true;
-@export var _xnor_enabled = true;
 
 var unlocked_array: Array[bool]
 var enabled_array: Array[bool]
 var gate_icons = [
 	preload("res://assets/ui/hotbar/remove_gate.png"),
+	preload("res://assets/gates/and.png"),
+	preload("res://assets/gates/or.png"),
+	preload("res://assets/gates/not.png"),
+	preload("res://assets/gates/xor.png"),
+	preload("res://assets/gates/nand.png"),
+	preload("res://assets/gates/nor.png"),
+	preload("res://assets/gates/xnor.png"),
 	preload("res://assets/programmer_art/lever_on.png"),
 	preload("res://assets/programmer_art/lamp_on.png"),
-	preload("res://assets/gates/not.png"),
-	preload("res://assets/gates/or.png"),
-	preload("res://assets/gates/and.png"),
-	preload("res://assets/gates/nor.png"),
-	preload("res://assets/gates/nand.png"),
-	preload("res://assets/gates/xor.png"),
-	preload("res://assets/gates/xnor.png"),
 ]
 var gate_icons_disabled = [
 	preload("res://assets/ui/hotbar/remove_gate.png"),
+	preload("res://assets/gates/disabled/and.png"),
+	preload("res://assets/gates/disabled/or.png"),
+	preload("res://assets/gates/disabled/not.png"),
+	preload("res://assets/gates/disabled/xor.png"),
+	preload("res://assets/gates/disabled/nand.png"),
+	preload("res://assets/gates/disabled/nor.png"),
+	preload("res://assets/gates/disabled/xnor.png"),
 	preload("res://assets/programmer_art/lever_on.png"),
 	preload("res://assets/programmer_art/lamp_on.png"),
-	preload("res://assets/gates/disabled/not.png"),
-	preload("res://assets/gates/disabled/or.png"),
-	preload("res://assets/gates/disabled/and.png"),
-	preload("res://assets/gates/disabled/nor.png"),
-	preload("res://assets/gates/disabled/nand.png"),
-	preload("res://assets/gates/disabled/xor.png"),
-	preload("res://assets/gates/disabled/xnor.png"),
 ]
 
 # Called when the node enters the scene tree for the first time.
@@ -117,27 +117,27 @@ func showWireHotbar():
 func _initGateHotbar():
 	unlocked_array = [
 		_remove_unlocked,
+		_and_unlocked,
+		_or_unlocked,
+		_not_unlocked,
+		_xor_unlocked,
+		_nand_unlocked,
+		_nor_unlocked,
+		_xnor_unlocked,
 		_lever_unlocked,
 		_lamp_unlocked,
-		_not_unlocked,
-		_or_unlocked,
-		_and_unlocked,
-		_nor_unlocked,
-		_nand_unlocked,
-		_xor_unlocked,
-		_xnor_unlocked
 	]
 	enabled_array = [
 		_remove_enabled,
+		_and_enabled,
+		_or_enabled,
+		_not_enabled,
+		_xor_enabled,
+		_nand_enabled,
+		_nor_enabled,
+		_xnor_enabled,
 		_lever_enabled,
 		_lamp_enabled,
-		_not_enabled,
-		_or_enabled,
-		_and_enabled,
-		_nor_enabled,
-		_nand_enabled,
-		_xor_enabled,
-		_xnor_enabled
 	]
 	
 	var container = $CenterContainer/PanelContainer/Gates
