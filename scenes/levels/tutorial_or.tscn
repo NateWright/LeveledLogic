@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://velwvknf3mfp"]
+[gd_scene load_steps=3 format=3 uid="uid://cyunen2ndp5w5"]
 
-[ext_resource type="PackedScene" uid="uid://cucxvuj86rdef" path="res://scenes/levels/base_level.tscn" id="1_lfad4"]
-[ext_resource type="Script" path="res://scenes/levels/tutorial_and.gd" id="2_8ipgf"]
+[ext_resource type="PackedScene" uid="uid://cucxvuj86rdef" path="res://scenes/levels/base_level.tscn" id="1_b6qau"]
+[ext_resource type="Script" path="res://scenes/levels/tutorial_or.gd" id="2_vxi13"]
 
-[node name="base_level" instance=ExtResource("1_lfad4")]
-script = ExtResource("2_8ipgf")
+[node name="base_level" instance=ExtResource("1_b6qau")]
+script = ExtResource("2_vxi13")
 sources = 2
 sinks = 1
 
@@ -19,4 +19,12 @@ _nor_unlocked = false
 _nand_unlocked = false
 _xor_unlocked = false
 _xnor_unlocked = false
-_or_enabled = false
+_remove_enabled = false
+_lever_enabled = false
+_lamp_enabled = false
+_not_enabled = false
+_and_enabled = false
+_nor_enabled = false
+_nand_enabled = false
+_xor_enabled = false
+_xnor_enabled = false
