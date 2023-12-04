@@ -1,14 +1,14 @@
 extends Control
 
 const GATES = 10
-const WIRE_TOOLS = 2
+const WIRE_TOOLS = 3
 
 @export var selected_style: StyleBox
 
 @export_range(0, GATES - 1) var selectedGate: int = 0
 signal selected_gate_changed(selectedGate)
 @export_range(0, WIRE_TOOLS - 1) var selectedWireTool: int = 0
-signal selected_wire_tool_changed(selectedGate)
+signal selected_wire_tool_changed(selectedWireTool)
 
 @export var keybinds: Array[String] = [
 	"hotbar1",
@@ -160,6 +160,7 @@ func _initWireToolHotbar():
 	var container = $CenterContainer/PanelContainer/WireTool
 	var icons = [
 		preload("res://assets/programmer_art/lever_on.png"),
+		preload("res://assets/programmer_art/lever_off.png"),
 		preload("res://assets/programmer_art/lever_off.png"),
 	]
 	for i in icons.size():

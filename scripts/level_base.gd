@@ -136,8 +136,10 @@ func _process(_delta):
 		else:
 			if $Hotbar.selectedWireTool == 0:
 				_selectOutput()
-			elif _output != null:
+			elif $Hotbar.selectedWireTool == 1 and _output != null:
 				_selectInput()
+			elif $Hotbar.selectedWireTool == 2:
+				_disconnectInput(_gridSelection)
 	elif Input.is_action_just_pressed("switch_tool"):
 		if $Player.placing():
 			$Hotbar.showWireHotbar()
@@ -185,8 +187,8 @@ func _selectInput():
 	if path.size() == 0:
 		return
 	# r[id, offset]
-	var r = gate.connectInput(int($Player.position.y)%GlobalState.gridSize, _output.output, _output.disconnectOutput)
-	if r[0] == -1:
+	var loc = gate.connectInput(int($Player.position.y)%GlobalState.gridSize, _output.output, _output.disconnectOutput)
+	if loc['id'] == -1:
 		return
 	var line = Line2D.new()
 	line.add_point(_outputGateLoc)
@@ -201,7 +203,7 @@ func _selectInput():
 	
 	var inputLoc = vec * GlobalState.gridSize
 #	inputLoc.x -= GlobalState.gridSize
-	inputLoc.y += r[1]
+	inputLoc.y += loc['offset']
 	
 	line.add_point(inputLoc)
 	line.width = 5
@@ -213,6 +215,37 @@ func _selectInput():
 	_linePaths[vec][_outputGateIndex] = line
 	self.add_child(line)
 
+func _disconnectInput(location: Vector2i):
+	var gate: Gate = _gates[location.y][location.x]
+
+	if !gate.gateSet():
+		print("No Gate Here")
+		return
+	
+	var ret = gate.getInputLocation(int($Player.position.y)%GlobalState.gridSize)
+	var offset = ret['offset']
+	var inputLoc: Vector2 = location * GlobalState.gridSize
+	inputLoc.y += offset
+	
+	var found = false
+	var outputGate
+	if location in _linePaths:
+		for val in _linePaths[location]:
+			var line: Line2D = _linePaths[location][val]
+			if inputLoc == line.get_point_position(line.get_point_count() - 1):
+				found = true
+				outputGate = _gates[val.y][val.x]
+				for i in range(1, line.get_point_count() - 1):
+					var l: Vector2i = line.get_point_position(i) / GlobalState.gridSize
+					_lineOccupation[l.y][l.x] -= 1
+				if val != location:
+					_linePaths[val].erase(location)
+				_linePaths[location].erase(val)
+				self.remove_child(line)
+	if !found:
+		return
+	
+	gate.disconnectInput(ret['id'], outputGate.output, outputGate.disconnectOutput)
 
 func _placeGate(type: Gate.GATE, placement: Vector2i):
 	if type == Gate.GATE.NONE:
@@ -247,7 +280,7 @@ func _removeGate(location: Vector2i):
 	var inLocation = location
 	inLocation.x -= 1
 	if location in _linePaths:
-		for val in _linePaths[location]:
+		for val in _linePaths[location].keys():
 			var line:Line2D = _linePaths[location][val]
 			for i in range(1, line.get_point_count() - 1):
 				var l: Vector2i = line.get_point_position(i) / GlobalState.gridSize
@@ -287,7 +320,7 @@ func simulate(inputArr, outputArr) -> bool:
 	var size = inputArr.size()
 	for i in range(size):
 		for j in inputArr[i].size():
-			_sources[j]._setOutput(inputArr[i][j], randi())
+			_sources[j].setOutput(inputArr[i][j], randi())
 		for j in outputArr[i].size():
 			if _sinks[j].getOutput() != outputArr[i][j]:
 				return false

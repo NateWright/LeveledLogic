@@ -79,6 +79,7 @@ func setGate(gate: GATE) -> StaticBody2D:
 			_inputsConnected = [false]
 			_gateBody = preload("res://scenes/elements/logic/lamp.tscn").instantiate()
 			_gateBody.update(_output)
+	_updateOutput(false)
 	return _gateBody
 			
 func getGateBody():
@@ -100,6 +101,28 @@ func disconnectOutputs():
 	disconnectOutput.emit()
 
 func connectInput(posY: int, sig, sigDisconnect):
+	var loc = getInputLocation(posY)
+	var id = loc['id']
+	
+	if id == -1 or _inputsConnected[id] == true:
+		id = -1
+	else:
+		_inputsConnected[id] = true
+		sigDisconnect.connect(disconnectInput.bind(id, sig, sigDisconnect))
+		sig.connect(_setInput.bind(id))
+	return loc
+
+func disconnectInput(id: int, sig: Signal, sigDisconnect: Signal):
+	for con in sig.get_connections():
+		if con['callable'].get_object() == self:
+			con['signal'].disconnect(con['callable'])
+	for con in sigDisconnect.get_connections():
+		if con['callable'].get_object() == self:
+			con['signal'].disconnect(con['callable'])
+	_inputsConnected[id] = false
+	_setInput(false, randi(), id)
+
+func getInputLocation(posY: int):
 	var offset = 0
 	var id = -1
 	match _gate:
@@ -113,7 +136,6 @@ func connectInput(posY: int, sig, sigDisconnect):
 				id = 1
 				offset = GlobalState.gridSize * 3 / 4
 		GATE.NOT, GATE.LAMP:
-			output.connect(_setInput)
 			id = 0
 			offset = GlobalState.gridSize / 2
 		GATE.SOURCE:
@@ -121,45 +143,20 @@ func connectInput(posY: int, sig, sigDisconnect):
 		GATE.SINK:
 			id = 0
 			offset = GlobalState.gridSize / 2
-	if id == -1 or _inputsConnected[id] == true:
-		id = -1
-	else:
-		_inputsConnected[id] = true
-		sigDisconnect.connect(_disconnectInput.bind(id))
-		sig.connect(_setInput.bind(id))
-	
-	return [id, offset]
-
-func _disconnectInput(id: int):
-	_inputsConnected[id] = false
-	_setInput(false, randi(), id)
-
-func getInputLocationScreen(posY: int):
-	var offset = 0
-	match _gate:
-		GATE.LEVER:
-			offset = -1
-		GATE.AND, GATE.OR, GATE.XOR, GATE.NAND, GATE.NOR, GATE.XNOR: # Gates with two inputs
-			if posY < GlobalState.gridSize / 2:
-				offset = GlobalState.gridSize / 4
-			else:
-				offset = GlobalState.gridSize * 3 / 4
-		GATE.NOT, GATE.LAMP:
-			offset = GlobalState.gridSize / 2
-		GATE.SOURCE:
-			offset = -1
-		GATE.SINK:
-			offset = GlobalState.gridSize / 2
-	return offset
+	return { 'id': id, 'offset': offset}
 
 func _setInput(value: bool, signal_id: int, id: int):
 	_inputs[id] = value
+	_updateOutput(value)
+	_notify(signal_id)
+
+func _updateOutput(value):
 	match _gate:
 		GATE.LAMP:
-			_output = value
+			_output = _inputs[0]
 			_gateBody.update(_output)
 		GATE.NOT:
-			_output = !value
+			_output = !_inputs[0]
 		GATE.OR:
 			_output = _inputs[0] or _inputs[1]
 		GATE.AND:
@@ -178,10 +175,9 @@ func _setInput(value: bool, signal_id: int, id: int):
 		GATE.SINK:
 			_output = value
 			_gateBody.update(_output)
-			pass
-	_notify(signal_id)
+	
 
-func _setOutput(value: bool, signal_id: int):
+func setOutput(value: bool, signal_id: int):
 	_output = value
 	_gateBody.update(value)
 	_notify(signal_id)
