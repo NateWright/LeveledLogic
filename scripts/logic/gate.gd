@@ -78,7 +78,7 @@ func setGate(gate: GATE) -> StaticBody2D:
 			_inputsConnected = [false]
 			_gateBody = preload("res://scenes/elements/logic/lamp.tscn").instantiate()
 			_gateBody.update(_output)
-	_updateOutput(false)
+	_updateOutput()
 	return _gateBody
 			
 func getGateBody():
@@ -146,10 +146,10 @@ func getInputLocation(posY: int):
 
 func _setInput(value: bool, signal_id: int, id: int):
 	_inputs[id] = value
-	_updateOutput(value)
+	_updateOutput()
 	_notify(signal_id)
 
-func _updateOutput(value):
+func _updateOutput():
 	match _gate:
 		GATE.LAMP:
 			_output = _inputs[0]
