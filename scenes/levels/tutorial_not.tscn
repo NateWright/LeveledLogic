@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://elpr0qd18ve3"]
+
+[ext_resource type="PackedScene" uid="uid://cucxvuj86rdef" path="res://scenes/levels/base_level.tscn" id="1_ntcsr"]
+[ext_resource type="Script" path="res://scenes/levels/tutorial_not.gd" id="2_xlpj1"]
+
+[node name="base_level" instance=ExtResource("1_ntcsr")]
+script = ExtResource("2_xlpj1")
+sources = 1
+sinks = 1
+
+[node name="Hotbar" parent="." index="3"]
+_and_unlocked = false
+_or_unlocked = false
+_xor_unlocked = false
+_nand_unlocked = false
+_nor_unlocked = false
+_xnor_unlocked = false
+_lever_unlocked = false
+_lamp_unlocked = false
