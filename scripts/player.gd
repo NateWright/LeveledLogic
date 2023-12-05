@@ -10,6 +10,9 @@ var _gate: Gate = null
 var _selectedGate = 0
 var _selectedWireTool = 0
 
+var wirePlacement = preload("res://assets/programmer_art/crate_pink.png")
+var wirePlacmentInvalid = preload("res://assets/programmer_art/lever_off.png")
+
 
 func get_input():
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -60,6 +63,7 @@ func _setLookingAtBlock():
 func _setLookingAtWire():
 	$WirePlacement.position.y = _position.y
 	if !_gate or !_gate.gateSet():
+		$WirePlacement.texture = wirePlacement
 		$WirePlacement.position = $GatePlacement.position
 		return
 	var dir = get_last_motion()
@@ -72,9 +76,18 @@ func _setLookingAtWire():
 	
 	# Adjust wire positon in up and down
 	if _selectedWireTool == 1 or _selectedWireTool == 2:
-		var offset = _gate.getInputLocation(int(position.y)%GlobalState.gridSize)['offset']
-		$WirePlacement.position.y += offset - GlobalState.gridSize/2
-		$WirePlacement.position.x = _position.x - GlobalState.gridSize/2
+		if !_gate.hasInput():
+			$WirePlacement.texture = wirePlacmentInvalid
+			$WirePlacement.position = _position
+		else:
+			$WirePlacement.texture = wirePlacement
+			var offset = _gate.getInputLocation(int(position.y)%GlobalState.gridSize)['offset']
+			$WirePlacement.position.y += offset - GlobalState.gridSize/2
+			$WirePlacement.position.x = _position.x - GlobalState.gridSize/2
 	else:
-		$WirePlacement.position.y = $GatePlacement.position.y
-		$WirePlacement.position.x = _position.x + GlobalState.gridSize/2
+		if !_gate.hasOutput():
+			$WirePlacement.texture = wirePlacmentInvalid
+		else:
+			$WirePlacement.texture = wirePlacement
+			$WirePlacement.position.y = $GatePlacement.position.y
+			$WirePlacement.position.x = _position.x + GlobalState.gridSize/2
