@@ -1,5 +1,5 @@
 class_name Gate extends Node
-enum GATE {NONE, LEVER, LAMP, NOT, OR, AND, XOR, NAND, NOR, XNOR, SOURCE, SINK}
+enum GATE {NONE, LEVER, LAMP, NOT, OR, AND, XOR, NAND, NOR, XNOR, SOURCE, SINK, INDICATOR}
 var _gate = GATE.NONE
 var _gateBody: StaticBody2D
 var _inputs = []
@@ -78,6 +78,10 @@ func setGate(gate: GATE) -> StaticBody2D:
 			_inputsConnected = [false]
 			_gateBody = preload("res://scenes/elements/logic/lamp.tscn").instantiate()
 			_gateBody.update(_output)
+		GATE.INDICATOR:
+			_inputs = []
+			_inputsConnected = []
+			_gateBody = preload("res://scenes/elements/logic/lamp.tscn").instantiate()
 	_updateOutput()
 	return _gateBody
 			
@@ -87,6 +91,8 @@ func getGateBody():
 func hasOutput() -> bool:
 	match _gate:
 		GATE.SINK:
+			return false
+		GATE.INDICATOR:
 			return false
 	return true
 
@@ -142,6 +148,8 @@ func getInputLocation(posY: int):
 		GATE.SINK:
 			id = 0
 			offset = GlobalState.gridSize / 2
+		GATE.INDICATOR:
+			id = -1
 	return { 'id': id, 'offset': offset}
 
 func _setInput(value: bool, signal_id: int, id: int):
@@ -172,6 +180,8 @@ func _updateOutput():
 			_gateBody.update(_output)
 		GATE.SINK:
 			_output = _inputs[0]
+			_gateBody.update(_output)
+		GATE.INDICATOR:
 			_gateBody.update(_output)
 	
 

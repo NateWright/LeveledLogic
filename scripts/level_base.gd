@@ -17,6 +17,7 @@ var _lineOccupation = [] # index y, x
 
 var _sources: Array[Gate]
 var _sinks: Array[Gate]
+var _indicators: Array[Gate]
 
 var _simTime = 0
 var _simIndex = 0
@@ -61,6 +62,10 @@ func _ready():
 			var gate = _gates[i][26]
 			gate.removable = false
 			_sinks.append(gate)
+			_placeGate(Gate.GATE.INDICATOR, Vector2i(28, i))
+			var ind = _gates[i][28]
+			ind.removable = false
+			_indicators.append(ind)
 	
 #	# Add other tiles
 	$Level.visible = false
@@ -159,6 +164,8 @@ func _process(delta):
 			var size = _sources.size()
 			for i in range(size):
 				_sources[i].setOutput(providedInput[_simIndex][i], randi())
+			for i in _indicators.size():
+				_indicators[i].setOutput(expectedOutput[_simIndex][i], randi())
 			_simIndex += 1
 			_simIndex = _simIndex % providedInput.size()
 
