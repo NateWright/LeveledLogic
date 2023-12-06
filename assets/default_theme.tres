@@ -1,9 +1,9 @@
 [gd_resource type="Theme" load_steps=10 format=3 uid="uid://b1hvuy82coiee"]
 
-[ext_resource type="Texture2D" uid="uid://cti0hufh7vrai" path="res://assets/buttons/blank1.png" id="1_b5pls"]
 [ext_resource type="FontFile" uid="uid://q8d3g66gjuge" path="res://assets/NovaSquare-Regular.ttf" id="1_gy22k"]
-[ext_resource type="Texture2D" uid="uid://c688yx8xboe0s" path="res://assets/buttons/blank2.png" id="1_igd82"]
-[ext_resource type="Texture2D" uid="uid://crqsqp1a1wc7k" path="res://assets/buttons/blank3.png" id="3_3nvwu"]
+[ext_resource type="Texture2D" uid="uid://jb76wxmat0oe" path="res://assets/buttons/button_highlight.png" id="2_oiyw6"]
+[ext_resource type="Texture2D" uid="uid://b05te5chf4vwd" path="res://assets/buttons/button.png" id="3_ncjmt"]
+[ext_resource type="Texture2D" uid="uid://dsgvhsv0kuguo" path="res://assets/buttons/button_pressed.png" id="4_d6oyl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lthu"]
 content_margin_left = 4.0
@@ -39,25 +39,25 @@ expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t1onq"]
-content_margin_left = 28.0
-content_margin_top = 8.0
-content_margin_right = 28.0
-content_margin_bottom = 8.0
-texture = ExtResource("1_igd82")
+texture = ExtResource("2_oiyw6")
+texture_margin_left = 15.0
+texture_margin_top = 15.0
+texture_margin_right = 15.0
+texture_margin_bottom = 15.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v6x2v"]
-content_margin_left = 28.0
-content_margin_top = 8.0
-content_margin_right = 28.0
-content_margin_bottom = 8.0
-texture = ExtResource("1_b5pls")
+texture = ExtResource("3_ncjmt")
+texture_margin_left = 15.0
+texture_margin_top = 15.0
+texture_margin_right = 15.0
+texture_margin_bottom = 15.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kpa23"]
-content_margin_left = 28.0
-content_margin_top = 8.0
-content_margin_right = 28.0
-content_margin_bottom = 8.0
-texture = ExtResource("3_3nvwu")
+texture = ExtResource("4_d6oyl")
+texture_margin_left = 15.0
+texture_margin_top = 15.0
+texture_margin_right = 15.0
+texture_margin_bottom = 15.0
 
 [resource]
 default_font = ExtResource("1_gy22k")
