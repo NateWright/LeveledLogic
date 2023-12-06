@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpgs4cfuqp7pj"]
+[gd_scene load_steps=4 format=3 uid="uid://covnoce6d7d42"]
 
 [ext_resource type="Script" path="res://scenes/levels/instructions_level.gd" id="1_0cmsh"]
-[ext_resource type="PackedScene" uid="uid://bqpd1plobfx6q" path="res://scenes/elements/menu_background.tscn" id="2_f7nal"]
+[ext_resource type="Theme" uid="uid://c3y30hgar0uhu" path="res://assets/panel_theme.tres" id="2_ynrgq"]
+[ext_resource type="FontFile" uid="uid://q8d3g66gjuge" path="res://assets/NovaSquare-Regular.ttf" id="3_di3a4"]
 
 [node name="LevelInstructions" type="Control"]
 layout_mode = 3
@@ -12,18 +13,69 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0cmsh")
 
-[node name="Menubackground" parent="." instance=ExtResource("2_f7nal")]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
 
-[node name="Label" type="Label" parent="Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer" index="0"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
 layout_mode = 2
-text = "Label Mode: Revengance"
 
-[node name="Button" type="Button" parent="Menubackground/MarginContainer/CenterContainer/PanelContainer" index="1"]
+[node name="Panel" type="Panel" parent="MarginContainer/CenterContainer"]
+custom_minimum_size = Vector2(600, 750)
+layout_mode = 2
+theme = ExtResource("2_ynrgq")
+
+[node name="Title" type="Label" parent="MarginContainer/CenterContainer/Panel"]
 layout_mode = 0
-offset_right = 56.0
-offset_bottom = 16.0
+offset_right = 600.0
+offset_bottom = 61.0
+theme_override_fonts/font = ExtResource("3_di3a4")
+theme_override_font_sizes/font_size = 40
+text = "TEST"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
-[connection signal="pressed" from="Menubackground/MarginContainer/CenterContainer/PanelContainer/Button" to="." method="_on_button_pressed"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/CenterContainer/Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 61.0
+offset_right = 592.0
+offset_bottom = 658.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
 
-[editable path="Menubackground"]
+[node name="Content" type="Label" parent="MarginContainer/CenterContainer/Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "input instructions here"
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="MarginContainer/CenterContainer/Panel"]
+layout_mode = 2
+offset_left = 99.0
+offset_top = 658.0
+offset_right = 501.0
+offset_bottom = 732.0
+text = "EXIT"
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+theme = ExtResource("2_ynrgq")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/CenterContainer"]
+layout_mode = 2
+theme = ExtResource("2_ynrgq")
+
+[connection signal="pressed" from="MarginContainer/CenterContainer/Panel/Button" to="." method="_on_button_pressed"]

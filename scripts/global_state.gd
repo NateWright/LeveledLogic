@@ -15,3 +15,6 @@ const LEVELS = [
 	
 ]
 var curLevel: int = 0
+
+var instructionsContent = ""
+var instructionsTitle = ""

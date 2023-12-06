@@ -26,6 +26,7 @@ var expectedOutput = []
 
 var _aStar = AStar2D.new()
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Initialize grid and search
@@ -353,3 +354,9 @@ func simulate(inputArr, outputArr) -> bool:
 				return false
 	_on_level_solved.call_deferred()
 	return true
+
+func showInstructions():
+	GlobalState.paused = true
+	var child = preload("res://scenes/levels/instructions_level.tscn").instantiate()
+	child.position = self.get_window().content_scale_size / 2
+	self.add_child(child)
