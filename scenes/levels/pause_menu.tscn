@@ -31,15 +31,20 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Resume"
 
-[node name="ButtonRestart" type="Button" parent="Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer" index="2"]
+[node name="ButtonInstructions" type="Button" parent="Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer" index="2"]
+layout_mode = 2
+text = "Instructions"
+
+[node name="ButtonRestart" type="Button" parent="Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer" index="3"]
 layout_mode = 2
 text = "Restart Level"
 
-[node name="ButtonMainMenu" type="Button" parent="Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer" index="3"]
+[node name="ButtonMainMenu" type="Button" parent="Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer" index="4"]
 layout_mode = 2
 text = "Main Menu"
 
 [connection signal="pressed" from="Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/ButtonResume" to="." method="_on_button_resume_pressed" flags=3]
+[connection signal="pressed" from="Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/ButtonInstructions" to="." method="_on_button_instructions_pressed"]
 [connection signal="pressed" from="Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/ButtonRestart" to="." method="_on_button_restart_pressed" flags=3]
 [connection signal="pressed" from="Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/ButtonMainMenu" to="." method="_on_button_main_menu_pressed" flags=3]
 
