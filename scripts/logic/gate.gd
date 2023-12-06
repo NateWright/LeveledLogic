@@ -76,7 +76,7 @@ func setGate(gate: GATE) -> StaticBody2D:
 		GATE.SINK:
 			_inputs = [false]
 			_inputsConnected = [false]
-			_gateBody = preload("res://scenes/elements/logic/lamp.tscn").instantiate()
+			_gateBody = preload("res://scenes/elements/logic/sink.tscn").instantiate()
 			_gateBody.update(_output)
 		GATE.INDICATOR:
 			_inputs = []
