@@ -117,6 +117,8 @@ func _process(delta):
 			elif dir.x < 0:
 				i = -1
 			_gridSelection.x = $Player.position.x / GlobalState.gridSize + i
+			if _gridSelection.x >= _mapSize.x:
+				_gridSelection.x = _mapSize.x - 1
 			_placementVec.x = _gridSelection.x * GlobalState.gridSize + GlobalState.gridSize/2 - $Player.position.x
 		_gridSelection.y = $Player.position.y / GlobalState.gridSize
 		_placementVec.y = _gridSelection.y * GlobalState.gridSize + GlobalState.gridSize/2 - $Player.position.y
