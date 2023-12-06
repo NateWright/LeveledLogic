@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cucxvuj86rdef" path="res://scenes/levels/base_level.tscn" id="1_ntcsr"]
 [ext_resource type="Script" path="res://scenes/levels/tutorial_not.gd" id="2_xlpj1"]
 
-[node name="base_level" instance=ExtResource("1_ntcsr")]
+[node name="tutorial_not" instance=ExtResource("1_ntcsr")]
 script = ExtResource("2_xlpj1")
 sources = 1
 sinks = 1
