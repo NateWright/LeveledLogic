@@ -159,8 +159,8 @@ func _initGateHotbar():
 func _initWireToolHotbar():
 	var container = $CenterContainer/PanelContainer/WireTool
 	var icons = [
-		preload("res://assets/ui/hotbar/add_wire_flipped.png"),
-		preload("res://assets/ui/hotbar/add_wire.png"),
+		preload("res://assets/ui/hotbar/select_output.png"),
+		preload("res://assets/ui/hotbar/select_input.png"),
 		preload("res://assets/ui/hotbar/remove_wire.png"),
 	]
 	for i in icons.size():
