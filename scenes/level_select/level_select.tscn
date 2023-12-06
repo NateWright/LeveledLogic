@@ -51,3 +51,5 @@ custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 text = "Back to Main Menu
 "
+
+[connection signal="pressed" from="AspectRatioContainer/ButtonMainMenu" to="." method="_on_button_main_menu_pressed"]
