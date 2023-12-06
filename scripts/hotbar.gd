@@ -61,7 +61,7 @@ var gate_icons = [
 	preload("res://assets/gates/nor.png"),
 	preload("res://assets/gates/xnor.png"),
 	preload("res://assets/programmer_art/lever_on.png"),
-	preload("res://assets/programmer_art/lamp_on.png"),
+	preload("res://assets/gates/lamp/lamp_7.png"),
 ]
 var gate_icons_disabled = [
 	preload("res://assets/ui/hotbar/remove_gate.png"),
@@ -73,7 +73,7 @@ var gate_icons_disabled = [
 	preload("res://assets/gates/disabled/nor.png"),
 	preload("res://assets/gates/disabled/xnor.png"),
 	preload("res://assets/programmer_art/lever_on.png"),
-	preload("res://assets/programmer_art/lamp_on.png"),
+	preload("res://assets/gates/lamp/lamp_7.png"),
 ]
 
 # Called when the node enters the scene tree for the first time.

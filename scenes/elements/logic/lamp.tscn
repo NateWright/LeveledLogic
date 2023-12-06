@@ -1,7 +1,75 @@
-[gd_scene load_steps=4 format=3 uid="uid://cq37e7sicitra"]
+[gd_scene load_steps=12 format=3 uid="uid://cq37e7sicitra"]
 
 [ext_resource type="Script" path="res://scripts/logic/lamp.gd" id="1_b1ecg"]
-[ext_resource type="Texture2D" uid="uid://bw2w4nvmyjbeg" path="res://assets/programmer_art/lamp_off.png" id="2_ag8f5"]
+[ext_resource type="Texture2D" uid="uid://drhcjx3q1p4nr" path="res://assets/gates/lamp/lamp_0.png" id="2_vv3eb"]
+[ext_resource type="Texture2D" uid="uid://gvitb6e0bbp3" path="res://assets/gates/lamp/lamp_1.png" id="3_vs3xi"]
+[ext_resource type="Texture2D" uid="uid://bclbynmkug07m" path="res://assets/gates/lamp/lamp_2.png" id="4_q4okd"]
+[ext_resource type="Texture2D" uid="uid://bwoeycji8jdb8" path="res://assets/gates/lamp/lamp_3.png" id="5_dcm6x"]
+[ext_resource type="Texture2D" uid="uid://1cweuwifubw5" path="res://assets/gates/lamp/lamp_4.png" id="6_besel"]
+[ext_resource type="Texture2D" uid="uid://bn11xb7t33al3" path="res://assets/gates/lamp/lamp_5.png" id="7_wb6qn"]
+[ext_resource type="Texture2D" uid="uid://c1h80w1enugbm" path="res://assets/gates/lamp/lamp_6.png" id="8_gfs2m"]
+[ext_resource type="Texture2D" uid="uid://vlnkcfvwp5tc" path="res://assets/gates/lamp/lamp_7.png" id="9_32stm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cbdol"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_32stm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_gfs2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wb6qn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_besel")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dcm6x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_q4okd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vs3xi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_vv3eb")
+}],
+"loop": false,
+"name": &"turn_off",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vv3eb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vs3xi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_q4okd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dcm6x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_besel")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wb6qn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_gfs2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_32stm")
+}],
+"loop": false,
+"name": &"turn_on",
+"speed": 30.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_poqh0"]
 size = Vector2(32, 32)
@@ -12,9 +80,9 @@ collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_b1ecg")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
-texture = ExtResource("2_ag8f5")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cbdol")
+animation = &"turn_on"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(2, 2)
