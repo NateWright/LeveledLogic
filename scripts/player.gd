@@ -80,13 +80,18 @@ func _setLookingAtWire():
 			$WirePlacement.texture = wirePlacmentInvalid
 			$WirePlacement.position = _position
 		else:
-			$WirePlacement.texture = wirePlacement
-			var offset = _gate.getInputLocation(int(position.y)%GlobalState.gridSize)['offset']
+			var output = _gate.getInputLocation(int(position.y) % GlobalState.gridSize)
+			if output['id'] == -1 or _gate.checkIntputConnected(output['id']):
+				$WirePlacement.texture = wirePlacmentInvalid
+			else:
+				$WirePlacement.texture = wirePlacement
+			var offset = output['offset']
 			$WirePlacement.position.y += offset - GlobalState.gridSize/2
 			$WirePlacement.position.x = _position.x - GlobalState.gridSize/2
 	else:
 		if !_gate.hasOutput():
 			$WirePlacement.texture = wirePlacmentInvalid
+			$WirePlacement.position = _position
 		else:
 			$WirePlacement.texture = wirePlacement
 			$WirePlacement.position.y = $GatePlacement.position.y

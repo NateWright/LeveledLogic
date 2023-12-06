@@ -152,6 +152,9 @@ func getInputLocation(posY: int):
 			id = -1
 	return { 'id': id, 'offset': offset}
 
+func checkIntputConnected(id: int):
+	return _inputsConnected[id]
+
 func _setInput(value: bool, signal_id: int, id: int):
 	_inputs[id] = value
 	_updateOutput()
