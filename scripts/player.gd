@@ -10,8 +10,9 @@ var _gate: Gate = null
 var _selectedGate = 0
 var _selectedWireTool = 0
 
-var wirePlacement = preload("res://assets/programmer_art/crate_pink.png")
-var wirePlacmentInvalid = preload("res://assets/programmer_art/lever_off.png")
+var wirePlacement = preload("res://assets/player/cursor_connect.png")
+var wireRemove = preload("res://assets/player/cursor_disconnect.png")
+var wirePlacmentInvalid = preload("res://assets/player/cursor_blank.png")
 
 
 func get_input():
@@ -66,7 +67,7 @@ func _setLookingAtBlock():
 func _setLookingAtWire():
 	$WirePlacement.position.y = _position.y
 	if !_gate or !_gate.gateSet():
-		$WirePlacement.texture = wirePlacement
+		$WirePlacement.texture = wirePlacmentInvalid
 		$WirePlacement.position = $GatePlacement.position
 		return
 	var dir = get_last_motion()
@@ -78,24 +79,41 @@ func _setLookingAtWire():
 				_lastXMotion = 1
 	
 	# Adjust wire positon in up and down
-	if _selectedWireTool == 1 or _selectedWireTool == 2:
-		if !_gate.hasInput():
-			$WirePlacement.texture = wirePlacmentInvalid
-			$WirePlacement.position = _position
-		else:
-			var output = _gate.getInputLocation(int(position.y) % GlobalState.gridSize)
-			if output['id'] == -1 or _gate.checkIntputConnected(output['id']):
-				$WirePlacement.texture = wirePlacmentInvalid
-			else:
+	
+	match _selectedWireTool:
+		0: # Select Output
+			if _gate.hasOutput():
 				$WirePlacement.texture = wirePlacement
-			var offset = output['offset']
-			$WirePlacement.position.y += offset - GlobalState.gridSize/2
-			$WirePlacement.position.x = _position.x - GlobalState.gridSize/2
-	else:
-		if !_gate.hasOutput():
-			$WirePlacement.texture = wirePlacmentInvalid
-			$WirePlacement.position = _position
-		else:
-			$WirePlacement.texture = wirePlacement
-			$WirePlacement.position.y = $GatePlacement.position.y
-			$WirePlacement.position.x = _position.x + GlobalState.gridSize/2
+				$WirePlacement.position.y = $GatePlacement.position.y
+				$WirePlacement.position.x = _position.x + GlobalState.gridSize/2
+			else:
+				$WirePlacement.texture = wirePlacmentInvalid
+				$WirePlacement.position = _position
+		1: # Select Input
+			if _gate.hasInput():
+				var output = _gate.getInputLocation(int(position.y) % GlobalState.gridSize)
+				if output['id'] == -1 or _gate.checkIntputConnected(output['id']):
+					$WirePlacement.texture = wirePlacmentInvalid
+				else:
+					$WirePlacement.texture = wirePlacement
+				var offset = output['offset']
+				$WirePlacement.position.y += offset - GlobalState.gridSize/2
+				$WirePlacement.position.x = _position.x - GlobalState.gridSize/2
+			else:
+				$WirePlacement.texture = wirePlacmentInvalid
+				$WirePlacement.position = _position
+		2: # Disconnect Input
+			if _gate.hasInput():
+				var output = _gate.getInputLocation(int(position.y) % GlobalState.gridSize)
+				if output['id'] == -1:
+					$WirePlacement.texture = wirePlacmentInvalid
+				elif _gate.checkIntputConnected(output['id']):
+					$WirePlacement.texture = wireRemove
+				else:
+					$WirePlacement.texture = wirePlacmentInvalid
+				var offset = output['offset']
+				$WirePlacement.position.y += offset - GlobalState.gridSize/2
+				$WirePlacement.position.x = _position.x - GlobalState.gridSize/2
+			else:
+				$WirePlacement.texture = wirePlacmentInvalid
+				$WirePlacement.position = _position

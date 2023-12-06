@@ -90,9 +90,7 @@ func getGateBody():
 
 func hasOutput() -> bool:
 	match _gate:
-		GATE.SINK:
-			return false
-		GATE.INDICATOR:
+		GATE.SINK, GATE.INDICATOR, GATE.NONE:
 			return false
 	return true
 

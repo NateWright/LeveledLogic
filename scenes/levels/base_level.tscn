@@ -56,6 +56,7 @@ tile_set = SubResource("TileSet_coeev")
 format = 2
 
 [node name="Hotbar" parent="." instance=ExtResource("4_hxhxe")]
+z_index = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -63,4 +64,5 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="Player" parent="." instance=ExtResource("1_ved8g")]
+z_index = 1
 position = Vector2(464, 80)
