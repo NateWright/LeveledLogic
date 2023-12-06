@@ -231,7 +231,7 @@ func _selectInput():
 	
 	line.add_point(inputLoc)
 	line.width = 5
-	line.default_color = Color(randf_range(0, 1), randf_range(0, 1), randf_range(0, 1))
+	line.default_color = Color.from_ok_hsl(randf_range(0,1), 1.0, 0.5)
 	if _outputGateIndex not in _linePaths:
 		_linePaths[_outputGateIndex] = {}
 	if vec not in _linePaths:
