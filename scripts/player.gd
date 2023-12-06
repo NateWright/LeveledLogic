@@ -16,7 +16,10 @@ var wirePlacmentInvalid = preload("res://assets/programmer_art/lever_off.png")
 
 func get_input():
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = input_direction * speed
+	var modifier = 1
+	if Input.is_action_pressed("sprint"):
+		modifier = 2
+	velocity = input_direction * speed * modifier
 
 func _physics_process(_delta):
 	if GlobalState.paused:
