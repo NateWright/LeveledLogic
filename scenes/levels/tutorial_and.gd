@@ -5,6 +5,11 @@ func _ready():
 	super._ready()
 	providedInput = [[true, true],[true,false],[false,false],[false,true]]
 	expectedOutput = [[true], [false], [false], [false]]
+	GlobalState.instructionsTitle = "And"
+	GlobalState.instructionsContent = "
+	
+	";
+	showInstructions()
 # Wire the AND gate and match the expected output to complete the level
 # This level is designed for you to be familiar with AND Gates
 # While in gate tool hotbar, Press 3 to select the AND gate
