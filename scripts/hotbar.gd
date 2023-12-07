@@ -27,27 +27,27 @@ var _hotbarItem = preload("res://scenes/hotbar/hotbar_item.tscn")
 
 @export_subgroup("Unlocked Gates")
 @export var _remove_unlocked = true;
+@export var _lamp_unlocked = true;
+@export var _not_unlocked = true;
 @export var _and_unlocked = true;
 @export var _or_unlocked = true;
-@export var _not_unlocked = true;
 @export var _xor_unlocked = true;
 @export var _nand_unlocked = true;
 @export var _nor_unlocked = true;
 @export var _xnor_unlocked = true;
 @export var _lever_unlocked = true;
-@export var _lamp_unlocked = true;
 
 @export_subgroup("Enabled Gates")
 @export var _remove_enabled = true;
+@export var _lamp_enabled = true;
+@export var _not_enabled = true;
 @export var _and_enabled = true;
 @export var _or_enabled = true;
-@export var _not_enabled = true;
 @export var _xor_enabled = true;
 @export var _nand_enabled = true;
 @export var _nor_enabled = true;
 @export var _xnor_enabled = true;
 @export var _lever_enabled = true;
-@export var _lamp_enabled = true;
 
 var unlocked_array: Array[bool]
 var enabled_array: Array[bool]
