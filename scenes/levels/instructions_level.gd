@@ -5,6 +5,7 @@ extends Control
 func _ready():
 	setTitle()
 	setContent()
+	$MarginContainer/CenterContainer/Panel/Button.grab_focus.call_deferred()
 	pass # Replace with function body.
 
 func setTitle():

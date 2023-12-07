@@ -11,6 +11,7 @@ func _ready():
 		button.pressed.connect(_on_level_select.bind(i))
 		$ScrollContainer/CenterContainer/VBoxContainer.add_child(button)
 		print(level[1])
+	$ScrollContainer/CenterContainer/VBoxContainer.get_child(0).grab_focus.call_deferred()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

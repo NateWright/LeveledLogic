@@ -4,6 +4,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/ButtonResume.grab_focus.call_deferred()
 	pass # Replace with function body.
 
 

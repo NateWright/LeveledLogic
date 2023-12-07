@@ -13,6 +13,7 @@ var _GATES = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$AspectRatioContainer/ButtonMainMenu.grab_focus.call_deferred()
 	for g in _GATES:
 		var t = _table.instantiate()
 		t.setTitle(g[0])

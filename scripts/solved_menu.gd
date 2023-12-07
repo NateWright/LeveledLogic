@@ -4,6 +4,9 @@ extends Control
 func _ready():
 	if GlobalState.curLevel >= GlobalState.LEVELS.size() - 1:
 		$Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/ButtonNextLevel.visible = false
+		$Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/ButtonLevelSelect.grab_focus.call_deferred()
+	else:
+		$Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/ButtonNextLevel.grab_focus.call_deferred()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

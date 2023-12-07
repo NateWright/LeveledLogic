@@ -20,7 +20,7 @@ func _ready():
 		var control = _item.instantiate()
 		control.text = b[1]
 		$HBoxContainer/Control.add_child(control)
-	
+	$AspectRatioContainer/ButtonMainMenu.grab_focus.call_deferred()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
