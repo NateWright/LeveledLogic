@@ -148,6 +148,12 @@ func _process(delta):
 				_selectInput()
 			elif $Hotbar.selectedWireTool == 2:
 				_disconnectInput(_gridSelection)
+	elif Input.is_action_just_pressed("remove_gate"):
+		if $Player.placing():
+			_placeGate(Gate.GATE.NONE, _gridSelection)
+		else:
+			if $Hotbar.selectedWireTool > 0:
+				_disconnectInput(_gridSelection)
 	elif Input.is_action_just_pressed("switch_tool"):
 		if $Player.placing():
 			$Hotbar.showWireHotbar()
