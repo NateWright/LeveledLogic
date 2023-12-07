@@ -24,3 +24,6 @@ func setVisible(v: bool):
 
 func setEnabled(enabled: bool):
 	$MarginContainer/TextureRect.disabled = !enabled
+	
+func setTooltip(tooltip: String):
+	$MarginContainer/TextureRect.tooltip_text = tooltip

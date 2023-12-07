@@ -75,6 +75,23 @@ var gate_icons_disabled = [
 	preload("res://assets/gates/disabled/xnor.png"),
 	preload("res://assets/programmer_art/lever_on.png"),
 ]
+const gate_tooltips: Array[String] = [
+	"Remove",
+	"Lamp",
+	"NOT",
+	"AND",
+	"OR",
+	"XOR",
+	"NAND",
+	"NOR",
+	"XNOR",
+	"LEVER"
+]
+const wire_tooltips: Array[String] = [
+	"Select Output",
+	"Select Input",
+	"Remove"
+]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -168,6 +185,7 @@ func _initGateHotbar():
 		gate.setVisible(unlocked_array[i])
 		gate.setEnabled(enabled_array[i] and unlocked_array[i])
 		gate.connect_button(_on_item_selected.bind(i))
+		gate.setTooltip(gate_tooltips[i])
 		container.add_child(gate)
 		
 	var new_panel = container.get_children()[selectedGate]
@@ -187,6 +205,7 @@ func _initWireToolHotbar():
 		var gate = _hotbarItem.instantiate()
 		gate.setIcon(icons[i])
 		gate.connect_button(_on_item_selected.bind(i))
+		gate.setTooltip(wire_tooltips[i])
 		container.add_child(gate)
 		
 	var new_panel = container.get_children()[selectedWireTool]
