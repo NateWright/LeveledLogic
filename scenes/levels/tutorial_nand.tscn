@@ -9,16 +9,14 @@ sources = 2
 sinks = 1
 
 [node name="Hotbar" parent="." index="3"]
-_xor_unlocked = false
 _nor_unlocked = false
 _xnor_unlocked = false
 _lever_unlocked = false
-_lamp_unlocked = false
+_lamp_enabled = false
+_not_enabled = false
 _and_enabled = false
 _or_enabled = false
-_not_enabled = false
 _xor_enabled = false
 _nor_enabled = false
 _xnor_enabled = false
 _lever_enabled = false
-_lamp_enabled = false
