@@ -53,27 +53,27 @@ var unlocked_array: Array[bool]
 var enabled_array: Array[bool]
 var gate_icons = [
 	preload("res://assets/ui/hotbar/remove_gate.png"),
+	preload("res://assets/gates/lamp/lamp_7.png"),
+	preload("res://assets/gates/not.png"),
 	preload("res://assets/gates/and.png"),
 	preload("res://assets/gates/or.png"),
-	preload("res://assets/gates/not.png"),
 	preload("res://assets/gates/xor.png"),
 	preload("res://assets/gates/nand.png"),
 	preload("res://assets/gates/nor.png"),
 	preload("res://assets/gates/xnor.png"),
 	preload("res://assets/programmer_art/lever_on.png"),
-	preload("res://assets/gates/lamp/lamp_7.png"),
 ]
 var gate_icons_disabled = [
 	preload("res://assets/ui/hotbar/remove_gate.png"),
+	preload("res://assets/gates/lamp/lamp_7.png"),
+	preload("res://assets/gates/disabled/not.png"),
 	preload("res://assets/gates/disabled/and.png"),
 	preload("res://assets/gates/disabled/or.png"),
-	preload("res://assets/gates/disabled/not.png"),
 	preload("res://assets/gates/disabled/xor.png"),
 	preload("res://assets/gates/disabled/nand.png"),
 	preload("res://assets/gates/disabled/nor.png"),
 	preload("res://assets/gates/disabled/xnor.png"),
 	preload("res://assets/programmer_art/lever_on.png"),
-	preload("res://assets/gates/lamp/lamp_7.png"),
 ]
 
 # Called when the node enters the scene tree for the first time.
@@ -117,27 +117,27 @@ func showWireHotbar():
 func _initGateHotbar():
 	unlocked_array = [
 		_remove_unlocked,
+		_lamp_unlocked,
+		_not_unlocked,
 		_and_unlocked,
 		_or_unlocked,
-		_not_unlocked,
 		_xor_unlocked,
 		_nand_unlocked,
 		_nor_unlocked,
 		_xnor_unlocked,
 		_lever_unlocked,
-		_lamp_unlocked,
 	]
 	enabled_array = [
 		_remove_enabled,
+		_lamp_enabled,
+		_not_enabled,
 		_and_enabled,
 		_or_enabled,
-		_not_enabled,
 		_xor_enabled,
 		_nand_enabled,
 		_nor_enabled,
 		_xnor_enabled,
 		_lever_enabled,
-		_lamp_enabled,
 	]
 	
 	var container = $CenterContainer/PanelContainer/Gates

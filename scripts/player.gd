@@ -9,6 +9,7 @@ var _gate: Gate = null
 
 var _selectedGate = 0
 var _selectedWireTool = 0
+var gateIcons
 
 var wirePlacement = preload("res://assets/player/cursor_connect.png")
 var wireRemove = preload("res://assets/player/cursor_disconnect.png")
@@ -45,6 +46,8 @@ func setLookingAt(pos: Vector2, gate: Gate):
 	_gate = gate
 func setSelectedGate(num: int):
 	_selectedGate = num
+	$GatePlacement.texture = gateIcons[_selectedGate]
+	
 func setSelectedWireTool(num: int):
 	_selectedWireTool = num
 

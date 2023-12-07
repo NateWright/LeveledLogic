@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_jpman"]
 [ext_resource type="Texture2D" uid="uid://c3y4mlv4d7qdx" path="res://assets/programmer_art/stick_person.png" id="1_xr8yv"]
-[ext_resource type="Texture2D" uid="uid://b6wovmly5rfpu" path="res://assets/programmer_art/crate_pink.png" id="3_rwh6t"]
+[ext_resource type="Texture2D" uid="uid://4py2f562gc17" path="res://assets/ui/hotbar/remove_gate.png" id="3_xu0ph"]
 [ext_resource type="Texture2D" uid="uid://bofam48ctanus" path="res://assets/player/cursor_blank.png" id="4_a15yv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2dtb7"]
@@ -32,7 +32,8 @@ shape = SubResource("RectangleShape2D_mod8h")
 
 [node name="GatePlacement" type="Sprite2D" parent="."]
 z_index = 5
-texture = ExtResource("3_rwh6t")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_xu0ph")
 
 [node name="WirePlacement" type="Sprite2D" parent="."]
 z_index = 5
