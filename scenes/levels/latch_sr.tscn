@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://dbskf2toe18db"]
+
+[ext_resource type="Script" path="res://scenes/levels/latch_sr.gd" id="1_mdlly"]
+[ext_resource type="Texture2D" uid="uid://b5b5iaw1w5prm" path="res://assets/backgrounds/background_1.png" id="2_b37in"]
+[ext_resource type="Texture2D" uid="uid://63y5vm0w6ox8" path="res://assets/programmer_art/wall-64x64.png" id="3_7ar0f"]
+[ext_resource type="Texture2D" uid="uid://daa5b4myde3tl" path="res://assets/gates/gates.png" id="4_32g58"]
+[ext_resource type="PackedScene" uid="uid://bya2yh0xvc1g4" path="res://scenes/hotbar/hotbar.tscn" id="5_hpkxo"]
+[ext_resource type="PackedScene" uid="uid://croxwgs246s7e" path="res://scenes/elements/player.tscn" id="6_qcih0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dn5yx"]
+texture = ExtResource("3_7ar0f")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSet" id="TileSet_4v3ap"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+sources/2 = SubResource("TileSetAtlasSource_dn5yx")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gf15q"]
+texture = ExtResource("4_32g58")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:1/0 = 0
+0:2/0 = 0
+0:3/0 = 0
+0:4/0 = 0
+0:5/0 = 0
+0:6/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_coeev"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_gf15q")
+
+[node name="base_level" type="Node2D"]
+script = ExtResource("1_mdlly")
+sources = 2
+sinks = 2
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -100
+offset_right = 1920.0
+offset_bottom = 1088.0
+texture = ExtResource("2_b37in")
+expand_mode = 1
+
+[node name="Wall" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_4v3ap")
+format = 2
+layer_0/name = "wall"
+layer_0/tile_data = PackedInt32Array(-1, 2, 0, 65535, 2, 0, 131071, 2, 0, 196607, 2, 0, 262143, 2, 0, 327679, 2, 0, 393215, 2, 0, 458751, 2, 0, 524287, 2, 0, 589823, 2, 0, 655359, 2, 0, 720895, 2, 0, -65518, 2, 0, -65519, 2, 0, -65520, 2, 0, -65521, 2, 0, -65522, 2, 0, -65523, 2, 0, -65524, 2, 0, -65525, 2, 0, -65526, 2, 0, -65527, 2, 0, -65528, 2, 0, -65529, 2, 0, -65530, 2, 0, -65531, 2, 0, -65532, 2, 0, -65533, 2, 0, -65534, 2, 0, -65535, 2, 0, -65536, 2, 0, 786431, 2, 0, 851967, 2, 0, 917503, 2, 0, 983039, 2, 0, 1048575, 2, 0, 1114111, 2, 0, 1179647, 2, 0, 1114112, 2, 0, 1114113, 2, 0, 1114114, 2, 0, 1114115, 2, 0, 1114116, 2, 0, 1114117, 2, 0, 1114118, 2, 0, 1114119, 2, 0, 1114120, 2, 0, 1114121, 2, 0, 1114122, 2, 0, 1114123, 2, 0, 1114124, 2, 0, 1114125, 2, 0, 1114126, 2, 0, 1114127, 2, 0, 1114128, 2, 0, 1114129, 2, 0, 1114130, 2, 0, 1114131, 2, 0, 1114132, 2, 0, 1114133, 2, 0, 1114134, 2, 0, 1114135, 2, 0, 1114136, 2, 0, 1114137, 2, 0, 1114138, 2, 0, 1114139, 2, 0, 1114140, 2, 0, 1114141, 2, 0, 1114142, 2, 0, 1048606, 2, 0, 983070, 2, 0, 917534, 2, 0, 851998, 2, 0, 786462, 2, 0, 720926, 2, 0, 655390, 2, 0, 589854, 2, 0, 524318, 2, 0, 458782, 2, 0, 393246, 2, 0, 327710, 2, 0, 262174, 2, 0, 196638, 2, 0, 131102, 2, 0, 65566, 2, 0, 30, 2, 0, -65506, 2, 0, -65507, 2, 0, -65508, 2, 0, -65509, 2, 0, -65510, 2, 0, -65511, 2, 0, -65512, 2, 0, -65513, 2, 0, -65514, 2, 0, -65515, 2, 0, -65516, 2, 0, -65517, 2, 0)
+
+[node name="Level" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_coeev")
+format = 2
+
+[node name="Hotbar" parent="." instance=ExtResource("5_hpkxo")]
+z_index = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+_lever_unlocked = false
+_lever_enabled = false
+
+[node name="Player" parent="." instance=ExtResource("6_qcih0")]
+z_index = 1
+position = Vector2(464, 80)
