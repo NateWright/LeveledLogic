@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/level_base.gd" id="1_umysh"]
 [ext_resource type="PackedScene" uid="uid://croxwgs246s7e" path="res://scenes/elements/player.tscn" id="1_ved8g"]
-[ext_resource type="Texture2D" uid="uid://b5l5l8x5f3xbs" path="res://assets/backgrounds/level_background_tile.png" id="2_y8jol"]
+[ext_resource type="Texture2D" uid="uid://b5b5iaw1w5prm" path="res://assets/backgrounds/background_1.png" id="2_t76yb"]
 [ext_resource type="Texture2D" uid="uid://daa5b4myde3tl" path="res://assets/gates/gates.png" id="3_27pqs"]
 [ext_resource type="PackedScene" uid="uid://bya2yh0xvc1g4" path="res://scenes/hotbar/hotbar.tscn" id="4_hxhxe"]
 [ext_resource type="Texture2D" uid="uid://63y5vm0w6ox8" path="res://assets/programmer_art/wall-64x64.png" id="5_8ukma"]
@@ -40,10 +40,10 @@ script = ExtResource("1_umysh")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -100
-offset_right = 1928.0
-offset_bottom = 1104.0
-texture = ExtResource("2_y8jol")
-stretch_mode = 1
+offset_right = 1920.0
+offset_bottom = 1088.0
+texture = ExtResource("2_t76yb")
+expand_mode = 1
 
 [node name="Wall" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_4v3ap")
