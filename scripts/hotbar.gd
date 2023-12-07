@@ -88,6 +88,26 @@ func _process(_delta):
 		if ($CenterContainer/PanelContainer/WireTool.visible or (enabled_array[i] and unlocked_array[i])) and Input.is_action_just_pressed(keybinds[i]):
 			_on_item_selected(i)
 			return
+	if Input.is_action_just_pressed("hotbar_next"):
+		if $CenterContainer/PanelContainer/Gates.visible:
+			for i in range(selectedGate + 1, selectedGate + GATES + 1):
+				if (enabled_array[i%GATES] and unlocked_array[i%GATES]):
+					_on_item_selected(i%GATES)
+					return
+		else:
+			for i in range(selectedWireTool + 1, selectedWireTool + WIRE_TOOLS + 1):
+				_on_item_selected(i%WIRE_TOOLS)
+				return
+	elif Input.is_action_just_pressed("hotbar_prev"):
+		if $CenterContainer/PanelContainer/Gates.visible:
+			for i in range(selectedGate + GATES - 1, selectedGate - 1, -1):
+				if (enabled_array[i%GATES] and unlocked_array[i%GATES]):
+					_on_item_selected(i%GATES)
+					return
+		else:
+			for i in range(selectedWireTool + WIRE_TOOLS - 1, selectedWireTool - 1, -1):
+				_on_item_selected(i%WIRE_TOOLS)
+				return
 
 func _on_item_selected(index: int):
 	if $CenterContainer/PanelContainer/Gates.visible == true and selectedGate != index and index < GATES:
