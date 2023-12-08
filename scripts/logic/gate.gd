@@ -8,7 +8,7 @@ var _inputsConnected: Array[bool] = []
 var _output: bool = false
 
 
-var _last_signal: int = 0
+var _last_signals: Array[int] = []
 var _last_output: bool = false
 
 var removable: bool = true
@@ -39,35 +39,43 @@ func setGate(gate: GATE) -> StaticBody2D:
 		GATE.LAMP:
 			_inputs = [false]
 			_inputsConnected = [false]
+			_last_signals = [0]
 			_gateBody = preload("res://scenes/elements/logic/lamp.tscn").instantiate()
 			_gateBody.update(_output)
 		GATE.NOT:
 			_inputs = [false]
 			_inputsConnected = [false]
+			_last_signals = [0]
 			_gateBody = preload("res://scenes/elements/logic/not_gate.tscn").instantiate()
 		GATE.OR:
 			_inputs = [false, false]
 			_inputsConnected = [false, false]
+			_last_signals = [0,0]
 			_gateBody = preload("res://scenes/elements/logic/or_gate.tscn").instantiate()
 		GATE.AND:
 			_inputs = [false, false]
 			_inputsConnected = [false, false]
+			_last_signals = [0,0]
 			_gateBody = preload("res://scenes/elements/logic/and_gate.tscn").instantiate()
 		GATE.XOR:
 			_inputs = [false, false]
 			_inputsConnected = [false, false]
+			_last_signals = [0,0]
 			_gateBody = preload("res://scenes/elements/logic/xor_gate.tscn").instantiate()
 		GATE.NAND:
 			_inputs = [false, false]
 			_inputsConnected = [false, false]
+			_last_signals = [0,0]
 			_gateBody = preload("res://scenes/elements/logic/nand_gate.tscn").instantiate()
 		GATE.NOR:
 			_inputs = [false, false]
 			_inputsConnected = [false, false]
+			_last_signals = [0,0]
 			_gateBody = preload("res://scenes/elements/logic/nor_gate.tscn").instantiate()
 		GATE.XNOR:
 			_inputs = [false, false]
 			_inputsConnected = [false, false]
+			_last_signals = [0,0]
 			_gateBody = preload("res://scenes/elements/logic/xnor_gate.tscn").instantiate()
 		GATE.SOURCE:
 			_inputs = []
@@ -76,6 +84,7 @@ func setGate(gate: GATE) -> StaticBody2D:
 		GATE.SINK:
 			_inputs = [false]
 			_inputsConnected = [false]
+			_last_signals = [0]
 			_gateBody = preload("res://scenes/elements/logic/sink.tscn").instantiate()
 			_gateBody.update(_output)
 		GATE.INDICATOR:
@@ -156,7 +165,7 @@ func checkIntputConnected(id: int):
 func _setInput(value: bool, signal_id: int, id: int):
 	_inputs[id] = value
 	_updateOutput()
-	_notify(signal_id)
+	_notify(signal_id, id)
 
 func _updateOutput():
 	match _gate:
@@ -189,24 +198,26 @@ func _updateOutput():
 func setOutput(value: bool, signal_id: int):
 	_output = value
 	_gateBody.update(value)
-	_notify(signal_id)
+	_notify(signal_id, -1)
 
 func interact():
 	if _gate == GATE.LEVER:
 		_output = !_output
 		_gateBody.update(_output)
 		var rand = randi()
-		_notify(rand)
+		_notify(rand, -1)
 	return
 
-func _notify(signal_id: int):
-	if signal_id == _last_signal:
-		if _output != _last_output:
-			push_warning("Signaling loop detected; skipping signal")
-		return    
-	_last_signal = signal_id
-	_last_output = _output
-	output.emit(_output, signal_id)
+func _notify(signal_id: int, input: int):
+	if input >= 0:
+		if signal_id == _last_signals[input]:
+			if _output != _last_output:
+				push_warning("Signaling loop detected; skipping signal")
+			return    
+		_last_signals[input] = signal_id
+	if _last_output != _output:
+		_last_output = _output
+		output.emit(_output, signal_id)
 
 func getOutput():
 	return _output
