@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://velwvknf3mfp"]
 
-[ext_resource type="PackedScene" uid="uid://cucxvuj86rdef" path="res://scenes/levels/base_level.tscn" id="1_lfad4"]
-[ext_resource type="Script" path="res://scenes/levels/tutorial_and.gd" id="2_8ipgf"]
+[ext_resource type="PackedScene" uid="uid://cucxvuj86rdef" path="res://scenes/levels/base_level.tscn" id="1_7niui"]
+[ext_resource type="Script" path="res://scenes/levels/tutorials/tutorial_and.gd" id="2_4xaut"]
 
-[node name="tutorial_and" instance=ExtResource("1_lfad4")]
-script = ExtResource("2_8ipgf")
+[node name="tutorial_and" instance=ExtResource("1_7niui")]
+script = ExtResource("2_4xaut")
 sources = 2
 sinks = 1
 
