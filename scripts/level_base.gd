@@ -184,7 +184,7 @@ func _selectOutput():
 	var vec = _gridSelection
 	var gate: Gate = _gates[vec.y][vec.x]
 	if _output != null:
-		_output.getGateBody().get_child(0).material = null
+		$Selection.position = Vector2(-64, -64)
 	if !gate.gateSet() or !gate.hasOutput():
 		_output = null
 		return
@@ -197,11 +197,7 @@ func _selectOutput():
 	_outputGateIndex = vec
 	_output = gate
 	# Apply border to sprite
-	var body: StaticBody2D = gate.getGateBody()
-	body.get_child(0).material = ShaderMaterial.new()
-	body.get_child(0).material.shader = preload("res://assets/outline2d_shader.gdshader")
-	body.get_child(0).material.set("shader_parameter/line_thickness", 10)
-	body.get_child(0).material.set("shader_parameter/line_color", Color(1, 0.09, 1, 1))
+	$Selection.position = gate.getGateBody().position
 	_outputGateLoc = vec * GlobalState.gridSize
 	_outputGateLoc.y += GlobalState.gridSize/2
 	_outputGateLoc.x += GlobalState.gridSize
