@@ -164,7 +164,8 @@ func _process(delta):
 		if providedInput.size() == 0:
 			_activateGate()
 		else:
-			simulate(providedInput, expectedOutput)
+			if !simulate(providedInput, expectedOutput):
+				showIncorrectSolution()
 	
 	# Loop input so user can see
 	if _sources.size():
@@ -365,5 +366,11 @@ func simulate(inputArr, outputArr) -> bool:
 func showInstructions():
 	GlobalState.paused = true
 	var child = preload("res://scenes/levels/instructions_level.tscn").instantiate()
+	child.position = self.get_window().content_scale_size / 2
+	self.add_child(child)
+	
+func showIncorrectSolution():
+	GlobalState.paused = true
+	var child = preload("res://scenes/levels/incorrect_solution.tscn").instantiate()
 	child.position = self.get_window().content_scale_size / 2
 	self.add_child(child)
