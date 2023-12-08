@@ -7,7 +7,8 @@ func _ready():
 	expectedOutput = [[false, false], [false, true], [true, false], [true, true]]
 	GlobalState.instructionsTitle = "Binary Encoder"
 	GlobalState.instructionsContent = "
-	
+	A binary decoder outputs the index of the selected input as a binary number.
+	Binary decoders can be made to support arbitrarily-large numbers.
 	";
 	showInstructions()
 # Wire the AND gate and match the expected output to complete the level

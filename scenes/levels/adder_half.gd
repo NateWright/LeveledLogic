@@ -7,7 +7,9 @@ func _ready():
 	expectedOutput = [[true, false], [false, true], [false, false], [false, true]]
 	GlobalState.instructionsTitle = "Half Adder"
 	GlobalState.instructionsContent = "
-	
+	The half adder is part of a circuit to calculate the sum of two binary numbers.
+	The output is the sum of the two 1-bit inputs, with the most significant bit at the top.
+	Two of these combine to make a full adder.
 	";
 	showInstructions()
 # Wire the AND gate and match the expected output to complete the level

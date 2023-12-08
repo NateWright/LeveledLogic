@@ -10,7 +10,9 @@ func _ready():
 	expectedOutput = [[true, false], [false, true], [false, false], [false, true], [true, true], [true, false], [false, true], [true, false]]
 	GlobalState.instructionsTitle = "Full Adder"
 	GlobalState.instructionsContent = "
-	
+	The full adder is part of a circuit to calculate the sum of three binary numbers.
+	The output is the sum of the three 1-bit inputs, with the most significant bit at the top.
+	These can be chained to produce the result of arbitrarily-large numbers.
 	";
 	showInstructions()
 # Wire the AND gate and match the expected output to complete the level

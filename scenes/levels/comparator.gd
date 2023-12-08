@@ -7,7 +7,9 @@ func _ready():
 	expectedOutput = [[false, true, false], [true, false, false], [false, true, false], [false, false, true]]
 	GlobalState.instructionsTitle = "Comparator"
 	GlobalState.instructionsContent = "
-	
+	A comparator signals how the first number compares to the second.
+	The top output is active if the first is larger than the second, the bottom if the second is larger, and the middle if the two are equal.
+	This level only features 1-bit inputs, but larger input circuits are possible.
 	";
 	showInstructions()
 # Wire the AND gate and match the expected output to complete the level
