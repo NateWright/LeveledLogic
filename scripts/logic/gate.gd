@@ -171,7 +171,7 @@ func _updateOutput():
 	match _gate:
 		GATE.LAMP:
 			_output = _inputs[0]
-			_gateBody.update(_output)
+			updateBody.call_deferred()
 		GATE.NOT:
 			_output = !_inputs[0]
 		GATE.OR:
@@ -190,10 +190,12 @@ func _updateOutput():
 			_gateBody.update(_output)
 		GATE.SINK:
 			_output = _inputs[0]
-			_gateBody.update(_output)
+			updateBody.call_deferred()
 		GATE.INDICATOR:
-			_gateBody.update(_output)
-	
+			updateBody.call_deferred()
+
+func updateBody():
+	_gateBody.update(_output)
 
 func setOutput(value: bool, signal_id: int):
 	_output = value

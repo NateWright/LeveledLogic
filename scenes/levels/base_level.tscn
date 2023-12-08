@@ -64,6 +64,8 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
+_lever_unlocked = false
+_lever_enabled = false
 
 [node name="Player" parent="." instance=ExtResource("1_ved8g")]
 z_index = 1

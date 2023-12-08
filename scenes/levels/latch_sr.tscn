@@ -7,7 +7,3 @@
 script = ExtResource("1_mdlly")
 sources = 2
 sinks = 2
-
-[node name="Hotbar" parent="." index="3"]
-_lever_unlocked = false
-_lever_enabled = false
