@@ -63,18 +63,6 @@ var gate_icons = [
 	preload("res://assets/gates/xnor.png"),
 	preload("res://assets/programmer_art/lever_on.png"),
 ]
-#var gate_icons_disabled = [
-#	preload("res://assets/ui/hotbar/remove_gate.png"),
-#	preload("res://assets/gates/lamp/lamp_7.png"),
-#	preload("res://assets/gates/disabled/not.png"),
-#	preload("res://assets/gates/disabled/and.png"),
-#	preload("res://assets/gates/disabled/or.png"),
-#	preload("res://assets/gates/disabled/xor.png"),
-#	preload("res://assets/gates/disabled/nand.png"),
-#	preload("res://assets/gates/disabled/nor.png"),
-#	preload("res://assets/gates/disabled/xnor.png"),
-#	preload("res://assets/programmer_art/lever_on.png"),
-#]
 const gate_tooltips: Array[String] = [
 	"Remove",
 	"Lamp",
@@ -181,7 +169,6 @@ func _initGateHotbar():
 	for i in GATES:
 		var gate = _hotbarItem.instantiate()
 		gate.setIcon(gate_icons[i])
-#		gate.setDisabledIcon(gate_icons_disabled[i])
 		gate.setVisible(unlocked_array[i])
 		gate.setEnabled(enabled_array[i] and unlocked_array[i])
 		gate.connect_button(_on_item_selected.bind(i))
