@@ -7,7 +7,8 @@ func _ready():
 	expectedOutput = [[true], [false], [false], [false]]
 	GlobalState.instructionsTitle = "And"
 	GlobalState.instructionsContent = "
-	
+	This level will teach you about the AND gate. The AND gate takes in two inputs and if they are both true, then it produces a true signal.
+	This behavior can be looked up on the main menu where you can click on TRUTH TABLES to see how each gate reacts to diffrerent inputs.
 	";
 	showInstructions()
 # Wire the AND gate and match the expected output to complete the level
