@@ -243,8 +243,12 @@ func _selectInput():
 		_linePaths[_outputGateIndex] = {}
 	if vec not in _linePaths:
 		_linePaths[vec] = {}
-	_linePaths[_outputGateIndex][vec] = line
-	_linePaths[vec][_outputGateIndex] = line
+	if vec not in _linePaths[_outputGateIndex]:
+		_linePaths[_outputGateIndex][vec] = []
+	if _outputGateIndex not in _linePaths[vec]:
+		_linePaths[vec][_outputGateIndex] = []
+	_linePaths[_outputGateIndex][vec].append(line)
+	_linePaths[vec][_outputGateIndex].append(line)
 	self.add_child(line)
 
 func _disconnectInput(location: Vector2i):
@@ -263,17 +267,17 @@ func _disconnectInput(location: Vector2i):
 	var outputGate
 	if location in _linePaths:
 		for val in _linePaths[location]:
-			var line: Line2D = _linePaths[location][val]
-			if inputLoc == line.get_point_position(line.get_point_count() - 1):
-				found = true
-				outputGate = _gates[val.y][val.x]
-				for i in range(1, line.get_point_count() - 1):
-					var l: Vector2i = line.get_point_position(i) / GlobalState.gridSize
-					_lineOccupation[l.y][l.x] -= 1
-				if val != location:
-					_linePaths[val].erase(location)
-				_linePaths[location].erase(val)
-				self.remove_child(line)
+			for line in _linePaths[location][val]:
+				if inputLoc == line.get_point_position(line.get_point_count() - 1):
+					found = true
+					outputGate = _gates[val.y][val.x]
+					for i in range(1, line.get_point_count() - 1):
+						var l: Vector2i = line.get_point_position(i) / GlobalState.gridSize
+						_lineOccupation[l.y][l.x] -= 1
+					if val != location:
+						_linePaths[val].erase(location)
+					_linePaths[location].erase(val)
+					self.remove_child(line)
 	if !found:
 		return
 	
@@ -303,7 +307,10 @@ func _removeGate(location: Vector2i):
 
 	if !gate.gateSet() or !gate.removable:
 		return
-	print("removing gate")
+	
+	if location == _outputGateIndex:
+		$Selection.position = Vector2(-64, -64)
+		_output = null
 	
 	_aStar.set_point_disabled((vec.y * _mapSize.x) + vec.x, false)
 	self.remove_child(gate.getGateBody())
@@ -313,14 +320,14 @@ func _removeGate(location: Vector2i):
 	inLocation.x -= 1
 	if location in _linePaths:
 		for val in _linePaths[location].keys():
-			var line:Line2D = _linePaths[location][val]
-			for i in range(1, line.get_point_count() - 1):
-				var l: Vector2i = line.get_point_position(i) / GlobalState.gridSize
-				_lineOccupation[l.y][l.x] -= 1
-			if val != location:
-				_linePaths[val].erase(location)
-			_linePaths[location].erase(val)
-			self.remove_child(line)
+			for line in _linePaths[location][val]:
+				for i in range(1, line.get_point_count() - 1):
+					var l: Vector2i = line.get_point_position(i) / GlobalState.gridSize
+					_lineOccupation[l.y][l.x] -= 1
+				if val != location:
+					_linePaths[val].erase(location)
+				_linePaths[location].erase(val)
+				self.remove_child(line)
 	_gates[vec.y][vec.x].disconnectOutputs()
 	_gates[vec.y][vec.x] = Gate.new()
 	

@@ -111,8 +111,8 @@ func connectInput(posY: int, sig, sigDisconnect):
 		id = -1
 	else:
 		_inputsConnected[id] = true
-		sigDisconnect.connect(disconnectInput.bind(id, sig, sigDisconnect))
-		sig.connect(_setInput.bind(id))
+		sigDisconnect.connect(func(): disconnectInput(id, sig, sigDisconnect), CONNECT_REFERENCE_COUNTED)
+		sig.connect(func(val, signal_id): _setInput(val, signal_id, id), CONNECT_REFERENCE_COUNTED)
 	return loc
 
 func disconnectInput(id: int, sig: Signal, sigDisconnect: Signal):
