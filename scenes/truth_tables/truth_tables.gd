@@ -16,8 +16,7 @@ func _ready():
 	$AspectRatioContainer/ButtonMainMenu.grab_focus.call_deferred()
 	for g in _GATES:
 		var t = _table.instantiate()
-		t.setTitle(g[0])
-		t.setOutputs(g[1])
+		t.setTable(g[0], g[1])
 		$ScrollContainer/CenterContainer/Container.add_child(t)
 
 

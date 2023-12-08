@@ -1,168 +1,227 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwv7g1egjsolm"]
+[gd_scene load_steps=4 format=3 uid="uid://cwv7g1egjsolm"]
 
+[ext_resource type="Texture2D" uid="uid://bu2h21ox26gr5" path="res://assets/ui/truth_table_0.png" id="1_aeldk"]
 [ext_resource type="Script" path="res://scenes/truth_tables/truth_table.gd" id="1_sc2o0"]
+[ext_resource type="Texture2D" uid="uid://bvvj3b1po2ttv" path="res://assets/ui/truth_table_1.png" id="3_cia2h"]
 
-[node name="VBoxContainer" type="VBoxContainer"]
-offset_right = 320.0
-offset_bottom = 320.0
+[node name="Container" type="Control"]
+custom_minimum_size = Vector2(280, 450)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 275.0
+offset_bottom = 445.0
 script = ExtResource("1_sc2o0")
 
-[node name="TITLE" type="Label" parent="."]
+[node name="TwoInput" type="TextureRect" parent="."]
+visible = false
 layout_mode = 2
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_aeldk")
+
+[node name="TITLE" type="Label" parent="TwoInput"]
+layout_mode = 2
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 264.0
+offset_bottom = 80.0
 theme_override_font_sizes/font_size = 40
 text = "GATE TYPE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Input1" type="VBoxContainer" parent="TwoInput"]
 layout_mode = 2
-theme_override_constants/separation = 55
-alignment = 1
+offset_left = 40.0
+offset_top = 112.0
+offset_right = 96.0
+offset_bottom = 404.0
+theme_override_constants/separation = 8
 
-[node name="Input1" type="VBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/Input1"]
+[node name="Label" type="Label" parent="TwoInput/Input1"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "A"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="T" type="Label" parent="HBoxContainer/Input1"]
+[node name="T" type="Label" parent="TwoInput/Input1"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "T"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="T2" type="Label" parent="HBoxContainer/Input1"]
+[node name="T2" type="Label" parent="TwoInput/Input1"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "T"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="F" type="Label" parent="HBoxContainer/Input1"]
+[node name="F" type="Label" parent="TwoInput/Input1"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "F"
+horizontal_alignment = 1
 
-[node name="F2" type="Label" parent="HBoxContainer/Input1"]
+[node name="F2" type="Label" parent="TwoInput/Input1"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "F"
+horizontal_alignment = 1
 
-[node name="Input2" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Input2" type="VBoxContainer" parent="TwoInput"]
 layout_mode = 2
+offset_left = 96.0
+offset_top = 112.0
+offset_right = 160.0
+offset_bottom = 408.0
+theme_override_constants/separation = 8
 
-[node name="Label" type="Label" parent="HBoxContainer/Input2"]
+[node name="Label" type="Label" parent="TwoInput/Input2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "B"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="T" type="Label" parent="HBoxContainer/Input2"]
+[node name="T" type="Label" parent="TwoInput/Input2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "T"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="F" type="Label" parent="HBoxContainer/Input2"]
+[node name="F" type="Label" parent="TwoInput/Input2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "F"
+horizontal_alignment = 1
 
-[node name="T2" type="Label" parent="HBoxContainer/Input2"]
+[node name="T2" type="Label" parent="TwoInput/Input2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "T"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="F2" type="Label" parent="HBoxContainer/Input2"]
+[node name="F2" type="Label" parent="TwoInput/Input2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "F"
+horizontal_alignment = 1
 
-[node name="Output" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Output" type="VBoxContainer" parent="TwoInput"]
 layout_mode = 2
+offset_left = 160.0
+offset_top = 112.0
+offset_right = 240.0
+offset_bottom = 408.0
+theme_override_constants/separation = 8
 
-[node name="Label" type="Label" parent="HBoxContainer/Output"]
+[node name="Label" type="Label" parent="TwoInput/Output"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Y"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Out1" type="Label" parent="HBoxContainer/Output"]
+[node name="Out1" type="Label" parent="TwoInput/Output"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "T"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Out2" type="Label" parent="HBoxContainer/Output"]
+[node name="Out2" type="Label" parent="TwoInput/Output"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "T"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Out3" type="Label" parent="HBoxContainer/Output"]
+[node name="Out3" type="Label" parent="TwoInput/Output"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "F"
+horizontal_alignment = 1
 
-[node name="Out4" type="Label" parent="HBoxContainer/Output"]
+[node name="Out4" type="Label" parent="TwoInput/Output"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "F"
+horizontal_alignment = 1
 
-[node name="TwoInput" type="VBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
+[node name="OneInput" type="TextureRect" parent="."]
+offset_right = 280.0
+offset_bottom = 445.0
+texture = ExtResource("3_cia2h")
 
-[node name="Label" type="Label" parent="HBoxContainer/TwoInput"]
+[node name="TITLE" type="Label" parent="OneInput"]
 layout_mode = 2
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 264.0
+offset_bottom = 80.0
 theme_override_font_sizes/font_size = 40
+text = "GATE TYPE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Input1" type="VBoxContainer" parent="OneInput"]
+layout_mode = 2
+offset_left = 40.0
+offset_top = 128.0
+offset_right = 120.0
+offset_bottom = 404.0
+theme_override_constants/separation = 36
+
+[node name="Label" type="Label" parent="OneInput/Input1"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "A"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="T" type="Label" parent="HBoxContainer/TwoInput"]
+[node name="T" type="Label" parent="OneInput/Input1"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 50
 text = "T"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="F" type="Label" parent="HBoxContainer/TwoInput"]
+[node name="F" type="Label" parent="OneInput/Input1"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 50
 text = "F"
+horizontal_alignment = 1
 
-[node name="TwoOutput" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Output" type="VBoxContainer" parent="OneInput"]
 layout_mode = 2
+offset_left = 120.0
+offset_top = 128.0
+offset_right = 240.0
+offset_bottom = 400.0
+theme_override_constants/separation = 36
 
-[node name="Label" type="Label" parent="HBoxContainer/TwoOutput"]
+[node name="Label" type="Label" parent="OneInput/Output"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 50
 text = "Y"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Out1" type="Label" parent="HBoxContainer/TwoOutput"]
+[node name="Out1" type="Label" parent="OneInput/Output"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 50
 text = "T"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Out2" type="Label" parent="HBoxContainer/TwoOutput"]
+[node name="Out2" type="Label" parent="OneInput/Output"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 50
 text = "T"
 horizontal_alignment = 1
 vertical_alignment = 1

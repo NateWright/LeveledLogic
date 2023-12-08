@@ -10,28 +10,25 @@ func _ready():
 func _process(_delta):
 	pass
 
-
-func setTitle(title: String):
-	$TITLE.text = title
-
-func setOutputs(outputs):
+func setTable(title, outputs):
 	if outputs.size() == 2:
-		_setOutputs2(outputs)
+		_setOutputs2(title, outputs)
 	else:
-		_setOutputs4(outputs)
+		_setOutputs4(title, outputs)
 
 
-func _setOutputs2(outputs):
-	$HBoxContainer/Input1.visible = false
-	$HBoxContainer/Input2.visible = false
-	$HBoxContainer/Output.visible = false
-	$HBoxContainer/Output/Out1.text = outputs[0]
-	$HBoxContainer/Output/Out2.text = outputs[1]
+func _setOutputs2(title, outputs):
+	$OneInput.visible = true
+	$TwoInput.visible = false
+	$OneInput/TITLE.text = title
+	$OneInput/Output/Out1.text = outputs[0]
+	$OneInput/Output/Out2.text = outputs[1]
 
-func _setOutputs4(outputs):
-	$HBoxContainer/TwoInput.visible = false
-	$HBoxContainer/TwoOutput.visible = false
-	$HBoxContainer/Output/Out1.text = outputs[0]
-	$HBoxContainer/Output/Out2.text = outputs[1]
-	$HBoxContainer/Output/Out3.text = outputs[2]
-	$HBoxContainer/Output/Out4.text = outputs[3]
+func _setOutputs4(title, outputs):
+	$OneInput.visible = false
+	$TwoInput.visible = true
+	$TwoInput/TITLE.text = title
+	$TwoInput/Output/Out1.text = outputs[0]
+	$TwoInput/Output/Out2.text = outputs[1]
+	$TwoInput/Output/Out3.text = outputs[2]
+	$TwoInput/Output/Out4.text = outputs[3]
