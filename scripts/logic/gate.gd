@@ -117,7 +117,7 @@ func connectInput(posY: int, sig, sigDisconnect):
 	var id = loc['id']
 	
 	if id == -1 or _inputsConnected[id] == true:
-		id = -1
+		loc['id'] = -1
 	else:
 		_inputsConnected[id] = true
 		sigDisconnect.connect(func(): disconnectInput(id, sig, sigDisconnect), CONNECT_REFERENCE_COUNTED)
