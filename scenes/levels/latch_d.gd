@@ -3,13 +3,28 @@ extends BaseLevel
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super._ready()
-	providedInput = [[true, false],[false,false],[true,false],[false,false],[false,true],[false,false],[false,true],[false,false]]
-	expectedOutput = [[false,true], [false,true], [false,true], [false,true],[true,false],[true,false],[true,false],[true,false]]
-	GlobalState.instructionsTitle = "SR Latch"
+	providedInput = [
+		[true, true],
+		[true,false],
+		[false,false],
+		[false,true],
+		[false, false],
+		[true, false],
+	]
+	expectedOutput = [
+		[true, false], 
+		[true, false], 
+		[true, false], 
+		[false, true], 
+		[false, true], 
+		[false, true]
+	]
+	GlobalState.instructionsTitle = "D Latch"
 	GlobalState.instructionsContent = "
-	An SR latch will update its outputs whenever one of its inputs updates.
-	When neither input is high, the latch will remember its previous state.
-	This circuit is the basis of most state-based circuits.
+	A D latch will update its output to match its input whenever the clock line transitions high.
+	When the clock line is low, the latch will save its current state.
+	The input line is the top input, and the clock line is the bottom input.
+	This circuit is a very common state-based circuit.
 	";
 	showInstructions()
 # Wire the AND gate and match the expected output to complete the level
