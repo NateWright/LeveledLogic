@@ -9,12 +9,9 @@ sources = 2
 sinks = 1
 
 [node name="Hotbar" parent="." index="3"]
-_xnor_unlocked = false
-_lever_unlocked = false
+_nand_unlocked = true
 _not_enabled = false
 _and_enabled = false
 _or_enabled = false
 _xor_enabled = false
-_nor_enabled = false
-_xnor_enabled = false
-_lever_enabled = false
+_nand_enabled = true

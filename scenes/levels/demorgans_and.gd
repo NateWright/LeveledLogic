@@ -5,7 +5,7 @@ func _ready():
 	super._ready()
 	providedInput = [[true, true],[true,false],[false,false],[false,true]]
 	expectedOutput = [[true], [false], [false], [false]]
-	GlobalState.instructionsTitle = "De Morgan's Law – And"
+	GlobalState.instructionsTitle = "De Morgan's Law: And"
 	GlobalState.instructionsContent = "
 	This level demonstrates an important relationship between the AND gate and the OR gate.
 	The AND gate can be created with a combination of NOT gates and OR gates.
