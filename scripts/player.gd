@@ -15,9 +15,25 @@ var wirePlacement = preload("res://assets/player/cursor_connect.png")
 var wireRemove = preload("res://assets/player/cursor_disconnect.png")
 var wirePlacmentInvalid = preload("res://assets/player/cursor_blank.png")
 
+var _playerFront = preload("res://assets/player/player_front.png")
+var _playerBack = preload("res://assets/player/player_back.png")
+var _playerLeft = preload("res://assets/player/player_left.png")
+var _playerRight = preload("res://assets/player/player_right.png")
+
 
 func get_input():
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	match int(input_direction.x):
+		1:
+			$Sprite2D.texture = _playerRight
+		0:
+			$Sprite2D.texture = _playerFront
+		-1:
+			$Sprite2D.texture = _playerLeft
+	match int(input_direction.y):
+		-1:
+			$Sprite2D.texture = _playerBack
+		
 	var modifier = 1
 	if Input.is_action_pressed("sprint"):
 		modifier = 2
