@@ -6,9 +6,10 @@ const binds = [
 	["move down", "s | down arrow"],
 	["move left", "a | left arrow"],
 	["move right", "d | right arrow"],
+	["Sprint", "SHIFT"],
 	["Switch tool", "tab"],
 	["Pick hotbar", "1 - 9"],
-	["Place / Select", "E"]
+	["Place / Select", "E"],
 ]
 
 # Called when the node enters the scene tree for the first time.

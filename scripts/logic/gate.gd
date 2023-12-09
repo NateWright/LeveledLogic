@@ -120,16 +120,18 @@ func connectInput(posY: int, sig, sigDisconnect):
 		loc['id'] = -1
 	else:
 		_inputsConnected[id] = true
-		sigDisconnect.connect(func(): disconnectInput(id, sig, sigDisconnect))
-		sig.connect(func(val, signal_id): _setInput(val, signal_id, id))
+		var disconnectFunc = func(i, s, d): disconnectInput(i, s, d)
+		var sigFunc = func(v, s, i): _setInput(v, s, i)
+		sigDisconnect.connect(disconnectFunc.bind(id, sig, sigDisconnect), CONNECT_REFERENCE_COUNTED)
+		sig.connect(sigFunc.bind(id), CONNECT_REFERENCE_COUNTED)
 	return loc
 
 func disconnectInput(id: int, sig: Signal, sigDisconnect: Signal):
 	for con in sig.get_connections():
-		if con['callable'].get_object() == self:
+		if con['callable'].get_object() == self and con['callable'].get_bound_arguments().size() and con['callable'].get_bound_arguments()[0] == id:
 			con['signal'].disconnect(con['callable'])
 	for con in sigDisconnect.get_connections():
-		if con['callable'].get_object() == self:
+		if con['callable'].get_object() == self and con['callable'].get_bound_arguments().size() and con['callable'].get_bound_arguments()[0] == id:
 			con['signal'].disconnect(con['callable'])
 	_inputsConnected[id] = false
 	_setInput(false, randi(), id)
