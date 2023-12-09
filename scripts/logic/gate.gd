@@ -129,7 +129,6 @@ func connectInput(posY: int, sig, sigDisconnect):
 func disconnectInput(id: int, sig: Signal, sigDisconnect: Signal):
 	for con in sig.get_connections():
 		if con['callable'].get_object() == self and con['callable'].get_bound_arguments().size() and con['callable'].get_bound_arguments()[0] == id:
-			print("disconnected")
 			con['signal'].disconnect(con['callable'])
 	for con in sigDisconnect.get_connections():
 		if con['callable'].get_object() == self and con['callable'].get_bound_arguments().size() and con['callable'].get_bound_arguments()[0] == id:
