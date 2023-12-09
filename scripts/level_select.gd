@@ -1,13 +1,17 @@
 extends Control
 
-const LEVELS = [
-	"res://scenes/levels/level_test.tscn"
-]
-
+var _button = preload("res://scenes/level_select/menu_entry.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	for i in range(GlobalState.LEVELS.size()):
+		var level = GlobalState.LEVELS[i]
+		var button = _button.instantiate()
+		button.text = level[1]
+		button.pressed.connect(_on_level_select.bind(i))
+		$ScrollContainer/CenterContainer/VBoxContainer.add_child(button)
+		print(level[1])
+	$ScrollContainer/CenterContainer/VBoxContainer.get_child(0).grab_focus.call_deferred()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -15,9 +19,10 @@ func _process(_delta):
 	pass
 
 
-func _on_level_select(level):
-	get_tree().change_scene_to_packed(load(LEVELS[level]))
+func _on_level_select(level: int):
+	GlobalState.curLevel = level
+	get_tree().change_scene_to_packed(load(GlobalState.LEVELS[level][0]))
 
 
 func _on_button_main_menu_pressed():
-	get_tree().change_scene_to_packed(load("res://scenes/levels/main_menu.tscn")) # Replace with function body.
+	get_tree().change_scene_to_packed(load("res://scenes/main_menu/main_menu.tscn")) # Replace with function body.

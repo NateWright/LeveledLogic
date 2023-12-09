@@ -1,13 +1,19 @@
-extends LogicReceiver
+extends StaticBody2D
 
-const LAMP_OFF = preload("res://assets/programmer_art/lamp_off.png")
-const LAMP_ON  = preload("res://assets/programmer_art/lamp_on.png")
+@export var state = false
 
-func _on_logic_changed(state: bool, _id: int):
-	if state:
-		$Sprite2D.texture = LAMP_ON
+var _sprite: AnimatedSprite2D
+
+func _ready():
+	_sprite = $AnimatedSprite2D
+	
+func update(b: bool):
+	if b == state:
+		return
+	if b:
+#		$Sprite2D.texture.set_speed_scale(100)
+		_sprite.play("turn_on")
 	else:
-		$Sprite2D.texture = LAMP_OFF
-
-func _on_logic_error():
-	pass # Replace with function body.
+		_sprite.play("turn_off")
+#		$Sprite2D.texture.set_speed_scale(-100)
+	state = b

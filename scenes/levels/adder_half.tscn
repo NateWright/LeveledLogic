@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv5cqukg8q62k"]
+
+[ext_resource type="Script" path="res://scenes/levels/adder_half.gd" id="1_itedu"]
+[ext_resource type="PackedScene" uid="uid://cucxvuj86rdef" path="res://scenes/levels/base_level.tscn" id="1_rnjjy"]
+
+[node name="base_level" instance=ExtResource("1_rnjjy")]
+script = ExtResource("1_itedu")
+sources = 2
+sinks = 2
+
+[node name="Hotbar" parent="." index="3"]
+_nand_unlocked = false
+_nor_unlocked = false
+_xnor_unlocked = false
+_lever_unlocked = false
+_nand_enabled = false
+_nor_enabled = false
+_xnor_enabled = false
+_lever_enabled = false

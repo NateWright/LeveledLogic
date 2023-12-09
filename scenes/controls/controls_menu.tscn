@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://ciui85tw3eeq5"]
+
+[ext_resource type="Script" path="res://scripts/controls_menu.gd" id="1_5uinb"]
+[ext_resource type="Texture2D" uid="uid://c343mcd1shy5y" path="res://assets/backgrounds/menu_background.png" id="1_eb08o"]
+
+[node name="Control" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_eb08o")
+script = ExtResource("1_5uinb")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_right = 1920.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 50
+text = "CONTROLS"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 1920.0
+offset_bottom = 928.0
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Action" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 2
+offset_top = 960.0
+offset_right = 1920.0
+offset_bottom = 1030.0
+
+[node name="ButtonMainMenu" type="Button" parent="AspectRatioContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+text = "Back to Main Menu
+"
+
+[connection signal="pressed" from="AspectRatioContainer/ButtonMainMenu" to="." method="_on_button_main_menu_pressed"]

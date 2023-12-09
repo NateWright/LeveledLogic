@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dis8eii3t7841"]
+
+[ext_resource type="Texture2D" uid="uid://cwgsiquhjgsud" path="res://assets/gates/xnor.png" id="1_k5sac"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wyil"]
+size = Vector2(64, 64)
+
+[node name="BaseGate" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(4.61936e-07, 0)
+texture = ExtResource("1_k5sac")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6wyil")

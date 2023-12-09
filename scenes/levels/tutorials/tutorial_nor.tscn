@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://603p10ufwfhs"]
+
+[ext_resource type="PackedScene" uid="uid://cucxvuj86rdef" path="res://scenes/levels/base_level.tscn" id="1_0t3b6"]
+[ext_resource type="Script" path="res://scenes/levels/tutorials/tutorial_nor.gd" id="2_jdbuq"]
+
+[node name="tutorial_nor" instance=ExtResource("1_0t3b6")]
+script = ExtResource("2_jdbuq")
+sources = 2
+sinks = 1
+
+[node name="Hotbar" parent="." index="3"]
+_nor_unlocked = false
+_xnor_unlocked = false
+_nor_enabled = false
+_xnor_enabled = false

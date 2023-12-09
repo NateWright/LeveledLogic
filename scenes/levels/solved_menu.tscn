@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://de6gyk8am2320"]
+[gd_scene load_steps=4 format=3 uid="uid://de6gyk8am2320"]
 
 [ext_resource type="Script" path="res://scripts/solved_menu.gd" id="1_5iwtj"]
+[ext_resource type="PackedScene" uid="uid://bqpd1plobfx6q" path="res://scenes/elements/menu_background.tscn" id="2_xnaxb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1auuw"]
 font_size = 36
 
 [node name="Control" type="Control"]
+z_index = 1000
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,56 +16,33 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5iwtj")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Menubackground" parent="." instance=ExtResource("2_xnaxb")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 120
-theme_override_constants/margin_top = 80
-theme_override_constants/margin_right = 120
-theme_override_constants/margin_bottom = 80
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
-layout_mode = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/CenterContainer"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/CenterContainer/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 80
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 80
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer" index="0"]
 layout_mode = 2
 text = "Level Solved!"
 label_settings = SubResource("LabelSettings_1auuw")
 
-[node name="ButtonNextLevel" type="Button" parent="MarginContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ButtonNextLevel" type="Button" parent="Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer" index="1"]
 layout_mode = 2
 text = "Next Level"
 
-[node name="ButtonRestart" type="Button" parent="MarginContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ButtonRestart" type="Button" parent="Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer" index="2"]
 layout_mode = 2
 text = "Restart Level"
 
-[node name="ButtonLevelSelect" type="Button" parent="MarginContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ButtonLevelSelect" type="Button" parent="Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer" index="3"]
 layout_mode = 2
 text = "Level Select"
 
-[node name="ButtonMainMenu" type="Button" parent="MarginContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ButtonMainMenu" type="Button" parent="Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer" index="4"]
 layout_mode = 2
 text = "Main Menu"
 
-[connection signal="pressed" from="MarginContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonNextLevel" to="." method="_on_button_next_level_pressed" flags=3]
-[connection signal="pressed" from="MarginContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonRestart" to="." method="_on_button_restart_pressed" flags=3]
-[connection signal="pressed" from="MarginContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonLevelSelect" to="." method="_on_button_level_select_pressed" flags=3]
-[connection signal="pressed" from="MarginContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonMainMenu" to="." method="_on_button_main_menu_pressed"]
+[connection signal="pressed" from="Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/ButtonNextLevel" to="." method="_on_button_next_level_pressed" flags=3]
+[connection signal="pressed" from="Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/ButtonRestart" to="." method="_on_button_restart_pressed" flags=3]
+[connection signal="pressed" from="Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/ButtonLevelSelect" to="." method="_on_button_level_select_pressed" flags=3]
+[connection signal="pressed" from="Menubackground/MarginContainer/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/ButtonMainMenu" to="." method="_on_button_main_menu_pressed"]
+
+[editable path="Menubackground"]

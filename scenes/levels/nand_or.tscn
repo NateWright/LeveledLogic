@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk21qvvv2cw5a"]
+
+[ext_resource type="PackedScene" uid="uid://cucxvuj86rdef" path="res://scenes/levels/base_level.tscn" id="1_3nxan"]
+[ext_resource type="Script" path="res://scenes/levels/nand_or.gd" id="2_nvuh7"]
+
+[node name="tutorial_or" instance=ExtResource("1_3nxan")]
+script = ExtResource("2_nvuh7")
+sources = 2
+sinks = 1
+
+[node name="Hotbar" parent="." index="3"]
+_nand_unlocked = true
+_not_enabled = false
+_and_enabled = false
+_or_enabled = false
+_xor_enabled = false
+_nand_enabled = true

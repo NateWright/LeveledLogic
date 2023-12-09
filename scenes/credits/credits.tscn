@@ -1,0 +1,124 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckaupv8s760jl"]
+
+[ext_resource type="Texture2D" uid="uid://c343mcd1shy5y" path="res://assets/backgrounds/menu_background.png" id="1_g0bth"]
+[ext_resource type="Script" path="res://scripts/credits_menu.gd" id="1_vyq6v"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kneoq"]
+font_size = 30
+
+[node name="Control" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_g0bth")
+script = ExtResource("1_vyq6v")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 50
+text = "CONTROLS"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 1920.0
+offset_bottom = 878.0
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer3"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer3/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer3/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Developers" type="Label" parent="MarginContainer3/CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Jonathan Kang"
+label_settings = SubResource("LabelSettings_kneoq")
+horizontal_alignment = 2
+
+[node name="Developers2" type="Label" parent="MarginContainer3/CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Connor Klein"
+label_settings = SubResource("LabelSettings_kneoq")
+horizontal_alignment = 2
+
+[node name="Developers3" type="Label" parent="MarginContainer3/CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Gabriel Shahrouzi"
+label_settings = SubResource("LabelSettings_kneoq")
+horizontal_alignment = 2
+
+[node name="Developers4" type="Label" parent="MarginContainer3/CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Eric Ta"
+label_settings = SubResource("LabelSettings_kneoq")
+horizontal_alignment = 2
+
+[node name="Developers5" type="Label" parent="MarginContainer3/CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Nathan Wright"
+label_settings = SubResource("LabelSettings_kneoq")
+horizontal_alignment = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer3/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="DeveloperTasks" type="Label" parent="MarginContainer3/CenterContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Art / Game Designer"
+label_settings = SubResource("LabelSettings_kneoq")
+
+[node name="DeveloperTasks2" type="Label" parent="MarginContainer3/CenterContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Game Developer"
+label_settings = SubResource("LabelSettings_kneoq")
+
+[node name="DeveloperTasks3" type="Label" parent="MarginContainer3/CenterContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Game Designer"
+label_settings = SubResource("LabelSettings_kneoq")
+
+[node name="DeveloperTasks4" type="Label" parent="MarginContainer3/CenterContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Game Designer"
+label_settings = SubResource("LabelSettings_kneoq")
+
+[node name="DeveloperTasks5" type="Label" parent="MarginContainer3/CenterContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Project Lead"
+label_settings = SubResource("LabelSettings_kneoq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 704.0
+offset_top = 878.0
+offset_right = 1216.0
+offset_bottom = 1048.0
+alignment = 1
+
+[node name="ButtonWebsite" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+text = "Leveled Logic Website
+"
+
+[node name="ButtonMainMenu" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+text = "Back to Main Menu
+"
+
+[connection signal="pressed" from="VBoxContainer/ButtonWebsite" to="." method="_on_button_website_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonMainMenu" to="." method="_on_button_main_menu_pressed"]

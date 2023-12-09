@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://bya2yh0xvc1g4"]
+
+[ext_resource type="Script" path="res://scripts/hotbar.gd" id="1_djwoq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvj3r"]
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="Hotbar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_djwoq")
+selected_style = SubResource("StyleBoxFlat_lvj3r")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Gates" type="HBoxContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="WireTool" type="HBoxContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2

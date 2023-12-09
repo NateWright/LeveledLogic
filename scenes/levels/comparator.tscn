@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://by5a3s0c5ee0k"]
+
+[ext_resource type="Script" path="res://scenes/levels/comparator.gd" id="1_1pumd"]
+[ext_resource type="PackedScene" uid="uid://cucxvuj86rdef" path="res://scenes/levels/base_level.tscn" id="1_l0nd4"]
+
+[node name="base_level" instance=ExtResource("1_l0nd4")]
+script = ExtResource("1_1pumd")
+sources = 2
+sinks = 3
+
+[node name="Hotbar" parent="." index="3"]
+_xor_unlocked = false
+_nand_unlocked = false
+_nor_unlocked = false
+_xnor_unlocked = false
+_lever_unlocked = false
+_xor_enabled = false
+_nand_enabled = false
+_nor_enabled = false
+_xnor_enabled = false
+_lever_enabled = false

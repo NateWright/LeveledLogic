@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu7bv3eq0qfwb"]
+
+[ext_resource type="Script" path="res://scenes/levels/latch_sr.gd" id="1_mdlly"]
+[ext_resource type="PackedScene" uid="uid://cucxvuj86rdef" path="res://scenes/levels/base_level.tscn" id="1_tabbg"]
+
+[node name="base_level" instance=ExtResource("1_tabbg")]
+script = ExtResource("1_mdlly")
+sources = 2
+sinks = 2

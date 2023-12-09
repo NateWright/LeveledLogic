@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://btr1sinke5578"]
+
+[ext_resource type="PackedScene" uid="uid://cucxvuj86rdef" path="res://scenes/levels/base_level.tscn" id="1_pjmxn"]
+[ext_resource type="Script" path="res://scenes/levels/tutorials/tutorial_xnor.gd" id="2_8m380"]
+
+[node name="tutorial_xnor" instance=ExtResource("1_pjmxn")]
+script = ExtResource("2_8m380")
+sources = 2
+sinks = 1
+
+[node name="Hotbar" parent="." index="3"]
+_xnor_unlocked = false
+_xnor_enabled = false

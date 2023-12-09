@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqpd1plobfx6q"]
+
+[ext_resource type="Texture2D" uid="uid://bvax0c55imv44" path="res://assets/backgrounds/pause_menu.png" id="1_30o2a"]
+
+[node name="menu_background" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="TextureRect" parent="MarginContainer/CenterContainer"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+texture = ExtResource("1_30o2a")
+expand_mode = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/PanelContainer"]
+layout_mode = 0
+offset_right = 571.0
+offset_bottom = 500.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/PanelContainer/CenterContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
