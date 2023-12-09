@@ -263,25 +263,23 @@ func _disconnectInput(location: Vector2i):
 	var inputLoc: Vector2 = location * GlobalState.gridSize
 	inputLoc.y += offset
 	
-	var found = false
-	var outputGate
+	print("trying to remove")
 	if location in _linePaths:
 		for val in _linePaths[location]:
 			for line in _linePaths[location][val]:
 				if inputLoc == line.get_point_position(line.get_point_count() - 1):
-					found = true
-					outputGate = _gates[val.y][val.x]
+					print("line removed")
+					var outputGate = _gates[val.y][val.x]
 					for i in range(1, line.get_point_count() - 1):
 						var l: Vector2i = line.get_point_position(i) / GlobalState.gridSize
 						_lineOccupation[l.y][l.x] -= 1
 					if val != location:
-						_linePaths[val].erase(location)
-					_linePaths[location].erase(val)
+						_linePaths[val][location].erase(val)
+					_linePaths[location][val].erase(val)
 					self.remove_child(line)
-	if !found:
-		return
+					gate.disconnectInput(ret['id'], outputGate.output, outputGate.disconnectOutput)
+					return
 	
-	gate.disconnectInput(ret['id'], outputGate.output, outputGate.disconnectOutput)
 
 func _placeGate(type: Gate.GATE, placement: Vector2i):
 	if type == Gate.GATE.NONE:
