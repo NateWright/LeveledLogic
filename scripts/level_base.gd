@@ -272,8 +272,8 @@ func _disconnectInput(location: Vector2i):
 						var l: Vector2i = line.get_point_position(i) / GlobalState.gridSize
 						_lineOccupation[l.y][l.x] -= 1
 					if val != location:
-						_linePaths[val][location].erase(val)
-					_linePaths[location][val].erase(val)
+						_linePaths[val][location].erase(line)
+					_linePaths[location][val].erase(line)
 					self.remove_child(line)
 					gate.disconnectInput(ret['id'], outputGate.output, outputGate.disconnectOutput)
 					return
