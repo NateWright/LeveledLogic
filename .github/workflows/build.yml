@@ -71,11 +71,11 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3.3.0
-      - uses: actions/download-artifact@master
+      - uses: actions/download-artifact@v3
         with:
           name: LL.x86_64
           path: .
-      - uses: actions/download-artifact@master
+      - uses: actions/download-artifact@v3
         with:
           name: LL.pck
           path: .
