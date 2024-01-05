@@ -111,7 +111,7 @@ func _setLookingAtWire():
 		1: # Select Input
 			if _gate.hasInput():
 				var output = _gate.getInputLocation(int(position.y) % GlobalState.gridSize)
-				if output['id'] == -1 or _gate.checkIntputConnected(output['id']):
+				if output['id'] == -1 or _gate.checkInputConnected(output['id']):
 					$WirePlacement.texture = wirePlacmentInvalid
 				else:
 					$WirePlacement.texture = wirePlacement
@@ -126,7 +126,7 @@ func _setLookingAtWire():
 				var output = _gate.getInputLocation(int(position.y) % GlobalState.gridSize)
 				if output['id'] == -1:
 					$WirePlacement.texture = wirePlacmentInvalid
-				elif _gate.checkIntputConnected(output['id']):
+				elif _gate.checkInputConnected(output['id']):
 					$WirePlacement.texture = wireRemove
 				else:
 					$WirePlacement.texture = wirePlacmentInvalid

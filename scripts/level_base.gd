@@ -5,9 +5,12 @@ var _gates = [] # index y, x
 var _gridSelection = Vector2i(0, 0) # position in _gates array
 var _placementVec = Vector2() # Position of placement guide releative to player
 
-var _output: Gate = null
+var _outputGate: Gate = null
 var _outputGateIndex: Vector2i # index in gate array
-var _outputGateLoc: Vector2i # position of ouput on map
+
+var _inputGate: Gate = null
+var _inputGateIndex: Vector2i # index in gate array
+var _inputPlayerPosition
 
 var _linePaths = {}
 var _lineOccupation = [] # index y, x
@@ -144,7 +147,7 @@ func _process(delta):
 		else:
 			if $Hotbar.selectedWireTool == 0:
 				_selectOutput()
-			elif $Hotbar.selectedWireTool == 1 and _output != null:
+			elif $Hotbar.selectedWireTool == 1:
 				_selectInput()
 			elif $Hotbar.selectedWireTool == 2:
 				_disconnectInput(_gridSelection)
@@ -180,27 +183,76 @@ func _process(delta):
 			_simIndex += 1
 			_simIndex = _simIndex % providedInput.size()
 
+func _connectGates() -> bool:
+	if _outputGateIndex.x + 1 >= len(_gates[_outputGateIndex.y]) or _gates[_outputGateIndex.y][_outputGateIndex.x + 1].gateSet():
+		_outputGate = null
+		print("Gate Output Blocked")
+		return false
+	if _inputGateIndex.x - 1 < 0 or _gates[_inputGateIndex.y][_inputGateIndex.x - 1].gateSet():
+		print("Gate Input Blocked")
+		return false
+	var path = _aStar.get_point_path(_outputGateIndex.y * _mapSize.x + _outputGateIndex.x + 1, _inputGateIndex.y * _mapSize.x + _inputGateIndex.x - 1)
+	if path.size() == 0:
+		return false
+	
+	var outputGateLoc = _outputGateIndex * GlobalState.gridSize
+	outputGateLoc.y += GlobalState.gridSize/2
+	outputGateLoc.x += GlobalState.gridSize
+	# r[id, offset]
+	var loc = _inputGate.connectInput(_inputPlayerPosition, _outputGate.output, _outputGate.disconnectOutput)
+	if loc['id'] == -1:
+		return false
+	var line = Line2D.new()
+	line.add_point(outputGateLoc)
+	for p in path:
+		var pos = p*GlobalState.gridSize
+		pos.x += GlobalState.gridSize/2
+		pos.y += GlobalState.gridSize/2
+		line.add_point(pos)
+		_lineOccupation[p.y][p.x] += 1
+	
+	_outputGate.connectOutput()
+	
+	var inputLoc = _inputGateIndex * GlobalState.gridSize
+#	inputLoc.x -= GlobalState.gridSize
+	inputLoc.y += loc['offset']
+	
+	line.add_point(inputLoc)
+	line.width = 5
+	line.default_color = Color.from_ok_hsl(randf_range(0,1), 1.0, 0.5)
+	if _outputGateIndex not in _linePaths:
+		_linePaths[_outputGateIndex] = {}
+	if _inputGateIndex not in _linePaths:
+		_linePaths[_inputGateIndex] = {}
+	if _inputGateIndex not in _linePaths[_outputGateIndex]:
+		_linePaths[_outputGateIndex][_inputGateIndex] = []
+	if _outputGateIndex not in _linePaths[_inputGateIndex]:
+		_linePaths[_inputGateIndex][_outputGateIndex] = []
+	_linePaths[_outputGateIndex][_inputGateIndex].append(line)
+	_linePaths[_inputGateIndex][_outputGateIndex].append(line)
+	self.add_child(line)
+	return true
+
 func _selectOutput():
 	var vec = _gridSelection
 	var gate: Gate = _gates[vec.y][vec.x]
-	if _output != null:
+	if _outputGate != null:
 		$Selection.position = Vector2(-64, -64)
 	if !gate.gateSet() or !gate.hasOutput():
-		_output = null
-		return
-	
-	if vec.x + 1 >= len(_gates[vec.y]) or _gates[vec.y][vec.x + 1].gateSet():
-		_output = null
-		print("Gate Output Blocked")
+		_outputGate = null
 		return
 	
 	_outputGateIndex = vec
-	_output = gate
-	# Apply border to sprite
-	$Selection.position = gate.getGateBody().position
-	_outputGateLoc = vec * GlobalState.gridSize
-	_outputGateLoc.y += GlobalState.gridSize/2
-	_outputGateLoc.x += GlobalState.gridSize
+	_outputGate = gate
+	
+	if _inputGate != null:
+		_connectGates()
+		_outputGate = null
+		_inputGate = null
+		$Selection.position = Vector2(-64, -64)
+	else:
+		# Apply border to sprite
+		$Selection.position = gate.getGateBody().position
 	
 func _selectInput():
 	var vec = _gridSelection
@@ -210,46 +262,23 @@ func _selectInput():
 		print("No Gate Here")
 		return
 	
-	if vec.x - 1 < 0 or _gates[vec.y][vec.x - 1].gateSet():
-		print("Gate Input Blocked")
+	if !gate.hasInput():
 		return
 	
-	var path = _aStar.get_point_path(_outputGateIndex.y * _mapSize.x + _outputGateIndex.x + 1, vec.y * _mapSize.x + vec.x - 1)
-	if path.size() == 0:
+	if gate.checkInputConnected(gate.getInputLocation(int($Player.position.y)%GlobalState.gridSize)['id']):
+		print("Input already connected")
 		return
-	# r[id, offset]
-	var loc = gate.connectInput(int($Player.position.y)%GlobalState.gridSize, _output.output, _output.disconnectOutput)
-	if loc['id'] == -1:
-		return
-	var line = Line2D.new()
-	line.add_point(_outputGateLoc)
-	for p in path:
-		var pos = p*GlobalState.gridSize
-		pos.x += GlobalState.gridSize/2
-		pos.y += GlobalState.gridSize/2
-		line.add_point(pos)
-		_lineOccupation[p.y][p.x] += 1
 	
-	_output.connectOutput()
+	_inputGate = gate
+	_inputGateIndex = vec
+	_inputPlayerPosition = int($Player.position.y)%GlobalState.gridSize
 	
-	var inputLoc = vec * GlobalState.gridSize
-#	inputLoc.x -= GlobalState.gridSize
-	inputLoc.y += loc['offset']
-	
-	line.add_point(inputLoc)
-	line.width = 5
-	line.default_color = Color.from_ok_hsl(randf_range(0,1), 1.0, 0.5)
-	if _outputGateIndex not in _linePaths:
-		_linePaths[_outputGateIndex] = {}
-	if vec not in _linePaths:
-		_linePaths[vec] = {}
-	if vec not in _linePaths[_outputGateIndex]:
-		_linePaths[_outputGateIndex][vec] = []
-	if _outputGateIndex not in _linePaths[vec]:
-		_linePaths[vec][_outputGateIndex] = []
-	_linePaths[_outputGateIndex][vec].append(line)
-	_linePaths[vec][_outputGateIndex].append(line)
-	self.add_child(line)
+	if _outputGate != null:
+		_connectGates()
+		_inputGate = null
+	else:
+		$Selection.position = gate.getGateBody().position
+
 
 func _disconnectInput(location: Vector2i):
 	var gate: Gate = _gates[location.y][location.x]
@@ -272,8 +301,8 @@ func _disconnectInput(location: Vector2i):
 						var l: Vector2i = line.get_point_position(i) / GlobalState.gridSize
 						_lineOccupation[l.y][l.x] -= 1
 					if val != location:
-						_linePaths[val][location].erase(val)
-					_linePaths[location][val].erase(val)
+						_linePaths[val][location].erase(line)
+					_linePaths[location][val].erase(line)
 					self.remove_child(line)
 					gate.disconnectInput(ret['id'], outputGate.output, outputGate.disconnectOutput)
 					return
@@ -306,7 +335,10 @@ func _removeGate(location: Vector2i):
 	
 	if location == _outputGateIndex:
 		$Selection.position = Vector2(-64, -64)
-		_output = null
+		_outputGate = null
+	if location == _inputGateIndex:
+		$Selection.position = Vector2(-64, -64)
+		_inputGate = null
 	
 	_aStar.set_point_disabled((vec.y * _mapSize.x) + vec.x, false)
 	self.remove_child(gate.getGateBody())
