@@ -25,7 +25,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	if Input.is_action_just_pressed("back"):
+		_on_button_main_menu_pressed()
 
 
 func _on_button_main_menu_pressed():

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://b1hvuy82coiee"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://b1hvuy82coiee"]
 
 [ext_resource type="FontFile" uid="uid://q8d3g66gjuge" path="res://assets/NovaSquare-Regular.ttf" id="1_gy22k"]
 [ext_resource type="Texture2D" uid="uid://jb76wxmat0oe" path="res://assets/buttons/button_highlight.png" id="2_oiyw6"]
@@ -16,27 +16,6 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ruldq"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(1, 1, 1, 0.75)
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t1onq"]
 texture = ExtResource("2_oiyw6")
@@ -80,7 +59,7 @@ Button/constants/outline_size = 0
 Button/font_sizes/font_size = 36
 Button/fonts/font = ExtResource("1_gy22k")
 Button/styles/disabled = SubResource("StyleBoxFlat_1lthu")
-Button/styles/focus = SubResource("StyleBoxFlat_ruldq")
+Button/styles/focus = SubResource("StyleBoxTexture_t1onq")
 Button/styles/hover = SubResource("StyleBoxTexture_t1onq")
 Button/styles/normal = SubResource("StyleBoxTexture_v6x2v")
 Button/styles/pressed = SubResource("StyleBoxTexture_kpa23")
